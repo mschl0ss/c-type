@@ -46,6 +46,7 @@ The game is specifically inspired by the classic NES game, **[R-Type](https://en
         * the player controls
         * is destroyed in collisions
         * Ship moves in backward directions roughly 80% as fast as normal motion
+        * **BONUS** `Ship` can 'pounce' ie jump in a direction.  Has a recharge timer.
 * Abstract `Projectile` implemented.
     * describes a `MovingObject` that 
         * has an owner
@@ -81,8 +82,9 @@ The game is specifically inspired by the classic NES game, **[R-Type](https://en
         * are destroyed only when the `Ship` collides with them
         * have a payload - either a `Projectile` or `Orb` they confer to the player's `Ship`
         * are generated when the player fulfills certain criteria (eg enemy grouping wiped out, total enemies killed)
+        * **BONUS** `Ship`'s paw swipes to grab nearby projectiles
 * The following classes extend `Projectile` :
-    * `LaserShot` - fires a beam projectile.  Basically a `BasicShot` that's longer, ie 10 units wide by 1 high
+    * `LaserShot` - fires a beam projectile.  Essentially a longer `BasicShot`, ie 10 units wide by 1 high.  Destroys multiple enemies before it's destroyed.
     * `SpreadShot` - projectiles start clumped at `Ship` and spread out as they move forward
     * **BONUS** `HelixShot` - `Ship` shoots two lasers that move in matched opposite arcs that describe circles
     * **BONUS** `Missiles` - `Ship` automatically shoots missiles upward and downward.  Wider and slower.
