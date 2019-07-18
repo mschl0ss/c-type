@@ -1,4 +1,4 @@
-# C-Type
+# C-TYPE
 
 ## Overview
 
