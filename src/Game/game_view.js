@@ -56,6 +56,7 @@ class GameView {
     }
 
     animate(time) {
+
         const timeDelta = time - this.lastTime;
 
         this.processEvents(time);

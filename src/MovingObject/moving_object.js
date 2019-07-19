@@ -8,12 +8,38 @@ class MovingObject {
         this.color = options.color;
         this.shape = options.shape || "rectangle";
         this.type = options.type || " ";
-        
+        this.frameIndex = 0;
+        this.tickCount = 0;
+        this.ticksPerFrame = options.ticksPerFrame
+        this.currentSpriteImages = options.currentSpriteImages;
         this.isWrappable = options.isWrappable || false;
         this.isBounded = options.isBounded || false;
     }
 
-    draw() {}
+    draw(ctx) {
+
+        ctx.drawImage(this.currentSpriteImages[this.frameIndex],
+            this.pos[0],
+            this.pos[1],
+            this.width,
+            this.height,
+        )
+        this.animateSprite();
+    }
+
+    animateSprite() {
+        this.tickCount += 1;
+
+        if (this.tickCount > this.ticksPerFrame) {
+            this.tickCount = 0;
+
+            if (this.frameIndex >= this.currentSpriteImages.length - 1) {
+
+                this.frameIndex = 0;
+            }
+            else { this.frameIndex += 1; }
+        }
+    }
     move(timeDelta) {
         const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA;
  
@@ -56,11 +82,32 @@ class MovingObject {
 
     }
 
+    squareHitBox(obj,ratio) {
+        //original width vs new width;
+        // ratio is .4
+        //<--------> 10
+        //<----> 4
+        //needs to be shifted over by  ((1 - .4) * width) / 2
+        
+        const width = obj.width * ratio;
+        const height = obj.height * ratio;
+
+        const x = obj.pos[0] + ((1-ratio) * width)/2
+        const y = obj.pos[1] + ((1-ratio) * height)/2
+
+        const hitbox = {pos: [x,y], width, height}
+
+        return hitbox;
+
+    }
+
     isCollidedWith(otherObject) {
+        //shrinks the hitbox
+        const shrink = 0.4
         if(this === otherObject) return false;
         // debugger;
         if(this.shape === "circle" && otherObject.shape === "circle") {
-            return Util.dist(this.pos, otherObject.pos) < this.radius + otherObject.radius
+            return Util.dist(this.pos, otherObject.pos) < this.radius*shrink + otherObject.radius*shrink
         }
         else {
             
@@ -78,7 +125,7 @@ class MovingObject {
                 pos: circle.pos,
                 x: circle.pos[0],
                 y: circle.pos[1],
-                radius: circle.radius,
+                radius: circle.radius * shrink,
             }
             const r = {
                 pos: rect.pos,
@@ -96,8 +143,11 @@ class MovingObject {
                                 // console.log('dead ship cant hit')
                                 return false;
                             }
-                            this.game.remove(this)
-                            this.game.remove(otherObject)
+                            else if (rect.type === circle.owner) return false;
+                            else {
+                                this.game.remove(this)
+                                this.game.remove(otherObject)
+                            }
 
                         }
                     }

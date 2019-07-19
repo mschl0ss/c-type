@@ -1,28 +1,47 @@
-const MovingObject = require('../moving_object');
 const Projectile = require('./projectile')
+const ProjectileSprites = require('../../Game/Sprites/projectile_sprites')
 
 class BasicShot extends Projectile {
     constructor(options) {
        
         options.color = "#64ccef";
         options.shape = "circle";
+        options.frameIndex = 0;
+        options.tickCount = 0;
+        options.ticksPerFrame = 2;
         super(options)
 
-        this.radius = 3;
+        this.radius = 35;
         this.speed = 1;
+
+        this.width = this.radius;
+        this.height = this.radius;
+        this.currentSpriteImages = ProjectileSprites.basicShot
     }
 
     draw(ctx) {
-        ctx.fillStyle = this.color;
-        ctx.strokeStyle = "#31BBFB";
-        // ctx.strokeStyle = "#EF8500";
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-        ctx.arc(
-            this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true
-        );
-        
-        ctx.fill(); ctx.stroke();
+        ctx.drawImage(this.currentSpriteImages[this.frameIndex],
+            this.pos[0],
+            this.pos[1],
+            this.width,
+            this.height,
+        )
+
+        this.animateSprite();
+    }
+
+    animateSprite() {
+        this.tickCount += 1;
+
+        if (this.tickCount > this.ticksPerFrame) {
+            this.tickCount = 0;
+
+            if (this.frameIndex >= this.currentSpriteImages.length - 1) {
+
+                this.frameIndex = 0;
+            }
+            else { this.frameIndex += 1; }
+        }
     }
 
     // draw(ctx) {
@@ -34,6 +53,6 @@ class BasicShot extends Projectile {
     // }
 }
 
-BasicShot.reloadTime = 90;
+BasicShot.reloadTime = 150;
 
 module.exports = BasicShot;

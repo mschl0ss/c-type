@@ -1,55 +1,28 @@
 const Enemy = require('./enemy');
-const Projectile = require('../Projectile/projectile');
-const BasicShot = require('../Projectile/basic_shot');
-const Ship = require('../Ship/ship');
+
+const EnemySprites = require('../../Game/Sprites/enemy_sprites')
 
 const COLOR = "#ad1113";
-// const RADII = [50,50]
-const RADII = [10,12]
+const RADII = [50,60]
+// const RADII = [10,12]
 
 class Bug extends Enemy {
     constructor(options) {
         options.color = COLOR;
         options.vel = [-4,0];
         options.shape = "circle";
-        options.healthPoints = 3;
+        options.ticksPerFrame = 2;
+        options.healthPoints = 2;
+        options.currentSpriteImages = EnemySprites.brownBug;
         super(options);
-        this.spawnDelay = 400
-        this.spawnTime = 0;
-        this.spawnY = 300;
 
         this.ascending = true;
         this.radius = RADII[Math.floor(Math.random() * 2)];
+        this.width = this.radius;
+        this.height = this.radius;
 
     }
 
-    draw(ctx) {
-        // debugger;
-        ctx.globalAlpha = 0.5
-        ctx.fillStyle = this.color;
-
-        ctx.beginPath();
-        ctx.arc(
-            this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true
-        );
-        ctx.fill();
-        ctx.globalAlpha = 1
-    }
-
-    collideWith(otherObject) {
-        // debugger;
-        if (otherObject instanceof Projectile) {
-            if(otherObject instanceof BasicShot) {
-                this.game.remove(otherObject);
-                this.healthPoints -=1;
-                if(this.healthPoints <= 0) this.game.remove(this);
-            }
-        }
-        else if (otherObject instanceof Ship) {
-            const [x,y] = this.pos;
-            debugger;
-        }
-    }
 }
 
 
