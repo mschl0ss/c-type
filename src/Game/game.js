@@ -12,9 +12,9 @@ class Game {
         this.playerProjectiles = [];
         this.bugs = [];
         this.bugGroups = [];
-        this.bugLimit = 5;
+        this.bugLimit = 6;
         this.previousBugSpawnTime = 0;
-        this.prevousBugSpawnY = this.randomY();
+        this.previousBugSpawnY = this.randomY();
         this.addStars();
         
         this.ship = new Ship({ game: this, pos: [this.randomX(),this.randomY()] })
@@ -58,10 +58,13 @@ class Game {
         
         if ( this.bugs.length < this.bugLimit) {
             
-            if(time - this.previousBugSpawnTime > 600){
-            this.add( new Bug({ game: this, pos: [Game.DIM_X,this.prevousBugSpawnY]}))
-            this.previousBugSpawnTime = time;
-            console.log(this.previousBugSpawnTime)
+            if(time - this.previousBugSpawnTime > 200){
+                const offset = this.previousBugSpawnY > 350 ? -200 : 200;
+                const newY = this.previousBugSpawnY + Math.floor(Math.random() * offset)
+                this.add( new Bug({ game: this, pos: [Game.DIM_X-11,newY]}))
+                this.previousBugSpawnY = newY;
+                this.previousBugSpawnTime = time;
+                console.log(this.previousBugSpawnTime)
         }}
 
     }
@@ -74,10 +77,10 @@ class Game {
         this.bugs.forEach(bug => {bug.draw(ctx)})
     }
     isOutOfBounds(pos) {
-        const offsetY = 0;
-        // const offsetY = 9;
-        const offsetX = 0;
-        // const offsetX = 10;
+        // const offsetY = 0;
+        const offsetY = 15;
+        // const offsetX = 0;
+        const offsetX = 10;
         if (pos[0] > Game.DIM_X-offsetX) return [true, "right"]
         else if (pos[0] < offsetX) return [true, "left"]
         else if (pos[1] < offsetY) return [true, "top"]
@@ -118,7 +121,7 @@ class Game {
     }
 }
 
-Game.NUM_STARS = 0;
+Game.NUM_STARS = 500;
 Game.NUM_MOONS = 1;
 
 Game.NUM_BUGS = 5;

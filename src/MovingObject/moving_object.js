@@ -39,7 +39,7 @@ class MovingObject {
 
                         break;
                     case "bottom":
-                        this.pos = [this.pos[0], DIM_Y - 10];
+                        this.pos = [this.pos[0], DIM_Y - 20];
                         break;
                     default:
                         console.log('Reached default case in MovingObject.prototype.move')
