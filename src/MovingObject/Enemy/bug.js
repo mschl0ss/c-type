@@ -1,12 +1,18 @@
 const Enemy = require('./enemy');
+const Projectile = require('../Projectile/projectile');
+const BasicShot = require('../Projectile/basic_shot');
+const Ship = require('../Ship/ship');
 
 const COLOR = "#ad1113";
+// const RADII = [50,50]
 const RADII = [10,12]
 
 class Bug extends Enemy {
     constructor(options) {
         options.color = COLOR;
         options.vel = [-4,0];
+        options.shape = "circle";
+        options.healthPoints = 3;
         super(options);
         this.spawnDelay = 400
         this.spawnTime = 0;
@@ -28,6 +34,21 @@ class Bug extends Enemy {
         );
         ctx.fill();
         ctx.globalAlpha = 1
+    }
+
+    collideWith(otherObject) {
+        // debugger;
+        if (otherObject instanceof Projectile) {
+            if(otherObject instanceof BasicShot) {
+                this.game.remove(otherObject);
+                this.healthPoints -=1;
+                if(this.healthPoints <= 0) this.game.remove(this);
+            }
+        }
+        else if (otherObject instanceof Ship) {
+            const [x,y] = this.pos;
+            debugger;
+        }
     }
 }
 

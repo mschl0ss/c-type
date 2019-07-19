@@ -5,6 +5,7 @@ class Enemy extends MovingObject {
     constructor(options) {
 
         super(options);
+        this.healthPoints = options.healthPoints;
         this.spawnDelay = options.spawnDelay;
         this.spawnTime = options.spawnTime;
         this.spawnX = options.spawnX;

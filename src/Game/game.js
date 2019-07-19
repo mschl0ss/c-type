@@ -12,19 +12,23 @@ class Game {
         this.playerProjectiles = [];
         this.bugs = [];
         this.bugGroups = [];
-        this.bugLimit = 6;
+        this.bugLimit = 10;
         this.previousBugSpawnTime = 0;
         this.previousBugSpawnY = this.randomY();
         this.addStars();
         
-        this.ship = new Ship({ game: this, pos: [this.randomX(),this.randomY()] })
-        this.renderShip = true;
+        this.ship = new Ship({ game: this, pos: [250, 350], vel: [0, 0] })
+        this.spawnShip();
 
         // this.addABug();
 
         
     }
 
+    spawnShip() {
+        this.ship = new Ship({ game: this, pos: [250, 350], vel: [0, 0] })
+        this.renderShip = true;
+    }
 
 
     add(obj) {
@@ -45,13 +49,12 @@ class Game {
     }
 
     allObjects() {
-        return [this.ship].concat(this.stars,this.playerProjectiles);
+        return [this.ship].concat(this.playerProjectiles,this.bugs);
     }
 
     addStars() {
         for(let i=0; i < Game.NUM_STARS; i++) {
             this.add( new Star( {game: this, pos: [this.randomX(), this.randomY()]}))
-            // this.add( new Star( {game: this, pos: [Game.DIM_X, this.randomY()]}))
         }
     }
     addEnemies(time) {
@@ -64,31 +67,56 @@ class Game {
                 this.add( new Bug({ game: this, pos: [Game.DIM_X-11,newY]}))
                 this.previousBugSpawnY = newY;
                 this.previousBugSpawnTime = time;
-                console.log(this.previousBugSpawnTime)
+                // console.log(this.previousBugSpawnTime)
         }}
 
     }
 
+    checkCollisions() {
+        const objs = this.allObjects();
+        for (let i = 0; i < objs.length; i++) {
+            for (let j = 0; j < objs.length; j++) {
+                if (objs[i].isCollidedWith(objs[j]) && i !== j) {
+                    console.log('oop')
+                    objs[i].collideWith(objs[j])
+                }
+            }
+        }
+    }
+
     draw(ctx) {
+        // ctx.clearRect(0, 0, Game.DIM_X * 1.5, Game.DIM_Y * 1.5);
+        //draw black background
         ctx.fillStyle = "black";
         ctx.fillRect(0,0, Game.DIM_X, Game.DIM_Y)
-        ctx.fillStyle = "#4cae50"
-        this.allObjects().forEach(obj => { obj.draw(ctx); })
+
+        //draw stars
+        this.stars.forEach(star => {star.draw(ctx)})
+
+        //draw the ship
+        if(this.renderShip) this.ship.draw(ctx);
+
+        //draw player shots
+        this.playerProjectiles.forEach(p => p.draw(ctx));
+
+        //draw enemies
         this.bugs.forEach(bug => {bug.draw(ctx)})
     }
     isOutOfBounds(pos) {
-        // const offsetY = 0;
-        const offsetY = 15;
-        // const offsetX = 0;
+        //if the pos coords are off the map return [true, "side of the map they're off"]
+        //*mitigated by the offset, which smooths out interactions with the border
+        const offsetY = 9;
         const offsetX = 10;
         if (pos[0] > Game.DIM_X-offsetX) return [true, "right"]
         else if (pos[0] < offsetX) return [true, "left"]
         else if (pos[1] < offsetY) return [true, "top"]
-        else if (pos[1] > Game.DIM_Y-offsetY) return [true, "bottom"]
+        else if (pos[1] > Game.DIM_Y-offsetY-9) return [true, "bottom"]
         else return [false, "inbounds"]
     }
     moveObjects(timeDelta) {
-        this.allObjects().forEach(object => (object.move(timeDelta)))
+        this.stars.forEach(star => star.move(timeDelta));
+        this.ship.move(timeDelta);
+        this.playerProjectiles.forEach(p => p.move(timeDelta));
         this.bugs.forEach(bug => { bug.move(timeDelta) })
     }
     randomY() {
@@ -114,14 +142,15 @@ class Game {
     step(timeDelta, time) {
         this.moveObjects(timeDelta);
         this.addEnemies(time);
-        // this.checkCollisions();
+        this.checkCollisions();
     }
     wrap(pos) {
         return [Game.DIM_X - (pos[0] % Game.DIM_X), this.randomY()]
     }
 }
 
-Game.NUM_STARS = 500;
+
+Game.NUM_STARS = 1000;
 Game.NUM_MOONS = 1;
 
 Game.NUM_BUGS = 5;

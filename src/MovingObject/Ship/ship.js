@@ -7,17 +7,22 @@ const basicShotSpeeds = [15,16]
 class Ship extends MovingObject {
     constructor(options) {
         options.color = "#545454";
-        options.pos = [250,350]
-        options.vel = [0,0];
+        options.pos = options.pos
+        options.vel = options.vel
         options.isBounded = true;
+        options.type = "playerShip"
         super(options);
-
+        
+        // this.width = 75;
+        // this.height = 35;
         this.width = 50;
         this.height = 14;
         this.projectileType = "BasicShot";
         this.lastShotTime = 0;
         this.lastPowerTime = 0;
         this.reloadTime = BasicShot.reloadTime;
+
+        this.sprite = this.loadImages();
 
     }
 
@@ -62,6 +67,13 @@ class Ship extends MovingObject {
         // ctx.strokeRect(cockpit.x, cockpit.y, cockpit.w,cockpit.h);
         
     }
+
+    loadImages() {
+        const catImage1 = new Image();
+        catImage1.src = "../../src/assets/sprites/cat/cat_flying/frame-1.png"
+        const catImage2 = new Image();
+        catImage1.src = "../../src/assets/sprites/cat/cat_flying/frame-2.png"
+    }
    
     power(impulse) {
         this.vel = impulse;
@@ -70,19 +82,20 @@ class Ship extends MovingObject {
 
     fireProjectile(time) {
         const timeDelta = time - this.lastShotTime;
-        if(timeDelta > this.reloadTime ) {
-        const projectile = new BasicShot ({
-            pos: [this.pos[0] + (this.width*0.9), this.pos[1] + (this.height*0.9)],
-            vel: [basicShotSpeeds[Math.floor(Math.random() *2)],0],
-            game: this.game,
-            owner: "playerShip"
-        })
-        
-        // debugger;
+        if(this.game.renderShip === false) {return console.log('cant fire youre dead bruh')}
+        else if(timeDelta > this.reloadTime ) {
+            const projectile = new BasicShot ({
+                pos: [this.pos[0] + (this.width*0.9), this.pos[1] + (this.height*0.9)],
+                vel: [basicShotSpeeds[Math.floor(Math.random() *2)],0],
+                game: this.game,
+                owner: "playerShip"
+            })
+            
+            // debugger;
 
-        this.game.add(projectile);
-        this.lastShotTime = time;
-        }
+            this.game.add(projectile);
+            this.lastShotTime = time;
+            }
         // else { debugger; }
     }
 

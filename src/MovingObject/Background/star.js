@@ -27,7 +27,7 @@ class Star extends MovingObject {
 
     draw(ctx) {
         // debugger;
-        ctx.globalAlpha = 0.5
+        // ctx.globalAlpha = 0.5
         ctx.fillStyle = this.color;
         
 

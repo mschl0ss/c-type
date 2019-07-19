@@ -18,6 +18,10 @@ class GameView {
             this.keysPressed[e.key] = e.type == 'keydown';
         }
 
+        key("r", ()=> {
+            if(this.game.renderShip === false) this.game.spawnShip();
+        })
+
     }
 
     processEvents(time) {

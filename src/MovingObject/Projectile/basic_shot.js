@@ -4,7 +4,8 @@ const Projectile = require('./projectile')
 class BasicShot extends Projectile {
     constructor(options) {
        
-        options.color = "#64ccef"
+        options.color = "#64ccef";
+        options.shape = "circle";
         super(options)
 
         this.radius = 3;
