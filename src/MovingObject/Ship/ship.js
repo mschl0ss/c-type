@@ -30,7 +30,8 @@ class Ship extends MovingObject {
     }
     
 
- 
+    //necessary because ship has many different sprites, and it needs to
+    //reset to default after for example shooting animation is done;
     animateSprite() {
         this.tickCount += 1;
 
