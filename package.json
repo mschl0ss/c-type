@@ -1,0 +1,16 @@
+{
+  "name": "c-type",
+  "version": "1.0.0",
+  "description": "2d side scrolling space cat shooter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch --mode=development"
+  },
+  "author": "Marc Schlossberg",
+  "license": "ISC",
+  "dependencies": {
+    "webpack": "^4.36.1",
+    "webpack-cli": "^3.3.6"
+  }
+}

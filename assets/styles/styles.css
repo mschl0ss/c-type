@@ -1,0 +1,18 @@
+body { background: black;}
+
+header {
+    height: 50px;
+}
+.canvas-wrapper {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    /* background: #282828; */
+    /* border: solid 1px #442fb7; */
+    
+}
+
+.canvas-wrapper canvas {
+    margin: 20px;
+    border: solid 1px #353535;
+}
