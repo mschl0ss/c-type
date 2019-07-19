@@ -14,15 +14,16 @@ class MovingObject {
     draw() {}
     move(timeDelta) {
         const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA;
+ 
         const x = this.pos[0] + (this.vel[0] * velocityScale);
         const y = this.pos[1] + (this.vel[1] * velocityScale);
         this.pos = [x, y];
 
+        // console.log(this.pos)
         // isOutOfBounds returns a 2 item array
         // [0] === true/false
         // [1] === bad pos aka "top", "right", etc;
-        if (this.game.isOutOfBounds(this.pos)[0]) { 
-            
+        if (this.game.isOutOfBounds(this.pos)[0]===true) { 
             if(this.isWrappable === true) this.pos = this.game.wrap([x, y]) ;
             else if(this.isBounded === true) {
                 this.vel = [0,0];
@@ -49,6 +50,7 @@ class MovingObject {
     }
 }
 
+// const NORMAL_FRAME_TIME_DELTA = 15;
 const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
 const DIM_X = 1400;
 const DIM_Y = 700;

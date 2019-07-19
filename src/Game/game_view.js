@@ -56,7 +56,7 @@ class GameView {
 
         this.processEvents(time);
 
-        this.game.step(timeDelta);
+        this.game.step(timeDelta, time);
 
         this.game.draw(this.ctx);
 
