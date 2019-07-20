@@ -26,7 +26,17 @@ class BasicShot extends Projectile {
             this.width,
             this.height,
         )
-
+        ctx.fillStyle = "#F6911E"
+        ctx.beginPath();
+        ctx.arc(
+            this.pos[0] + this.width*0.9,
+            this.pos[1] + this.height/2,
+            this.height/2,
+            0,
+            2*Math.PI,
+            true
+        )
+        ctx.fill();
         this.animateSprite();
     }
 
@@ -53,6 +63,6 @@ class BasicShot extends Projectile {
     // }
 }
 
-BasicShot.reloadTime = 150;
+BasicShot.reloadTime = 170;
 
 module.exports = BasicShot;

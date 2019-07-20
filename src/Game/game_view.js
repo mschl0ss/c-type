@@ -63,7 +63,7 @@ class GameView {
 
         this.game.step(timeDelta, time);
 
-        this.game.draw(this.ctx);
+        this.game.draw(this.ctx, time);
 
         this.lastTime = time;
 

@@ -14,10 +14,13 @@ class Game {
         this.enemyProjectiles = [];
         this.enemies = [];
         this.addStars();
-        
         this.ship = new Ship({ game: this, pos: [250, 350], vel: [0, 0] })
-        this.spawnShip();
+        this.spawnShip();   
 
+        this.lastTime = 0;
+        this.backgroundInterval = 50;
+        this.backgroundDirection = 1;
+        this.backgroundY = 625;
  
     }
 
@@ -64,20 +67,22 @@ class Game {
         }
     }
 
-    draw(ctx) {
-        
-        //draw black background
-        ctx.fillStyle = "#030919";
-        //med purple #4D3B79
-        //lightest pink #F5C19A
-        // ctx.fillRect(0,0, Game.DIM_X, Game.DIM_Y)
+    draw(ctx, time) {
 
-        const gradient = ctx.createLinearGradient(0, 0, 0, Game.DIM_Y);
+        //draw shifting bg
+        const timeDelta = time - this.lastTime;
+        if(timeDelta > this.backgroundInterval) {
+            this.backgroundY = this.backgroundY + (2*this.backgroundDirection)
+            this.lastTime = time;
+        }
+
+        this.backgroundDirection = this.backgroundY < 625 ? 1 :
+            this.backgroundY > 750 ? -1 : this.backgroundDirection;
+
+        const gradient = ctx.createLinearGradient(0,
+            this.backgroundY - 600, 0, this.backgroundY);
         gradient.addColorStop(0, "#030919")
-        gradient.addColorStop(.25, "#08244D")
-        gradient.addColorStop(.4, "#9C62A0")
-        gradient.addColorStop(.5, "#F5C19A")
-        gradient.addColorStop(.6, "#9C62A0")
+        gradient.addColorStop(.45, "#08244D")
         gradient.addColorStop(.75, "#08244D")
         gradient.addColorStop(1, "#030919")
         ctx.fillStyle = gradient;
@@ -144,7 +149,7 @@ class Game {
 }
 
 
-Game.NUM_STARS = 1000;
+Game.NUM_STARS = 500;
 Game.NUM_MOONS = 1;
 
 Game.NUM_BUGS = 5;
