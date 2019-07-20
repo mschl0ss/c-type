@@ -41,14 +41,24 @@ class VoidPuff extends Enemy {
     shouldFireForward() {
         return this.game.ship.pos[0] < this.pos[0]
     }
+
+    fireTrajectory() {
+        const deltaY = this.game.ship.pos[1] - this.pos[1] + this.height * 0.6;
+        const deltaX = this.game.ship.pos[0] - this.pos[0] + 10;
+
+        return  deltaY/deltaX;
+  
+        debugger;
+    }
     fireProjectile() {
         if(this.game.enemies.filter(e=> e instanceof Voidlette).length < this.fireMax ){
+            const vel = this.fireTrajectory();
             const voidlette = new Voidlette ({
                 game: this.game,
                 pos: [this.pos[0]+10, this.pos[1] + this.height*0.6],
                 vel: [
-                    this.shouldFireForward() ? -4: 4,
-                    this.shouldFireUp() ? 0.5 : -0.5],
+                    -4,
+                    this.shouldFireUp() ? 0.75 : -0.75],
             })
             this.game.add(voidlette);
         }

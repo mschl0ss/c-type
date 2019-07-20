@@ -22,7 +22,7 @@ const enemyTypes = {
     voidPuff : {
         type: 'voidPuff',
         groupTicks: 0,
-        groupInterval: 1200,
+        groupInterval: 200,
         groupIntervalRatio: 1,
         groupSize: 1,
         group: [],
@@ -107,21 +107,21 @@ class EnemyGen {
     }
 
     adjust() {
-        this.game.enemies.forEach(enemy=> {
-            if(enemy instanceof Voidlette){
-                if(Math.abs(enemy.pos[1] - this.game.ship.pos[1]) > 100){
-                    if(enemy.pos[1] > this.game.ship.pos[1]) {
-                        // debugger;
-                        enemy.vel[1]-=0.05
-                    }
-                    else enemy.vel[1] +=0.05
-                }
-                else {
-                    enemy.pos[1] > this.game.ship.pos[1] ?
-                        enemy.vel[1] = 0.5 : enemy.vel[1] = -0.5
-                }
-            }
-        })
+        // this.game.enemies.forEach(enemy=> {
+        //     if(enemy instanceof Voidlette){
+        //         if(Math.abs(enemy.pos[1] - this.game.ship.pos[1]) > 100){
+        //             if(enemy.pos[1] > this.game.ship.pos[1]) {
+        //                 // debugger;
+        //                 enemy.vel[1]-=0.05
+        //             }
+        //             else enemy.vel[1] +=0.05
+        //         }
+        //         else {
+        //             enemy.pos[1] > this.game.ship.pos[1] ?
+        //                 enemy.vel[1] = 0.5 : enemy.vel[1] = -0.5
+        //         }
+        //     }
+        // })
     }
 
     scheduler() {
