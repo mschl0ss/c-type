@@ -17,8 +17,8 @@ class VoidPuff extends Enemy {
         super(options);
 
         //ration should be: h is .6666 of w
-        this.width = 166;
-        this.height = 100;
+        this.width = 300;
+        this.height = 200;
         this.fireInterval = 35,
         this.fireTick = 0;
         this.fireMax = 6;

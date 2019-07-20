@@ -97,6 +97,17 @@ eval("const imgBlackBug0 = __webpack_require__(/*! ../../assets/sprites/enemies/
 
 /***/ }),
 
+/***/ "./src/Game/Sprites/explode_sprites.js":
+/*!*********************************************!*\
+  !*** ./src/Game/Sprites/explode_sprites.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const imgExplode0 = __webpack_require__(/*! ../../assets/sprites/explode/skeleton-animation_00.png */ \"./src/assets/sprites/explode/skeleton-animation_00.png\")\nconst imgExplode1 = __webpack_require__(/*! ../../assets/sprites/explode/skeleton-animation_01.png */ \"./src/assets/sprites/explode/skeleton-animation_01.png\")\nconst imgExplode2 = __webpack_require__(/*! ../../assets/sprites/explode/skeleton-animation_02.png */ \"./src/assets/sprites/explode/skeleton-animation_02.png\")\nconst imgExplode3 = __webpack_require__(/*! ../../assets/sprites/explode/skeleton-animation_03.png */ \"./src/assets/sprites/explode/skeleton-animation_03.png\")\nconst imgExplode4 = __webpack_require__(/*! ../../assets/sprites/explode/skeleton-animation_04.png */ \"./src/assets/sprites/explode/skeleton-animation_04.png\")\nconst imgExplode5 = __webpack_require__(/*! ../../assets/sprites/explode/skeleton-animation_05.png */ \"./src/assets/sprites/explode/skeleton-animation_05.png\")\nconst imgExplode6 = __webpack_require__(/*! ../../assets/sprites/explode/skeleton-animation_06.png */ \"./src/assets/sprites/explode/skeleton-animation_06.png\")\nconst imgExplode7 = __webpack_require__(/*! ../../assets/sprites/explode/skeleton-animation_07.png */ \"./src/assets/sprites/explode/skeleton-animation_07.png\")\nconst imgExplode8 = __webpack_require__(/*! ../../assets/sprites/explode/skeleton-animation_08.png */ \"./src/assets/sprites/explode/skeleton-animation_08.png\")\nconst imgExplode9 = __webpack_require__(/*! ../../assets/sprites/explode/skeleton-animation_09.png */ \"./src/assets/sprites/explode/skeleton-animation_09.png\")\nconst imgExplode10 = __webpack_require__(/*! ../../assets/sprites/explode/skeleton-animation_10.png */ \"./src/assets/sprites/explode/skeleton-animation_10.png\")\nconst imgExplode11 = __webpack_require__(/*! ../../assets/sprites/explode/skeleton-animation_11.png */ \"./src/assets/sprites/explode/skeleton-animation_11.png\")\nconst imgExplode12 = __webpack_require__(/*! ../../assets/sprites/explode/skeleton-animation_12.png */ \"./src/assets/sprites/explode/skeleton-animation_12.png\")\nconst imgExplode13 = __webpack_require__(/*! ../../assets/sprites/explode/skeleton-animation_13.png */ \"./src/assets/sprites/explode/skeleton-animation_13.png\")\nconst imgExplode14 = __webpack_require__(/*! ../../assets/sprites/explode/skeleton-animation_14.png */ \"./src/assets/sprites/explode/skeleton-animation_14.png\")\nconst imgExplode15 = __webpack_require__(/*! ../../assets/sprites/explode/skeleton-animation_15.png */ \"./src/assets/sprites/explode/skeleton-animation_15.png\")\nconst imgExplode16 = __webpack_require__(/*! ../../assets/sprites/explode/skeleton-animation_16.png */ \"./src/assets/sprites/explode/skeleton-animation_16.png\")\nconst imgExplode17 = __webpack_require__(/*! ../../assets/sprites/explode/skeleton-animation_17.png */ \"./src/assets/sprites/explode/skeleton-animation_17.png\")\nconst imgExplode18 = __webpack_require__(/*! ../../assets/sprites/explode/skeleton-animation_18.png */ \"./src/assets/sprites/explode/skeleton-animation_18.png\")\nconst imgExplode19 = __webpack_require__(/*! ../../assets/sprites/explode/skeleton-animation_19.png */ \"./src/assets/sprites/explode/skeleton-animation_19.png\")\nconst imgExplode20 = __webpack_require__(/*! ../../assets/sprites/explode/skeleton-animation_20.png */ \"./src/assets/sprites/explode/skeleton-animation_20.png\")\n\nconst explode0 = new Image();\nexplode0.src = imgExplode0;\nconst explode1 = new Image();\nexplode1.src = imgExplode1;\nconst explode2 = new Image();\nexplode2.src = imgExplode2;\nconst explode3 = new Image();\nexplode3.src = imgExplode3;\nconst explode4 = new Image();\nexplode4.src = imgExplode4;\nconst explode5 = new Image();\nexplode5.src = imgExplode5;\nconst explode6 = new Image();\nexplode6.src = imgExplode6;\nconst explode7 = new Image();\nexplode7.src = imgExplode7;\nconst explode8 = new Image();\nexplode8.src = imgExplode8;\nconst explode9 = new Image();\nexplode9.src = imgExplode9;\nconst explode10 = new Image();\nexplode10.src = imgExplode10;\nconst explode11 = new Image();\nexplode11.src = imgExplode11;\nconst explode12 = new Image();\nexplode12.src = imgExplode12;\nconst explode13 = new Image();\nexplode13.src = imgExplode13;\nconst explode14 = new Image();\nexplode14.src = imgExplode14;\nconst explode15 = new Image();\nexplode15.src = imgExplode15;\nconst explode16 = new Image();\nexplode16.src = imgExplode16;\nconst explode17 = new Image();\nexplode17.src = imgExplode17;\nconst explode18 = new Image();\nexplode18.src = imgExplode18;\nconst explode19 = new Image();\nexplode19.src = imgExplode19;\nconst explode20 = new Image();\nexplode20.src = imgExplode20;\n\nconst ExplodeSprites = [\n    explode0, explode1, explode2, explode3, explode4, explode5, explode6, \n    explode7, explode8, explode9, explode10, explode11, explode12, explode13,\n    explode14, explode15, explode16, explode17, explode18, explode19, explode20\n\n]\n\nmodule.exports = ExplodeSprites;\n\n\n//# sourceURL=webpack:///./src/Game/Sprites/explode_sprites.js?");
+
+/***/ }),
+
 /***/ "./src/Game/Sprites/projectile_sprites.js":
 /*!************************************************!*\
   !*** ./src/Game/Sprites/projectile_sprites.js ***!
@@ -126,7 +137,7 @@ eval("const imgShipDefault1 = __webpack_require__(/*! ../../assets/sprites/cat/c
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const Bug = __webpack_require__(/*! ../MovingObject/Enemy/bug */ \"./src/MovingObject/Enemy/bug.js\");\nconst VoidPuff = __webpack_require__(/*! ../MovingObject/Enemy/void_puff */ \"./src/MovingObject/Enemy/void_puff.js\")\nconst Voidlette = __webpack_require__(/*! ../MovingObject/Enemy/voidlette */ \"./src/MovingObject/Enemy/voidlette.js\")\n\nconst DIM_X = 1400;\nconst DIM_Y = 700;\nconst enemyTypes = {\n    bugs : {\n        type: 'bug',\n        groupTicks: 0,\n        groupInterval: 200,\n        groupIntervalRatio: 1,\n        // groupSize: 0,\n        groupSize: Math.floor(Math.random() *1) + 3,\n        group: [],\n        interval: 25,\n        intervalTicks: 0,\n        spawnY : 0,\n        spawnX : DIM_X-11,\n        limitY: 50,\n    },\n    voidPuff : {\n        type: 'voidPuff',\n        groupTicks: 0,\n        groupInterval: 200,\n        groupIntervalRatio: 1,\n        groupSize: 1,\n        group: [],\n        interval: 0,\n        intervalTicks: 0,\n        spawnY : 0,\n        fixedY: [275],\n        spawnX : DIM_X-11,\n        limitY: 50,\n    },\n}\n\nclass EnemyGen {\n    constructor(game) {\n        this.game = game;\n        this.enemyTypes = enemyTypes;\n    }\n\n    randomEnemY() {\n        let result = Math.floor(Math.random() * (300))+100;\n\n        while ( result < 350 && result > 200) result = Math.floor(Math.random() * (DIM_Y));\n        // while (result < 100 || result > DIM_Y - 100) result = Math.floor(Math.random() * (DIM_Y));\n        return result; \n    }\n    populateGroups() {\n\n        Object.values(this.enemyTypes).forEach(eT => {\n            eT.groupTicks += 1;\n           \n            if( eT.groupTicks >= eT.groupInterval) {\n                    eT.spawnY = this.randomEnemY();\n                for(let i=0;i < eT.groupSize; i++) {\n                    switch(eT.type) {\n                        case 'bug':\n                            eT.group.push(new Bug({ game: this.game, pos: [eT.spawnX, eT.spawnY] }))\n                            break;\n                        case 'voidPuff':\n                            eT.group.push(new VoidPuff({ game: this.game, pos: [eT.spawnX, eT.fixedY[i]]}))\n                           \n                            break;\n                        default:\n                            console.log(`enemy_gen.js: didnt recognize ${eT.type}`)\n                    }\n                }\n                eT.groupTicks = 0;\n                // eT.groupInterval = (eT.groupInterval-50 + Math.floor(Math.random() * 50)) * eT.groupIntervalRatio;\n                \n            }\n        })\n        \n        \n    }\n\n    add() {\n\n        Object.values(this.enemyTypes).forEach(eT => {\n            if(eT.group.length > 0){\n                // debugger;\n                if(eT.intervalTicks >= eT.interval) {\n                    this.game.add(eT.group.shift())\n                    eT.intervalTicks = 0;\n                }\n            eT.intervalTicks += 1;\n            }\n\n        })\n     \n    }\n\n    act() {\n        this.game.enemies.forEach(enemy => {\n            if(enemy.isShooter) {\n                \n                if(enemy.fireTick >= enemy.fireInterval) {\n                    enemy.fireProjectile();\n                    enemy.fireTick = 0;\n                }\n                else enemy.fireTick += 1;\n            }\n        })\n    }\n\n    adjust() {\n        // this.game.enemies.forEach(enemy=> {\n        //     if(enemy instanceof Voidlette){\n        //         if(Math.abs(enemy.pos[1] - this.game.ship.pos[1]) > 100){\n        //             if(enemy.pos[1] > this.game.ship.pos[1]) {\n        //                 // debugger;\n        //                 enemy.vel[1]-=0.05\n        //             }\n        //             else enemy.vel[1] +=0.05\n        //         }\n        //         else {\n        //             enemy.pos[1] > this.game.ship.pos[1] ?\n        //                 enemy.vel[1] = 0.5 : enemy.vel[1] = -0.5\n        //         }\n        //     }\n        // })\n    }\n\n    scheduler() {\n        this.populateGroups();\n        this.add();\n        this.adjust();\n        this.act();\n    }\n\n}\n\nmodule.exports = EnemyGen;\n\n//# sourceURL=webpack:///./src/Game/enemy_gen.js?");
+eval("const Bug = __webpack_require__(/*! ../MovingObject/Enemy/bug */ \"./src/MovingObject/Enemy/bug.js\");\nconst VoidPuff = __webpack_require__(/*! ../MovingObject/Enemy/void_puff */ \"./src/MovingObject/Enemy/void_puff.js\")\nconst Voidlette = __webpack_require__(/*! ../MovingObject/Enemy/voidlette */ \"./src/MovingObject/Enemy/voidlette.js\")\n\nconst DIM_X = 1400;\nconst DIM_Y = 700;\nconst enemyTypes = {\n    bugs : {\n        type: 'bug',\n        groupTicks: 0,\n        groupInterval: 200,\n        groupIntervalRatio: 1,\n        // groupSize: 0,\n        groupSize: Math.floor(Math.random() *1) + 3,\n        group: [],\n        interval: 25,\n        intervalTicks: 0,\n        spawnY : 0,\n        spawnX : DIM_X-11,\n        limitY: 50,\n    },\n    voidPuff : {\n        type: 'voidPuff',\n        groupTicks: 0,\n        groupInterval: 1400,\n        groupIntervalRatio: 1,\n        groupSize: 1,\n        group: [],\n        interval: 0,\n        intervalTicks: 0,\n        spawnY : 0,\n        fixedY: [275],\n        spawnX : DIM_X-11,\n        limitY: 50,\n    },\n}\n\nclass EnemyGen {\n    constructor(game) {\n        this.game = game;\n        this.enemyTypes = enemyTypes;\n    }\n\n    randomEnemY() {\n        let result = Math.floor(Math.random() * (300))+100;\n\n        while ( result < 350 && result > 200) result = Math.floor(Math.random() * (DIM_Y));\n        // while (result < 100 || result > DIM_Y - 100) result = Math.floor(Math.random() * (DIM_Y));\n        return result; \n    }\n    populateGroups() {\n\n        Object.values(this.enemyTypes).forEach(eT => {\n            eT.groupTicks += 1;\n           \n            if( eT.groupTicks >= eT.groupInterval) {\n                    eT.spawnY = this.randomEnemY();\n                for(let i=0;i < eT.groupSize; i++) {\n                    switch(eT.type) {\n                        case 'bug':\n                            eT.group.push(new Bug({ game: this.game, pos: [eT.spawnX, eT.spawnY] }))\n                            break;\n                        case 'voidPuff':\n                            eT.group.push(new VoidPuff({ game: this.game, pos: [eT.spawnX, eT.fixedY[i]]}))\n                           \n                            break;\n                        default:\n                            console.log(`enemy_gen.js: didnt recognize ${eT.type}`)\n                    }\n                }\n                eT.groupTicks = 0;\n                // eT.groupInterval = (eT.groupInterval-50 + Math.floor(Math.random() * 50)) * eT.groupIntervalRatio;\n                \n            }\n        })\n        \n        \n    }\n\n    add() {\n\n        Object.values(this.enemyTypes).forEach(eT => {\n            if(eT.group.length > 0){\n                // debugger;\n                if(eT.intervalTicks >= eT.interval) {\n                    this.game.add(eT.group.shift())\n                    eT.intervalTicks = 0;\n                }\n            eT.intervalTicks += 1;\n            }\n\n        })\n     \n    }\n\n    act() {\n        this.game.enemies.forEach(enemy => {\n            if(enemy.isShooter) {\n                \n                if(enemy.fireTick >= enemy.fireInterval) {\n                    enemy.fireProjectile();\n                    enemy.fireTick = 0;\n                }\n                else enemy.fireTick += 1;\n            }\n        })\n    }\n\n    adjust() {\n        // this.game.enemies.forEach(enemy=> {\n        //     if(enemy instanceof Voidlette){\n        //         if(Math.abs(enemy.pos[1] - this.game.ship.pos[1]) > 100){\n        //             if(enemy.pos[1] > this.game.ship.pos[1]) {\n        //                 // debugger;\n        //                 enemy.vel[1]-=0.05\n        //             }\n        //             else enemy.vel[1] +=0.05\n        //         }\n        //         else {\n        //             enemy.pos[1] > this.game.ship.pos[1] ?\n        //                 enemy.vel[1] = 0.5 : enemy.vel[1] = -0.5\n        //         }\n        //     }\n        // })\n    }\n\n    scheduler() {\n        this.populateGroups();\n        this.add();\n        this.adjust();\n        this.act();\n    }\n\n}\n\nmodule.exports = EnemyGen;\n\n//# sourceURL=webpack:///./src/Game/enemy_gen.js?");
 
 /***/ }),
 
@@ -137,7 +148,7 @@ eval("const Bug = __webpack_require__(/*! ../MovingObject/Enemy/bug */ \"./src/M
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const Util = __webpack_require__(/*! ../Util/util */ \"./src/Util/util.js\");\nconst EnemyGen = __webpack_require__(/*! ./enemy_gen */ \"./src/Game/enemy_gen.js\")\nconst Ship = __webpack_require__(/*! ../MovingObject/Ship/ship */ \"./src/MovingObject/Ship/ship.js\");\nconst Projectile = __webpack_require__(/*! ../MovingObject/Projectile/projectile */ \"./src/MovingObject/Projectile/projectile.js\");\nconst Star = __webpack_require__(/*! ../MovingObject/Background/star */ \"./src/MovingObject/Background/star.js\");\nconst Enemy = __webpack_require__(/*! ../MovingObject/Enemy/enemy */ \"./src/MovingObject/Enemy/enemy.js\");\n\n\nclass Game {\n    constructor() {\n        this.enemyGen = new EnemyGen(this)\n        this.stars = [];\n        this.playerProjectiles = [];\n        this.enemyProjectiles = [];\n        this.enemies = [];\n        this.addStars();\n        this.ship = new Ship({ game: this, pos: [250, 350], vel: [0, 0] })\n        this.spawnShip();   \n\n        this.lastTime = 0;\n        this.backgroundInterval = 50;\n        this.backgroundDirection = 1;\n        this.backgroundY = 625;\n \n    }\n\n    spawnShip() {\n        this.ship = new Ship({ game: this, pos: [250, 350], vel: [0, 0] })\n        this.renderShip = true;\n    }\n\n    add(obj) {\n        if (obj instanceof Star) {\n            this.stars.push(obj);\n        }\n        else if (obj instanceof Projectile) {\n                this.playerProjectiles.push(obj) \n        }\n        else if (obj instanceof Enemy) {\n            this.enemies.push(obj)\n        }\n        else {\n            \n            console.log(`Game.prototype.add : can't handle ${obj}`)\n        }\n    }\n\n    allObjects() {\n        return [this.ship].concat(this.playerProjectiles,this.enemyProjectiles,this.enemies);\n    }\n\n    addStars() {\n        for(let i=0; i < Game.NUM_STARS; i++) {\n            this.add( new Star( {game: this, pos: [this.randomX(), this.randomY()]}))\n        }\n    }\n\n    checkCollisions() {\n        const objs = this.allObjects();\n        for (let i = 0; i < objs.length; i++) {\n            for (let j = 0; j < objs.length; j++) {\n                if (objs[i].isCollidedWith(objs[j]) && i !== j) {\n                    // debugger;\n                    objs[i].collideWith(objs[j])\n                }\n            }\n        }\n    }\n\n    draw(ctx, time) {\n\n        //draw shifting bg\n        const timeDelta = time - this.lastTime;\n        if(timeDelta > this.backgroundInterval) {\n            this.backgroundY = this.backgroundY + (2*this.backgroundDirection)\n            this.lastTime = time;\n        }\n\n        this.backgroundDirection = this.backgroundY < 625 ? 1 :\n            this.backgroundY > 750 ? -1 : this.backgroundDirection;\n\n        const gradient = ctx.createLinearGradient(0,\n            this.backgroundY - 600, 0, this.backgroundY);\n        gradient.addColorStop(0, \"#030919\")\n        gradient.addColorStop(.45, \"#08244D\")\n        gradient.addColorStop(.75, \"#08244D\")\n        gradient.addColorStop(1, \"#030919\")\n        ctx.fillStyle = gradient;\n        ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y)\n\n        //draw stars\n        this.stars.forEach(star => {star.draw(ctx)})\n\n        //draw the ship\n        if(this.renderShip) this.ship.draw(ctx);\n\n        //draw player shots\n        this.playerProjectiles.forEach(p => p.draw(ctx));\n\n        //draw enemies\n        this.enemies.forEach(enemy => {enemy.draw(ctx)})\n    }\n    isOutOfBounds(pos) {\n        //if the pos coords are off the map return [true, \"side of the map they're off\"]\n        //*mitigated by the offset, which smooths out interactions with the border\n        const offsetY = 9;\n        const offsetX = 0;\n        if (pos[0] > Game.DIM_X-offsetX) return [true, \"right\"]\n        else if (pos[0] < offsetX) return [true, \"left\"]\n        else if (pos[1] < offsetY) return [true, \"top\"]\n        else if (pos[1] > Game.DIM_Y-offsetY-9) return [true, \"bottom\"]\n        else return [false, \"inbounds\"]\n    }\n    moveObjects(timeDelta) {\n        this.stars.forEach(star => star.move(timeDelta));\n        this.ship.move(timeDelta);\n        this.playerProjectiles.forEach(p => p.move(timeDelta));\n        this.enemies.forEach(enemy => { enemy.move(timeDelta) })\n    }\n    randomY() {\n        return Math.floor(Math.random() * Game.DIM_Y);\n    }\n    randomX() {\n        return Math.floor(Math.random() * Game.DIM_X);\n    }\n    remove(obj) {\n        if (obj instanceof Ship) {\n            this.renderShip = false;\n        }\n        if (obj instanceof Star) {\n            this.stars.splice(this.stars.indexOf(obj),1);\n        }\n        if (obj instanceof Projectile) {\n            // debugger;\n            this.playerProjectiles.splice(this.playerProjectiles.indexOf(obj),1);\n        }\n        if (obj instanceof Enemy) {\n            this.enemies.splice(this.enemies.indexOf(obj),1);\n        }\n    }\n    step(timeDelta, time) {\n        this.moveObjects(timeDelta);\n        this.enemyGen.scheduler();\n        this.checkCollisions();\n    }\n    wrap(pos) {\n        return [Game.DIM_X - (pos[0] % Game.DIM_X), this.randomY()]\n    }\n}\n\n\nGame.NUM_STARS = 500;\nGame.NUM_MOONS = 1;\n\nGame.NUM_BUGS = 5;\nGame.DIM_X = 1400;\nGame.DIM_Y = 700;\n\nmodule.exports = Game;\n\n//# sourceURL=webpack:///./src/Game/game.js?");
+eval("const Util = __webpack_require__(/*! ../Util/util */ \"./src/Util/util.js\");\nconst EnemyGen = __webpack_require__(/*! ./enemy_gen */ \"./src/Game/enemy_gen.js\")\nconst Ship = __webpack_require__(/*! ../MovingObject/Ship/ship */ \"./src/MovingObject/Ship/ship.js\");\nconst Projectile = __webpack_require__(/*! ../MovingObject/Projectile/projectile */ \"./src/MovingObject/Projectile/projectile.js\");\nconst Star = __webpack_require__(/*! ../MovingObject/Background/star */ \"./src/MovingObject/Background/star.js\");\nconst Enemy = __webpack_require__(/*! ../MovingObject/Enemy/enemy */ \"./src/MovingObject/Enemy/enemy.js\");\nconst Explode = __webpack_require__(/*! ../MovingObject/Background/explode */ \"./src/MovingObject/Background/explode.js\")\n\n\nclass Game {\n    constructor() {\n        this.enemyGen = new EnemyGen(this)\n        this.stars = [];\n        this.playerProjectiles = [];\n        this.enemyProjectiles = [];\n        this.enemies = [];\n        this.explosions = [];\n        this.addStars();\n        this.ship = new Ship({ game: this, pos: [250, 350], vel: [0, 0] })\n        this.spawnShip();   \n\n        this.lastTime = 0;\n        this.backgroundInterval = 50;\n        this.backgroundDirection = 1;\n        this.backgroundY = 625;\n \n    }\n\n    spawnShip() {\n        this.ship = new Ship({ game: this, pos: [250, 350], vel: [0, 0] })\n        this.renderShip = true;\n    }\n\n    add(obj) {\n        if (obj instanceof Star) {\n            this.stars.push(obj);\n        }\n        else if (obj instanceof Projectile) {\n                this.playerProjectiles.push(obj) \n        }\n        else if (obj instanceof Enemy) {\n            this.enemies.push(obj)\n        }\n        else {\n            \n            console.log(`Game.prototype.add : can't handle ${obj}`)\n        }\n    }\n\n    allObjects() {\n        return [this.ship].concat(this.playerProjectiles,this.enemyProjectiles,this.enemies);\n    }\n\n    addStars() {\n        for(let i=0; i < Game.NUM_STARS; i++) {\n            this.add( new Star( {game: this, pos: [this.randomX(), this.randomY()]}))\n        }\n    }\n\n    checkCollisions() {\n        const objs = this.allObjects();\n        for (let i = 0; i < objs.length; i++) {\n            for (let j = 0; j < objs.length; j++) {\n                if (objs[i].isCollidedWith(objs[j]) && i !== j) {\n                    // debugger;\n                    objs[i].collideWith(objs[j])\n                }\n            }\n        }\n    }\n\n    draw(ctx, time) {\n        ctx.clearRect(0, 0, Game.DIM_X * 1.5, Game.DIM_Y * 1.5);\n        //draw shifting bg\n        const timeDelta = time - this.lastTime;\n        if(timeDelta > this.backgroundInterval) {\n            this.backgroundY = this.backgroundY + (2*this.backgroundDirection)\n            this.lastTime = time;\n        }\n\n        this.backgroundDirection = this.backgroundY < 625 ? 1 :\n            this.backgroundY > 750 ? -1 : this.backgroundDirection;\n\n        const gradient = ctx.createLinearGradient(0,\n            this.backgroundY - 600, 0, this.backgroundY);\n        gradient.addColorStop(0, \"#030919\")\n        gradient.addColorStop(.45, \"#08244D\")\n        gradient.addColorStop(.75, \"#08244D\")\n        gradient.addColorStop(1, \"#030919\")\n        ctx.fillStyle = gradient;\n        ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y)\n\n        //draw stars\n        this.stars.forEach(star => {star.draw(ctx)})\n\n        //draw the ship\n        if(this.renderShip) this.ship.draw(ctx);\n\n        //draw player shots\n        this.playerProjectiles.forEach(p => p.draw(ctx));\n\n        //draw enemies\n        this.enemies.forEach(enemy => {enemy.draw(ctx)})\n\n        //draw splosions\n        this.explosions.forEach(splode => splode.draw(ctx))\n    }\n    isOutOfBounds(pos) {\n        //if the pos coords are off the map return [true, \"side of the map they're off\"]\n        //*mitigated by the offset, which smooths out interactions with the border\n        const offsetY = 9;\n        const offsetX = 0;\n        if (pos[0] > Game.DIM_X-offsetX) return [true, \"right\"]\n        else if (pos[0] < offsetX) return [true, \"left\"]\n        else if (pos[1] < offsetY) return [true, \"top\"]\n        else if (pos[1] > Game.DIM_Y-offsetY-9) return [true, \"bottom\"]\n        else return [false, \"inbounds\"]\n    }\n    moveObjects(timeDelta) {\n        this.stars.forEach(star => star.move(timeDelta));\n        this.ship.move(timeDelta);\n        this.playerProjectiles.forEach(p => p.move(timeDelta));\n        this.enemies.forEach(enemy => { enemy.move(timeDelta) })\n    }\n    randomY() {\n        return Math.floor(Math.random() * Game.DIM_Y);\n    }\n    randomX() {\n        return Math.floor(Math.random() * Game.DIM_X);\n    }\n    remove(obj) {\n        if (obj instanceof Ship) {\n            this.renderShip = false;\n           \n        }\n        if (obj instanceof Star) {\n            this.stars.splice(this.stars.indexOf(obj),1);\n        }\n        if (obj instanceof Projectile) {\n            // debugger;\n            this.playerProjectiles.splice(this.playerProjectiles.indexOf(obj),1);\n        }\n        if (obj instanceof Enemy) {\n            this.enemies.splice(this.enemies.indexOf(obj),1);\n        }\n        if(obj instanceof Explode) {\n            this.explosions.splice(this.explosions.indexOf(obj),1)\n        }\n        else {\n            // debugger;\n            this.explosions.push(\n            \n            new Explode({ pos: obj.pos, w: obj.width, h: obj.height, game: this })\n            )}\n    }\n    step(timeDelta, time) {\n        this.moveObjects(timeDelta);\n        this.enemyGen.scheduler();\n        this.checkCollisions();\n    }\n    wrap(pos) {\n        return [Game.DIM_X - (pos[0] % Game.DIM_X), this.randomY()]\n    }\n}\n\n\nGame.NUM_STARS = 500;\nGame.NUM_MOONS = 1;\n\nGame.NUM_BUGS = 5;\nGame.DIM_X = 1400;\nGame.DIM_Y = 700;\n\nmodule.exports = Game;\n\n//# sourceURL=webpack:///./src/Game/game.js?");
 
 /***/ }),
 
@@ -149,6 +160,17 @@ eval("const Util = __webpack_require__(/*! ../Util/util */ \"./src/Util/util.js\
 /***/ (function(module, exports) {
 
 eval("\nclass GameView {\n    constructor(ctx, game) {\n        this.ctx = ctx;\n        this.game = game;\n        this.imgWidth = 0;\n        this.scrollSpeed = 10;\n        this.keysPressed = {d: false, a: false, w: false, s: false, \" \": false};\n    }\n\n    bindKeyEventHandlers() {\n\n\n        key(\"p\", e=>{const g = this.game;debugger})\n\n        document.body.onkeydown = document.body.onkeyup = e=>{\n            \n            this.keysPressed[e.key] = e.type == 'keydown';\n        }\n\n        key(\"r\", ()=> {\n            if(this.game.renderShip === false) this.game.spawnShip();\n        })\n\n    }\n\n    processEvents(time) {\n        let newX = this.game.ship.vel[0];\n        let newY = this.game.ship.vel[1];\n\n        if (this.keysPressed[\"w\"]) {\n            if(newY > -ms) newY--;\n        }\n        if (this.keysPressed[\"s\"]) {\n            if(newY < ms) newY++;\n        }\n        if (this.keysPressed[\"d\"]) {\n            if(newX < ms) newX++;\n        }\n        if (this.keysPressed[\"a\"]) {\n            if(newX > -ms) newX--;\n        }\n        if(this.keysPressed[\" \"]) {this.game.ship.fireProjectile(time)}\n        \n        newX *= friction;\n        newY *= friction;\n        this.game.ship.power([newX,newY], time)\n    \n    }\n\n    start() {\n        this.bindKeyEventHandlers();\n        this.lastTime = 0;\n        requestAnimationFrame(this.animate.bind(this));\n        \n    }\n\n    animate(time) {\n\n        const timeDelta = time - this.lastTime;\n\n        this.processEvents(time);\n\n        this.game.step(timeDelta, time);\n\n        this.game.draw(this.ctx, time);\n\n        this.lastTime = time;\n\n        requestAnimationFrame(this.animate.bind(this));\n    }\n}\n\nconst friction = 0.98;\nconst ms = 7;\nGameView.MOVES = {\n    w: [0, -ms],\n    a: [-ms, 0],\n    s: [0, ms],\n    d: [ms, 0],\n};\n\nmodule.exports = GameView;\n\n//# sourceURL=webpack:///./src/Game/game_view.js?");
+
+/***/ }),
+
+/***/ "./src/MovingObject/Background/explode.js":
+/*!************************************************!*\
+  !*** ./src/MovingObject/Background/explode.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const ExplodeSprites = __webpack_require__(/*! ../../Game/Sprites/explode_sprites */ \"./src/Game/Sprites/explode_sprites.js\");\n\n\nclass Explode {\n    constructor(options) {\n        this.pos = options.pos,\n        this.width = options.w;\n        this.height = options.h;\n        this.game = options.game;\n        this.currentSpriteImages = ExplodeSprites;\n        this.frameIndex = 0;\n        this.tickCount = 0;\n        this.ticksPerFrame = 1;\n    }\n\n    draw(ctx) {\n\n        ctx.drawImage(this.currentSpriteImages[this.frameIndex],\n            this.pos[0],\n            this.pos[1],\n            this.width,\n            this.height,\n        )\n        this.animateSprite();\n\n    }\n\n    animateSprite() {\n        this.tickCount += 1;\n\n        if (this.tickCount > this.ticksPerFrame) {\n            this.tickCount = 0;\n\n            if (this.frameIndex >= this.currentSpriteImages.length - 1) {\n\n                this.game.remove(this)\n            }\n            else { this.frameIndex += 1; }\n        }\n    }\n}\n\nmodule.exports = Explode;\n\n//# sourceURL=webpack:///./src/MovingObject/Background/explode.js?");
 
 /***/ }),
 
@@ -192,7 +214,7 @@ eval("const MovingObject = __webpack_require__(/*! ../moving_object */ \"./src/M
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const Enemy = __webpack_require__(/*! ./enemy */ \"./src/MovingObject/Enemy/enemy.js\");\nconst Voidlette = __webpack_require__(/*! ./voidlette */ \"./src/MovingObject/Enemy/voidlette.js\");\n\nconst EnemySprites = __webpack_require__(/*! ../../Game/Sprites/enemy_sprites */ \"./src/Game/Sprites/enemy_sprites.js\")\n\n\n\n\nclass VoidPuff extends Enemy {\n    constructor(options) {\n        options.vel = [-1, 0];\n        options.shape = \"rectangle\";\n        options.ticksPerFrame = 2;\n        options.healthPoints = 15;\n        options.currentSpriteImages = EnemySprites.voidPuff;\n        options.isShooter = true;\n        super(options);\n\n        //ration should be: h is .6666 of w\n        this.width = 166;\n        this.height = 100;\n        this.fireInterval = 35,\n        this.fireTick = 0;\n        this.fireMax = 6;\n    }\n\n    shouldDodge () {\n        let result = false;\n        this.game.playerProjectiles.each(pp => {\n            if(Math.abs(pp.pos[x] - this.pos[x]) < 100 \n                && Math.abs(pp.pos[y] - this.pos) < 100) {\n                    result = true;\n                    console.log('voidpuff should dodge')\n                }\n        })\n        return result;\n    }\n    shouldFireUp() {\n        return this.game.ship.pos[1] > this.pos[1];\n    }\n    shouldFireForward() {\n        return this.game.ship.pos[0] < this.pos[0]\n    }\n\n    fireTrajectory() {\n        const deltaY = this.game.ship.pos[1] - this.pos[1] + this.height * 0.6;\n        const deltaX = this.game.ship.pos[0] - this.pos[0] + 10;\n\n        return  deltaY/deltaX;\n  \n        debugger;\n    }\n    fireProjectile() {\n        if(this.game.enemies.filter(e=> e instanceof Voidlette).length < this.fireMax ){\n            const vel = this.fireTrajectory();\n            const voidlette = new Voidlette ({\n                game: this.game,\n                pos: [this.pos[0]+10, this.pos[1] + this.height*0.6],\n                vel: [\n                    -4,\n                    this.shouldFireUp() ? 0.75 : -0.75],\n            })\n            this.game.add(voidlette);\n        }\n    }\n\n    animateSprite() {\n        this.tickCount += 1;\n\n        if (this.tickCount > this.ticksPerFrame) {\n            this.tickCount = 0;\n\n            if (this.frameIndex >= this.currentSpriteImages.length - 1) {\n\n                this.frameIndex = 0;\n                this.currentSpriteImages = EnemySprites.voidPuff;\n            }\n            else { this.frameIndex += 1; }\n        }\n    }\n    deductHealth() {\n        this.currentSpriteImages = EnemySprites.voidPuffHit;\n        this.healthPoints -= 1;\n        if (this.healthPoints <= 0) { this.game.remove(this) }\n    }\n}\n\nmodule.exports = VoidPuff;\n\n//# sourceURL=webpack:///./src/MovingObject/Enemy/void_puff.js?");
+eval("const Enemy = __webpack_require__(/*! ./enemy */ \"./src/MovingObject/Enemy/enemy.js\");\nconst Voidlette = __webpack_require__(/*! ./voidlette */ \"./src/MovingObject/Enemy/voidlette.js\");\n\nconst EnemySprites = __webpack_require__(/*! ../../Game/Sprites/enemy_sprites */ \"./src/Game/Sprites/enemy_sprites.js\")\n\n\n\n\nclass VoidPuff extends Enemy {\n    constructor(options) {\n        options.vel = [-1, 0];\n        options.shape = \"rectangle\";\n        options.ticksPerFrame = 2;\n        options.healthPoints = 15;\n        options.currentSpriteImages = EnemySprites.voidPuff;\n        options.isShooter = true;\n        super(options);\n\n        //ration should be: h is .6666 of w\n        this.width = 300;\n        this.height = 200;\n        this.fireInterval = 35,\n        this.fireTick = 0;\n        this.fireMax = 6;\n    }\n\n    shouldDodge () {\n        let result = false;\n        this.game.playerProjectiles.each(pp => {\n            if(Math.abs(pp.pos[x] - this.pos[x]) < 100 \n                && Math.abs(pp.pos[y] - this.pos) < 100) {\n                    result = true;\n                    console.log('voidpuff should dodge')\n                }\n        })\n        return result;\n    }\n    shouldFireUp() {\n        return this.game.ship.pos[1] > this.pos[1];\n    }\n    shouldFireForward() {\n        return this.game.ship.pos[0] < this.pos[0]\n    }\n\n    fireTrajectory() {\n        const deltaY = this.game.ship.pos[1] - this.pos[1] + this.height * 0.6;\n        const deltaX = this.game.ship.pos[0] - this.pos[0] + 10;\n\n        return  deltaY/deltaX;\n  \n        debugger;\n    }\n    fireProjectile() {\n        if(this.game.enemies.filter(e=> e instanceof Voidlette).length < this.fireMax ){\n            const vel = this.fireTrajectory();\n            const voidlette = new Voidlette ({\n                game: this.game,\n                pos: [this.pos[0]+10, this.pos[1] + this.height*0.6],\n                vel: [\n                    -4,\n                    this.shouldFireUp() ? 0.75 : -0.75],\n            })\n            this.game.add(voidlette);\n        }\n    }\n\n    animateSprite() {\n        this.tickCount += 1;\n\n        if (this.tickCount > this.ticksPerFrame) {\n            this.tickCount = 0;\n\n            if (this.frameIndex >= this.currentSpriteImages.length - 1) {\n\n                this.frameIndex = 0;\n                this.currentSpriteImages = EnemySprites.voidPuff;\n            }\n            else { this.frameIndex += 1; }\n        }\n    }\n    deductHealth() {\n        this.currentSpriteImages = EnemySprites.voidPuffHit;\n        this.healthPoints -= 1;\n        if (this.healthPoints <= 0) { this.game.remove(this) }\n    }\n}\n\nmodule.exports = VoidPuff;\n\n//# sourceURL=webpack:///./src/MovingObject/Enemy/void_puff.js?");
 
 /***/ }),
 
@@ -214,7 +236,7 @@ eval("const Enemy = __webpack_require__(/*! ./enemy */ \"./src/MovingObject/Enem
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const Projectile = __webpack_require__(/*! ./projectile */ \"./src/MovingObject/Projectile/projectile.js\")\nconst ProjectileSprites = __webpack_require__(/*! ../../Game/Sprites/projectile_sprites */ \"./src/Game/Sprites/projectile_sprites.js\")\n\nclass BasicShot extends Projectile {\n    constructor(options) {\n       \n        options.color = \"#64ccef\";\n        options.shape = \"rectangle\";\n        options.frameIndex = 0;\n        options.tickCount = 0;\n        options.ticksPerFrame = 2;\n        super(options)\n\n        // this.radius = 35;\n        this.speed = 1;\n\n        this.width = 40;\n        this.height = 15;\n        this.currentSpriteImages = ProjectileSprites.basicShot\n    }\n\n    draw(ctx) {\n        ctx.drawImage(this.currentSpriteImages[this.frameIndex],\n            this.pos[0],\n            this.pos[1],\n            this.width,\n            this.height,\n        )\n        ctx.fillStyle = \"#F6911E\"\n        ctx.beginPath();\n        ctx.arc(\n            this.pos[0] + this.width*0.9,\n            this.pos[1] + this.height/2,\n            this.height/2,\n            0,\n            2*Math.PI,\n            true\n        )\n        ctx.fill();\n        this.animateSprite();\n    }\n\n    animateSprite() {\n        this.tickCount += 1;\n\n        if (this.tickCount > this.ticksPerFrame) {\n            this.tickCount = 0;\n\n            if (this.frameIndex >= this.currentSpriteImages.length - 1) {\n\n                this.frameIndex = 0;\n            }\n            else { this.frameIndex += 1; }\n        }\n    }\n\n    // draw(ctx) {\n    //     ctx.fillStyle = this.color;\n    //     ctx.strokeStyle = \"#EF8500\";\n    //     ctx.lineWidth = 1;\n    //     ctx.rect(this.pos[0], this.pos[1], this.width, this.height);\n    //     ctx.fill(); ctx.stroke();\n    // }\n}\n\nBasicShot.reloadTime = 170;\n\nmodule.exports = BasicShot;\n\n//# sourceURL=webpack:///./src/MovingObject/Projectile/basic_shot.js?");
+eval("const Projectile = __webpack_require__(/*! ./projectile */ \"./src/MovingObject/Projectile/projectile.js\")\nconst ProjectileSprites = __webpack_require__(/*! ../../Game/Sprites/projectile_sprites */ \"./src/Game/Sprites/projectile_sprites.js\")\n\nclass BasicShot extends Projectile {\n    constructor(options) {\n       \n        options.color = \"#64ccef\";\n        options.shape = \"rectangle\";\n        options.frameIndex = 0;\n        options.tickCount = 0;\n        options.ticksPerFrame = 2;\n        super(options)\n\n        // this.radius = 35;\n        this.speed = 1;\n\n        this.width = 40;\n        this.height = 15;\n        this.currentSpriteImages = ProjectileSprites.basicShot\n    }\n\n    draw(ctx) {\n       \n        ctx.fillStyle = \"#00CCFF\"\n        ctx.beginPath();\n        ctx.ellipse(\n            this.pos[0] + this.width*0.6,\n            this.pos[1] + this.height*0.5,\n            this.width*0.4,\n            this.height*0.6,\n            Math.PI *4, 0, 2 * Math.PI*1.5\n        )\n        ctx.fill();\n        ctx.drawImage(this.currentSpriteImages[this.frameIndex],\n            this.pos[0],\n            this.pos[1],\n            this.width,\n            this.height*0.9,\n        )\n        this.animateSprite();\n    }\n\n    animateSprite() {\n        this.tickCount += 1;\n\n        if (this.tickCount > this.ticksPerFrame) {\n            this.tickCount = 0;\n\n            if (this.frameIndex >= this.currentSpriteImages.length - 1) {\n\n                this.frameIndex = 0;\n            }\n            else { this.frameIndex += 1; }\n        }\n    }\n\n    // draw(ctx) {\n    //     ctx.fillStyle = this.color;\n    //     ctx.strokeStyle = \"#EF8500\";\n    //     ctx.lineWidth = 1;\n    //     ctx.rect(this.pos[0], this.pos[1], this.width, this.height);\n    //     ctx.fill(); ctx.stroke();\n    // }\n}\n\nBasicShot.reloadTime = 170;\n\nmodule.exports = BasicShot;\n\n//# sourceURL=webpack:///./src/MovingObject/Projectile/basic_shot.js?");
 
 /***/ }),
 
@@ -853,6 +875,237 @@ eval("module.exports = __webpack_require__.p + \"405d7bafe7cd6f2cc6b3e6b4241198f
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("module.exports = __webpack_require__.p + \"4f5601a46da6c4ed4bb38ab27f888ff1.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/enemies/voidlette/skeleton-flying_10.png?");
+
+/***/ }),
+
+/***/ "./src/assets/sprites/explode/skeleton-animation_00.png":
+/*!**************************************************************!*\
+  !*** ./src/assets/sprites/explode/skeleton-animation_00.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"b9ee73059db854638bf4ceefe4e77997.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/explode/skeleton-animation_00.png?");
+
+/***/ }),
+
+/***/ "./src/assets/sprites/explode/skeleton-animation_01.png":
+/*!**************************************************************!*\
+  !*** ./src/assets/sprites/explode/skeleton-animation_01.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"b9c1a6a533af718b819f498e50040ccc.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/explode/skeleton-animation_01.png?");
+
+/***/ }),
+
+/***/ "./src/assets/sprites/explode/skeleton-animation_02.png":
+/*!**************************************************************!*\
+  !*** ./src/assets/sprites/explode/skeleton-animation_02.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"5441926e321bf3240c941b4c3a7b7cfa.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/explode/skeleton-animation_02.png?");
+
+/***/ }),
+
+/***/ "./src/assets/sprites/explode/skeleton-animation_03.png":
+/*!**************************************************************!*\
+  !*** ./src/assets/sprites/explode/skeleton-animation_03.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"cedf56619ce49e3c2d09debceaefa5c8.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/explode/skeleton-animation_03.png?");
+
+/***/ }),
+
+/***/ "./src/assets/sprites/explode/skeleton-animation_04.png":
+/*!**************************************************************!*\
+  !*** ./src/assets/sprites/explode/skeleton-animation_04.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"d5f44e4479c913d73ad7569024812595.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/explode/skeleton-animation_04.png?");
+
+/***/ }),
+
+/***/ "./src/assets/sprites/explode/skeleton-animation_05.png":
+/*!**************************************************************!*\
+  !*** ./src/assets/sprites/explode/skeleton-animation_05.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"9445cddde7d5791438b247d05f76b8b8.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/explode/skeleton-animation_05.png?");
+
+/***/ }),
+
+/***/ "./src/assets/sprites/explode/skeleton-animation_06.png":
+/*!**************************************************************!*\
+  !*** ./src/assets/sprites/explode/skeleton-animation_06.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"edd964d1ae6ded1cc745bbf821381d86.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/explode/skeleton-animation_06.png?");
+
+/***/ }),
+
+/***/ "./src/assets/sprites/explode/skeleton-animation_07.png":
+/*!**************************************************************!*\
+  !*** ./src/assets/sprites/explode/skeleton-animation_07.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"a91a00b4d05b30cd2e241e00ca2ab711.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/explode/skeleton-animation_07.png?");
+
+/***/ }),
+
+/***/ "./src/assets/sprites/explode/skeleton-animation_08.png":
+/*!**************************************************************!*\
+  !*** ./src/assets/sprites/explode/skeleton-animation_08.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"e9a3b1edaba92ba360dc6a7b30c6cf65.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/explode/skeleton-animation_08.png?");
+
+/***/ }),
+
+/***/ "./src/assets/sprites/explode/skeleton-animation_09.png":
+/*!**************************************************************!*\
+  !*** ./src/assets/sprites/explode/skeleton-animation_09.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"0c0d71025f21eb1119835376f12b6229.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/explode/skeleton-animation_09.png?");
+
+/***/ }),
+
+/***/ "./src/assets/sprites/explode/skeleton-animation_10.png":
+/*!**************************************************************!*\
+  !*** ./src/assets/sprites/explode/skeleton-animation_10.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"914b526658c5c3c26a5083a8560aa5be.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/explode/skeleton-animation_10.png?");
+
+/***/ }),
+
+/***/ "./src/assets/sprites/explode/skeleton-animation_11.png":
+/*!**************************************************************!*\
+  !*** ./src/assets/sprites/explode/skeleton-animation_11.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"95e669a6e73141248823611c27817e2b.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/explode/skeleton-animation_11.png?");
+
+/***/ }),
+
+/***/ "./src/assets/sprites/explode/skeleton-animation_12.png":
+/*!**************************************************************!*\
+  !*** ./src/assets/sprites/explode/skeleton-animation_12.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"3745448beef4606b7190eaaa59b8fb8d.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/explode/skeleton-animation_12.png?");
+
+/***/ }),
+
+/***/ "./src/assets/sprites/explode/skeleton-animation_13.png":
+/*!**************************************************************!*\
+  !*** ./src/assets/sprites/explode/skeleton-animation_13.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"192cd28b8d28729c316e334d4bfcb16f.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/explode/skeleton-animation_13.png?");
+
+/***/ }),
+
+/***/ "./src/assets/sprites/explode/skeleton-animation_14.png":
+/*!**************************************************************!*\
+  !*** ./src/assets/sprites/explode/skeleton-animation_14.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"d6191ffd064497533e550dc91107ecca.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/explode/skeleton-animation_14.png?");
+
+/***/ }),
+
+/***/ "./src/assets/sprites/explode/skeleton-animation_15.png":
+/*!**************************************************************!*\
+  !*** ./src/assets/sprites/explode/skeleton-animation_15.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"20542010669feda565e354992a0cd7a0.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/explode/skeleton-animation_15.png?");
+
+/***/ }),
+
+/***/ "./src/assets/sprites/explode/skeleton-animation_16.png":
+/*!**************************************************************!*\
+  !*** ./src/assets/sprites/explode/skeleton-animation_16.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"740699a8944e9c65c3d32e4ce6adf05b.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/explode/skeleton-animation_16.png?");
+
+/***/ }),
+
+/***/ "./src/assets/sprites/explode/skeleton-animation_17.png":
+/*!**************************************************************!*\
+  !*** ./src/assets/sprites/explode/skeleton-animation_17.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"75d3daa6df9ea4de67fe6551126117ff.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/explode/skeleton-animation_17.png?");
+
+/***/ }),
+
+/***/ "./src/assets/sprites/explode/skeleton-animation_18.png":
+/*!**************************************************************!*\
+  !*** ./src/assets/sprites/explode/skeleton-animation_18.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"ac1716d167c811153e498ca081c29765.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/explode/skeleton-animation_18.png?");
+
+/***/ }),
+
+/***/ "./src/assets/sprites/explode/skeleton-animation_19.png":
+/*!**************************************************************!*\
+  !*** ./src/assets/sprites/explode/skeleton-animation_19.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"3f10b9d7fceb454c525d910e019aafa5.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/explode/skeleton-animation_19.png?");
+
+/***/ }),
+
+/***/ "./src/assets/sprites/explode/skeleton-animation_20.png":
+/*!**************************************************************!*\
+  !*** ./src/assets/sprites/explode/skeleton-animation_20.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"af12ea4a4f362fe00f4edc4c54b76106.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/explode/skeleton-animation_20.png?");
 
 /***/ }),
 

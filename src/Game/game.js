@@ -4,6 +4,7 @@ const Ship = require('../MovingObject/Ship/ship');
 const Projectile = require('../MovingObject/Projectile/projectile');
 const Star = require('../MovingObject/Background/star');
 const Enemy = require('../MovingObject/Enemy/enemy');
+const Explode = require('../MovingObject/Background/explode')
 
 
 class Game {
@@ -13,6 +14,7 @@ class Game {
         this.playerProjectiles = [];
         this.enemyProjectiles = [];
         this.enemies = [];
+        this.explosions = [];
         this.addStars();
         this.ship = new Ship({ game: this, pos: [250, 350], vel: [0, 0] })
         this.spawnShip();   
@@ -68,7 +70,7 @@ class Game {
     }
 
     draw(ctx, time) {
-
+        ctx.clearRect(0, 0, Game.DIM_X * 1.5, Game.DIM_Y * 1.5);
         //draw shifting bg
         const timeDelta = time - this.lastTime;
         if(timeDelta > this.backgroundInterval) {
@@ -99,6 +101,9 @@ class Game {
 
         //draw enemies
         this.enemies.forEach(enemy => {enemy.draw(ctx)})
+
+        //draw splosions
+        this.explosions.forEach(splode => splode.draw(ctx))
     }
     isOutOfBounds(pos) {
         //if the pos coords are off the map return [true, "side of the map they're off"]
@@ -126,6 +131,7 @@ class Game {
     remove(obj) {
         if (obj instanceof Ship) {
             this.renderShip = false;
+           
         }
         if (obj instanceof Star) {
             this.stars.splice(this.stars.indexOf(obj),1);
@@ -137,6 +143,15 @@ class Game {
         if (obj instanceof Enemy) {
             this.enemies.splice(this.enemies.indexOf(obj),1);
         }
+        if(obj instanceof Explode) {
+            this.explosions.splice(this.explosions.indexOf(obj),1)
+        }
+        else {
+            // debugger;
+            this.explosions.push(
+            
+            new Explode({ pos: obj.pos, w: obj.width, h: obj.height, game: this })
+            )}
     }
     step(timeDelta, time) {
         this.moveObjects(timeDelta);

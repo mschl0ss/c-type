@@ -20,23 +20,23 @@ class BasicShot extends Projectile {
     }
 
     draw(ctx) {
+       
+        ctx.fillStyle = "#00CCFF"
+        ctx.beginPath();
+        ctx.ellipse(
+            this.pos[0] + this.width*0.6,
+            this.pos[1] + this.height*0.5,
+            this.width*0.4,
+            this.height*0.6,
+            Math.PI *4, 0, 2 * Math.PI*1.5
+        )
+        ctx.fill();
         ctx.drawImage(this.currentSpriteImages[this.frameIndex],
             this.pos[0],
             this.pos[1],
             this.width,
-            this.height,
+            this.height*0.9,
         )
-        ctx.fillStyle = "#F6911E"
-        ctx.beginPath();
-        ctx.arc(
-            this.pos[0] + this.width*0.9,
-            this.pos[1] + this.height/2,
-            this.height/2,
-            0,
-            2*Math.PI,
-            true
-        )
-        ctx.fill();
         this.animateSprite();
     }
 

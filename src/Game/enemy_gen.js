@@ -22,7 +22,7 @@ const enemyTypes = {
     voidPuff : {
         type: 'voidPuff',
         groupTicks: 0,
-        groupInterval: 200,
+        groupInterval: 1400,
         groupIntervalRatio: 1,
         groupSize: 1,
         group: [],
