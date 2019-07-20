@@ -15,7 +15,7 @@ class Ship extends MovingObject {
         options.type = "playerShip";
         options.frameIndex = 0;
         options.tickCount = 0;
-        options.ticksPerFrame = 2;
+        options.ticksPerFrame = 3;
         options.shape = "rectangle"
         
         super(options);
@@ -24,8 +24,9 @@ class Ship extends MovingObject {
         this.lastShotTime = 0;
         this.lastPowerTime = 0;
         this.reloadTime = BasicShot.reloadTime;
-        this.width = 80;
-        this.height = 50;
+        //ration is 0.625
+        this.width = 64;
+        this.height = 40;
         this.currentSpriteImages = ShipSprites.default;
 
 

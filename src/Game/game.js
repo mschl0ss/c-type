@@ -11,6 +11,7 @@ class Game {
         this.enemyGen = new EnemyGen(this)
         this.stars = [];
         this.playerProjectiles = [];
+        this.enemyProjectiles = [];
         this.enemies = [];
         this.addStars();
         
@@ -30,7 +31,7 @@ class Game {
             this.stars.push(obj);
         }
         else if (obj instanceof Projectile) {
-            this.playerProjectiles.push(obj)
+                this.playerProjectiles.push(obj) 
         }
         else if (obj instanceof Enemy) {
             this.enemies.push(obj)
@@ -42,7 +43,7 @@ class Game {
     }
 
     allObjects() {
-        return [this.ship].concat(this.playerProjectiles,this.enemies);
+        return [this.ship].concat(this.playerProjectiles,this.enemyProjectiles,this.enemies);
     }
 
     addStars() {
@@ -56,6 +57,7 @@ class Game {
         for (let i = 0; i < objs.length; i++) {
             for (let j = 0; j < objs.length; j++) {
                 if (objs[i].isCollidedWith(objs[j]) && i !== j) {
+                    // debugger;
                     objs[i].collideWith(objs[j])
                 }
             }
@@ -66,8 +68,20 @@ class Game {
         
         //draw black background
         ctx.fillStyle = "#030919";
-        // ctx.fillStyle = "#081234";
-        ctx.fillRect(0,0, Game.DIM_X, Game.DIM_Y)
+        //med purple #4D3B79
+        //lightest pink #F5C19A
+        // ctx.fillRect(0,0, Game.DIM_X, Game.DIM_Y)
+
+        const gradient = ctx.createLinearGradient(0, 0, 0, Game.DIM_Y);
+        gradient.addColorStop(0, "#030919")
+        gradient.addColorStop(.25, "#08244D")
+        gradient.addColorStop(.4, "#9C62A0")
+        gradient.addColorStop(.5, "#F5C19A")
+        gradient.addColorStop(.6, "#9C62A0")
+        gradient.addColorStop(.75, "#08244D")
+        gradient.addColorStop(1, "#030919")
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y)
 
         //draw stars
         this.stars.forEach(star => {star.draw(ctx)})
@@ -112,6 +126,7 @@ class Game {
             this.stars.splice(this.stars.indexOf(obj),1);
         }
         if (obj instanceof Projectile) {
+            // debugger;
             this.playerProjectiles.splice(this.playerProjectiles.indexOf(obj),1);
         }
         if (obj instanceof Enemy) {

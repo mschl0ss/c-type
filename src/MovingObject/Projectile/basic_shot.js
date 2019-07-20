@@ -14,8 +14,8 @@ class BasicShot extends Projectile {
         // this.radius = 35;
         this.speed = 1;
 
-        this.width = 50;
-        this.height = 35;
+        this.width = 40;
+        this.height = 15;
         this.currentSpriteImages = ProjectileSprites.basicShot
     }
 

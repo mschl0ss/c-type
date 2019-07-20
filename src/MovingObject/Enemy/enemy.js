@@ -8,23 +8,23 @@ class Enemy extends MovingObject {
 
         super(options);
         this.healthPoints = options.healthPoints;
+        this.isShooter = options.isShooter || false;
  
     }
 
     collideWith(otherObject) {
-        // debugger;
         if (otherObject instanceof Projectile) {
             if (otherObject instanceof BasicShot) {
                 this.game.remove(otherObject);
-                this.healthPoints -= 1;
-                if (this.healthPoints <= 0) this.game.remove(this);
+                this.deductHealth();
             }
         }
         else if (otherObject instanceof Ship) {
-            const [x, y] = this.pos;
-            debugger;
+            otherObject.deductHealth();
+
         }
     }
+    
 
 
 }

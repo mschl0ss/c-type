@@ -1,4 +1,5 @@
 const MovingObject = require('../moving_object');
+const Enemy = require('../Enemy/enemy')
 
 class Projectile extends MovingObject { 
     constructor(options) {
@@ -7,6 +8,7 @@ class Projectile extends MovingObject {
 
     }
 
+   
 }
 
 module.exports = Projectile;

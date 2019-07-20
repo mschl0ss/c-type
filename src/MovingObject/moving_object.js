@@ -21,8 +21,8 @@ class MovingObject {
         // debugger;
         let pos = this.pos.concat([]);
         if(this.shape==="circle") {
-            pos[0] = this.pos[0] - this.radius/2;
-            pos[1] = this.pos[1] - this.radius/2;
+            pos[0] = this.pos[0] - this.width/2;
+            pos[1] = this.pos[1] - this.height/2;
         }
         ctx.drawImage(this.currentSpriteImages[this.frameIndex],
             pos[0],
@@ -34,8 +34,8 @@ class MovingObject {
 
         ctx.strokeStyle = "white";
         
-        this.drawRenderBox(ctx)
-        this.drawHitBox(ctx,0.6)
+        // this.drawRenderBox(ctx)
+        // this.drawHitBox(ctx,0.6)
         
        
     }
@@ -123,7 +123,7 @@ class MovingObject {
   
 
     collideWith(otherObject) {
-
+        // debugger;
     }
 
     squareHitBox(obj,ratio) {
@@ -165,8 +165,9 @@ class MovingObject {
                 thisHb.pos[1] < otherHb.pos[1] + otherHb.height &&
                 thisHb.pos[1] + thisHb.height > otherHb.pos[1]) {
                 // collision detected!
-                this.deductHealth(this);
-                this.deductHealth(otherObject);
+                // this.deductHealth(this);
+                return true;
+                // this.deductHealth(otherObject);
             }
         }
         else {
@@ -185,7 +186,7 @@ class MovingObject {
                 pos: circle.pos,
                 x: circle.pos[0],
                 y: circle.pos[1],
-                radius: circle.radius * ratio,
+                radius: circle.radius,
             }
             const r = {
                 pos: rect.pos,
@@ -208,8 +209,9 @@ class MovingObject {
                                 // this.game.remove(this)
                                 // this.game.remove(otherObject)
                                 // debugger;
-                                this.deductHealth(this)
+                                // this.deductHealth(this)
                                 // this.deductHealth(otherObject)
+                                return true;
                             }
 
                         }
@@ -219,9 +221,9 @@ class MovingObject {
 
         }
     }
-    deductHealth(obj) {
-        obj.healthPoints -= 1;
-        if (obj.healthPoints <= 0) { obj.game.remove(obj) }
+    deductHealth() {
+        this.healthPoints -= 1;
+        if (this.healthPoints <= 0) { this.game.remove(this) }
     }
 }
 

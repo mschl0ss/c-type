@@ -1,35 +1,28 @@
 const Enemy = require('./enemy');
+const Voidlette = require('./voidlette');
 
 const EnemySprites = require('../../Game/Sprites/enemy_sprites')
 
 
-// const RADII = [300];
+
 
 class VoidPuff extends Enemy {
     constructor(options) {
         options.vel = [-1, 0];
         options.shape = "rectangle";
         options.ticksPerFrame = 2;
-        options.healthPoints = 20;
+        options.healthPoints = 15;
         options.currentSpriteImages = EnemySprites.voidPuff;
+        options.isShooter = true;
         super(options);
 
-        this.limitX = 700;
-        // this.radius = RADII[Math.floor(Math.random() * 1)];
-        this.width = 450;
-        this.height = 200;
+        //ration should be: h is .6666 of w
+        this.width = 166;
+        this.height = 100;
+        this.fireInterval = 35,
+        this.fireTick = 0;
+        this.fireMax = 6;
     }
-
-    // move(timeDelta) {
-    //     const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA;
-
-    //     const x = this.pos[0] + (this.vel[0] * velocityScale);
-    //     const y = this.pos[1] + (this.vel[1] * velocityScale);
-    //     this.pos = [x, y];
-
-    //     if (this.game.isOutOfBounds(this.pos)[0] === true) {this.game.remove(this) }
-        
-    // }
 
     shouldDodge () {
         let result = false;
@@ -41,7 +34,44 @@ class VoidPuff extends Enemy {
                 }
         })
         return result;
+    }
+    shouldFireUp() {
+        return this.game.ship.pos[1] > this.pos[1];
+    }
+    shouldFireForward() {
+        return this.game.ship.pos[0] < this.pos[0]
+    }
+    fireProjectile() {
+        if(this.game.enemies.filter(e=> e instanceof Voidlette).length < this.fireMax ){
+            const voidlette = new Voidlette ({
+                game: this.game,
+                pos: [this.pos[0]+10, this.pos[1] + this.height*0.6],
+                vel: [
+                    this.shouldFireForward() ? -4: 4,
+                    this.shouldFireUp() ? 0.5 : -0.5],
+            })
+            this.game.add(voidlette);
+        }
+    }
 
+    animateSprite() {
+        this.tickCount += 1;
+
+        if (this.tickCount > this.ticksPerFrame) {
+            this.tickCount = 0;
+
+            if (this.frameIndex >= this.currentSpriteImages.length - 1) {
+
+                this.frameIndex = 0;
+                this.currentSpriteImages = EnemySprites.voidPuff;
+            }
+            else { this.frameIndex += 1; }
+        }
+    }
+    deductHealth() {
+        this.currentSpriteImages = EnemySprites.voidPuffHit;
+        this.healthPoints -= 1;
+        if (this.healthPoints <= 0) { this.game.remove(this) }
     }
 }
 
