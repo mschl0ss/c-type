@@ -16,6 +16,8 @@ class Ship extends MovingObject {
         options.frameIndex = 0;
         options.tickCount = 0;
         options.ticksPerFrame = 2;
+        options.shape = "rectangle"
+        
         super(options);
         
         this.projectileType = "BasicShot";

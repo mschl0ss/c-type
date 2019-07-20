@@ -3,7 +3,7 @@ const Enemy = require('./enemy');
 const EnemySprites = require('../../Game/Sprites/enemy_sprites')
 
 const COLOR = "#ad1113";
-const RADII = [50,60]
+const RADII = [55,60,65]
 // const RADII = [10,12]
 
 class Bug extends Enemy {
@@ -12,12 +12,12 @@ class Bug extends Enemy {
         options.vel = [-4,0];
         options.shape = "circle";
         options.ticksPerFrame = 2;
-        options.healthPoints = 2;
+        options.healthPoints = 1;
         options.currentSpriteImages = EnemySprites.brownBug;
         super(options);
 
         this.ascending = true;
-        this.radius = RADII[Math.floor(Math.random() * 2)];
+        this.radius = RADII[Math.floor(Math.random() *3)];
         this.width = this.radius;
         this.height = this.radius;
 

@@ -5,17 +5,17 @@ class BasicShot extends Projectile {
     constructor(options) {
        
         options.color = "#64ccef";
-        options.shape = "circle";
+        options.shape = "rectangle";
         options.frameIndex = 0;
         options.tickCount = 0;
         options.ticksPerFrame = 2;
         super(options)
 
-        this.radius = 35;
+        // this.radius = 35;
         this.speed = 1;
 
-        this.width = this.radius;
-        this.height = this.radius;
+        this.width = 50;
+        this.height = 35;
         this.currentSpriteImages = ProjectileSprites.basicShot
     }
 

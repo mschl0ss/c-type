@@ -33,7 +33,6 @@ class Game {
             this.playerProjectiles.push(obj)
         }
         else if (obj instanceof Enemy) {
-            
             this.enemies.push(obj)
         }
         else {
@@ -66,7 +65,8 @@ class Game {
     draw(ctx) {
         
         //draw black background
-        ctx.fillStyle = "black";
+        ctx.fillStyle = "#030919";
+        // ctx.fillStyle = "#081234";
         ctx.fillRect(0,0, Game.DIM_X, Game.DIM_Y)
 
         //draw stars

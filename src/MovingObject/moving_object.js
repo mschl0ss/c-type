@@ -6,7 +6,7 @@ class MovingObject {
         this.vel = options.vel;
         this.game = options.game;
         this.color = options.color;
-        this.shape = options.shape || "rectangle";
+        this.shape = options.shape || "circle";
         this.type = options.type || " ";
         this.frameIndex = 0;
         this.tickCount = 0;
@@ -14,17 +14,59 @@ class MovingObject {
         this.currentSpriteImages = options.currentSpriteImages;
         this.isWrappable = options.isWrappable || false;
         this.isBounded = options.isBounded || false;
+        this.healthPoints = options.healthPoints || 1;
     }
 
     draw(ctx) {
-
+        // debugger;
+        let pos = this.pos.concat([]);
+        if(this.shape==="circle") {
+            pos[0] = this.pos[0] - this.radius/2;
+            pos[1] = this.pos[1] - this.radius/2;
+        }
         ctx.drawImage(this.currentSpriteImages[this.frameIndex],
-            this.pos[0],
-            this.pos[1],
+            pos[0],
+            pos[1],
             this.width,
             this.height,
         )
         this.animateSprite();
+
+        ctx.strokeStyle = "white";
+        
+        this.drawRenderBox(ctx)
+        this.drawHitBox(ctx,0.6)
+        
+       
+    }
+
+    drawRenderBox(ctx) {
+        ctx.strokeStyle = "white";
+        if (this.shape === "rectangle") {
+            ctx.strokeRect(this.pos[0], this.pos[1], this.width, this.height)
+        }
+        else if(this.shape==="circle"){
+            ctx.beginPath();
+            ctx.arc(
+                this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true
+            );
+            ctx.stroke();
+        }
+    }
+    drawHitBox(ctx,ratio) {
+        ctx.strokeStyle = "green";
+        if(this.shape === "rectangle") {
+            const hB = this.squareHitBox(this,ratio)
+            ctx.strokeRect(hB.pos[0], hB.pos[1], hB.width, hB.height)
+            ctx.strokeStyle = "green";
+        }
+        else if(this.shape === "circle") {
+            ctx.beginPath();
+            ctx.arc(
+                this.pos[0], this.pos[1], this.radius*ratio, 0, 2 * Math.PI, true
+            );
+            ctx.stroke();
+        }
     }
 
     animateSprite() {
@@ -78,23 +120,26 @@ class MovingObject {
         }
     }
 
+  
+
     collideWith(otherObject) {
 
     }
 
     squareHitBox(obj,ratio) {
         //original width vs new width;
-        // ratio is .4
+        // ratio is .
         //<--------> 10
-        //<----> 4
+        //<----> .6
         //needs to be shifted over by  ((1 - .4) * width) / 2
         
         const width = obj.width * ratio;
         const height = obj.height * ratio;
 
-        const x = obj.pos[0] + ((1-ratio) * width)/2
-        const y = obj.pos[1] + ((1-ratio) * height)/2
-
+        const x = obj.pos[0] + (((1-ratio) * obj.width)/2)
+        // const x = obj.pos[0] + (((1-ratio) * width))*0.5
+        const y = obj.pos[1] + ((1-ratio) * obj.height)/2
+        // debugger;
         const hitbox = {pos: [x,y], width, height}
 
         return hitbox;
@@ -102,15 +147,30 @@ class MovingObject {
     }
 
     isCollidedWith(otherObject) {
-        //shrinks the hitbox
-        const shrink = 0.4
+        //ratios the hitbox
+        const ratio = 0.6
         if(this === otherObject) return false;
         // debugger;
+        if(this.type === otherObject.owner ||
+            this.owner === otherObject.type) return false;
+
         if(this.shape === "circle" && otherObject.shape === "circle") {
-            return Util.dist(this.pos, otherObject.pos) < this.radius*shrink + otherObject.radius*shrink
+            return Util.dist(this.pos, otherObject.pos) < this.radius*ratio + otherObject.radius*ratio
+        }
+        else if (this.shape === 'rectangle' && otherObject.shape === 'rectangle') {
+                const thisHb = this.squareHitBox(this,ratio);
+                const otherHb = this.squareHitBox(otherObject,ratio);
+            if (thisHb.pos[0] < otherHb.pos[0] + otherHb.width &&
+                thisHb.pos[0] + thisHb.width > otherHb.pos[0] &&
+                thisHb.pos[1] < otherHb.pos[1] + otherHb.height &&
+                thisHb.pos[1] + thisHb.height > otherHb.pos[1]) {
+                // collision detected!
+                this.deductHealth(this);
+                this.deductHealth(otherObject);
+            }
         }
         else {
-            
+            if(this.game.enemies.includes(this) && this.game.enemies.includes(otherObject)) {return false;}
             let circle,rect;
             if (this.shape === "circle") {
                 circle = this;
@@ -125,7 +185,7 @@ class MovingObject {
                 pos: circle.pos,
                 x: circle.pos[0],
                 y: circle.pos[1],
-                radius: circle.radius * shrink,
+                radius: circle.radius * ratio,
             }
             const r = {
                 pos: rect.pos,
@@ -143,10 +203,13 @@ class MovingObject {
                                 // console.log('dead ship cant hit')
                                 return false;
                             }
-                            else if (rect.type === circle.owner) return false;
+                            // else if (rect.type === circle.owner) return false;
                             else {
-                                this.game.remove(this)
-                                this.game.remove(otherObject)
+                                // this.game.remove(this)
+                                // this.game.remove(otherObject)
+                                // debugger;
+                                this.deductHealth(this)
+                                // this.deductHealth(otherObject)
                             }
 
                         }
@@ -155,6 +218,10 @@ class MovingObject {
             }
 
         }
+    }
+    deductHealth(obj) {
+        obj.healthPoints -= 1;
+        if (obj.healthPoints <= 0) { obj.game.remove(obj) }
     }
 }
 
