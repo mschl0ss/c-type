@@ -10,7 +10,7 @@ const enemyTypes = {
         groupTicks: 0,
         groupInterval: 200,
         groupIntervalRatio: 1,
-        // groupSize: 0,
+        groupsSpawned: 1,
         groupSize: Math.floor(Math.random() *1) + 3,
         group: [],
         interval: 25,
@@ -60,10 +60,12 @@ class EnemyGen {
                     for(let i=0;i < eT.groupSize; i++) {
                         switch(eT.type) {
                             case 'bug':
-                                const vel = eT.spawnY > DIM_Y/2 ? [-4,-1] : [-4,1]
+                                const vel = eT.spawnY > DIM_Y/2 ? [-4,-0.5] : [-4,0.5]
                                 const b = new Bug({ game: this.game, pos: [eT.spawnX, eT.spawnY], vel: vel });
-                                if(i === eT.groupSize-1) b.rewardsPowerUp = true;
+                                b.rewardsPowerUp = true;
+                                // if(i === eT.groupSize-1 && eT.groupsSpawned % 4 === 0) b.rewardsPowerUp = true;
                                 eT.group.push(b)
+                                eT.groupsSpawned +=1;
                                 break;
                             case 'voidPuff':
                                 eT.group.push(new VoidPuff({ game: this.game, pos: [eT.spawnX, eT.fixedY[i]]}))

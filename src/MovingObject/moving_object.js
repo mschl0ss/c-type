@@ -258,13 +258,7 @@ class MovingObject {
                                 // console.log('dead ship cant hit')
                                 return false;
                             }
-                            // else if (rect.type === circle.owner) return false;
                             else {
-                                // this.game.remove(this)
-                                // this.game.remove(otherObject)
-                                // debugger;
-                                // this.deductHealth(this)
-                                // this.deductHealth(otherObject)
                                 return true;
                             }
 

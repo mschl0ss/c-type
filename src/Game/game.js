@@ -7,6 +7,7 @@ const Projectile = require('../MovingObject/Projectile/projectile');
 const Star = require('../MovingObject/Background/star');
 const Enemy = require('../MovingObject/Enemy/enemy');
 const Explode = require('../MovingObject/Background/explode');
+const PowerUp = require('../MovingObject/PowerUp/power_up');
 
 
 class Game {
@@ -18,6 +19,7 @@ class Game {
         this.enemyProjectiles = [];
         this.enemies = [];
         this.explosions = [];
+        this.powerUps = [];
         this.addStars();
 
         this.player = new Player(this)
@@ -109,7 +111,7 @@ class Game {
         console.log(this.pausedObjects[this.ship.id])
     }
     allObjects() {
-        return [this.ship].concat(this.playerProjectiles,this.enemyProjectiles,this.enemies);
+        return [this.ship].concat(this.playerProjectiles,this.enemyProjectiles,this.enemies, this.powerUps);
     }
 
     addStars() {
@@ -166,7 +168,9 @@ class Game {
         this.explosions.forEach(splode => splode.draw(ctx,timeDelta))
         if(this.isOver){
             this.drawMask(ctx)
-        }    
+        }
+
+        this.powerUps.forEach(p => p.draw(ctx))
     }
     isOutOfBounds(pos) {
         //if the pos coords are off the map return [true, "side of the map they're off"]
@@ -195,6 +199,7 @@ class Game {
         this.ship.move(timeDelta);
         this.playerProjectiles.forEach(p => p.move(timeDelta));
         this.enemies.forEach(enemy => { enemy.move(timeDelta) })
+        this.powerUps.forEach(p => p.move(timeDelta));
     }
     randomY() {
         return Math.floor(Math.random() * Game.DIM_Y);
@@ -213,7 +218,6 @@ class Game {
             this.explosions.push(
                 new Explode({ pos: obj.pos, w: obj.width, h: obj.height, game: this })
             )
-           
         }
         else if (obj instanceof Star) {
             this.stars.splice(this.stars.indexOf(obj),1);
@@ -227,6 +231,11 @@ class Game {
             this.explosions.push(
                 new Explode({ pos: obj.pos, w: obj.width, h: obj.height, game: this })
             )
+            if(obj.rewardsPowerUp) {
+                this.powerUps.push(
+                    new PowerUp ({ pos: obj.pos, radius: (obj.width+obj.height)/2, game: this})
+                )
+            }
         }
         else if(obj instanceof Explode) {
             this.explosions.splice(this.explosions.indexOf(obj),1)
