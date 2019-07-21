@@ -13,9 +13,11 @@ class Ship extends MovingObject {
         options.vel = options.vel
         // options.isBounded = true;
         options.type = "playerShip";
+        
         options.frameIndex = 0;
         options.tickCount = 0;
         options.ticksPerFrame = 3;
+
         options.shape = "rectangle"
         
         super(options);

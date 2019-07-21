@@ -61,7 +61,9 @@ class EnemyGen {
                         switch(eT.type) {
                             case 'bug':
                                 const vel = eT.spawnY > DIM_Y/2 ? [-4,-1] : [-4,1]
-                                eT.group.push(new Bug({ game: this.game, pos: [eT.spawnX, eT.spawnY], vel: vel }))
+                                const b = new Bug({ game: this.game, pos: [eT.spawnX, eT.spawnY], vel: vel });
+                                if(i === eT.groupSize-1) b.rewardsPowerUp = true;
+                                eT.group.push(b)
                                 break;
                             case 'voidPuff':
                                 eT.group.push(new VoidPuff({ game: this.game, pos: [eT.spawnX, eT.fixedY[i]]}))

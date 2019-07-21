@@ -16,6 +16,7 @@ class MovingObject {
         this.isWrappable = options.isWrappable || false;
         this.isBounded = options.isBounded || false;
         this.healthPoints = options.healthPoints || 1;
+        this.rewardsPowerUp = options.rewardsPowerUp || false;
 
     }
 
@@ -24,24 +25,56 @@ class MovingObject {
         return MovingObject.lastId;
     }
     draw(ctx,timeDelta) {
-        // debugger;
+        
+        //igore this
         let pos = this.pos.concat([]);
         if(this.shape==="circle") {
             pos[0] = this.pos[0] - this.width/2;
             pos[1] = this.pos[1] - this.height/2;
         }
+
+        //this part here
         ctx.drawImage(this.currentSpriteImages[this.frameIndex],
             pos[0],
             pos[1],
             this.width,
             this.height,
         )
+
+        if(this.rewardsPowerUp) {this.drawGlow(ctx);}
+
+        //this too
         this.animateSprite(timeDelta);
 
         ctx.strokeStyle = "white";
         
         // this.drawRenderBox(ctx)
         // this.drawHitBox(ctx,0.6)  
+    }
+
+    drawGlow(ctx) {
+
+        ctx.strokeStyle = "green"
+        ctx.lineWidth = 2;
+
+        const alphas = [0.40, 0.35, 0.50, 0.25, 0.20]
+        const radii =  [1.20, 1.15, 1.10, 1.05, 1.00]
+        // ctx.globalAlpha = 0.7
+        let radiusRatio = 1.15;
+        let alpha = 0.5;
+        for(let i=0; i< 8; i++) {
+            ctx.globalAlpha = alpha
+            // ctx.globalAlpha = alphas[i];
+            ctx.beginPath();
+            ctx.arc(
+                this.pos[0], this.pos[1], this.radius * radiusRatio, 0, 2 * Math.PI, true
+            );
+            ctx.stroke();
+            alpha -= 0.05;
+            radiusRatio -= 0.05;
+        }
+        ctx.globalAlpha = 1;
+
     }
     drawRenderBox(ctx) {
         ctx.strokeStyle = "white";

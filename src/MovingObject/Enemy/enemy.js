@@ -9,6 +9,7 @@ class Enemy extends MovingObject {
         super(options);
         this.healthPoints = options.healthPoints;
         this.isShooter = options.isShooter || false;
+        
  
     }
 
