@@ -31,7 +31,7 @@ class MovingObject {
         return MovingObject.lastId;
     }
     draw(ctx,timeDelta) {
-        
+        // if(this.type === "playerShip") debugger;
         //igore this
         let pos = this.pos.concat([]);
         if(this.shape==="circle") {
@@ -39,7 +39,6 @@ class MovingObject {
             pos[1] = this.pos[1] - this.height/2;
         }
 
-        //this part here
         ctx.drawImage(this.currentSpriteImages[this.frameIndex],
             pos[0],
             pos[1],
@@ -47,7 +46,7 @@ class MovingObject {
             this.height,
         )
 
-        if(this.powerUpPayload !== 'BasicShot') {this.drawGlow(ctx);}
+        if(this.powerUpPayload !== 'BasicShot') {this.drawGlow(ctx,this.powerUpColor);}
 
         //this too
         this.animateSprite(timeDelta);
@@ -58,14 +57,10 @@ class MovingObject {
         // this.drawHitBox(ctx,0.6)  
     }
 
-    drawGlow(ctx) {
-        // debugger;
-        ctx.strokeStyle = this.powerUpColor;
+    drawGlow(ctx, color) {
+        
+        ctx.strokeStyle = color;
         ctx.lineWidth = 2;
-
-        const alphas = [0.40, 0.35, 0.50, 0.25, 0.20]
-        const radii =  [1.20, 1.15, 1.10, 1.05, 1.00]
-        // ctx.globalAlpha = 0.7
         
         let alpha = 0.2;
 
@@ -88,18 +83,21 @@ class MovingObject {
         this.glowTickCount += this.glowTicksAscending ? 1 : -1;
 
         let radiusRatio = 1.15;
+        let radius  = this.radius || this.width * 0.8
+        const pos = this.radius ? this.pos : [this.pos[0]+this.width/2, this.pos[1] + this.height/2]
         for(let i=0; i< 20; i++) {
             ctx.globalAlpha = alpha
             // ctx.globalAlpha = alphas[i];
             ctx.beginPath();
             ctx.arc(
-                this.pos[0], this.pos[1], this.radius * radiusRatio, 0, 2 * Math.PI, true
+                pos[0], pos[1], radius * radiusRatio, 0, 2 * Math.PI, true
             );
             ctx.stroke();
             alpha -= alpha <= 0.2 ? 0 : 0.05;
             radiusRatio -= 0.05;
         }
         ctx.globalAlpha = 1;
+  
 
     }
     drawRenderBox(ctx) {

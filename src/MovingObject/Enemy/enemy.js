@@ -20,8 +20,7 @@ class Enemy extends MovingObject {
             // }
         }
         else if (otherObject instanceof Ship) {
-            otherObject.deductHealth();
-
+            otherObject.respawnShield ? this.deductHealth(100) : otherObject.deductHealth(1)
         }
     }
 

@@ -24,9 +24,16 @@ class Game {
 
         this.player = new Player(this)
         this.ship = new Ship({ game: this, pos: [250, 350], vel: [0, 0] })
-        this.spawnShip();
+
+
         this.isPaused = false;
         this.isOver = false;
+        this.renderShip = true;
+
+
+        this.spawnShip();
+
+
 
         this.lastTime = 0;
         this.backgroundInterval = 50;
@@ -36,13 +43,33 @@ class Game {
     }
 
     spawnShip() {
+        // first loop
+    //     1. game starts
+    //     2. ship.respawnShield = true;
+    //     3. ship.renderShip = true;
+    //     4. ship.pos = way off to the left
+    //     5. ship.vel = [20, 0]
+    //     6. ship.sprites = twinkles
+
+    //     every successive loop
+    //     1. if renderShip === true && respawnShield === true
+    //          1. if (ship.pos[0] !== 250) {//cool keep going}
+    //          2. else { ship.vel = [0, 0]; respawnShield = false; }
+
         if (this.player.lives >= 0) {
-            this.updateLivesDisplay();
-            this.ship.pos= [250, 350]
-            this.ship.vel= [0, 0] 
+            this.ship.pos = [-50, 350];
+            this.ship.vel = [2,0];
             this.renderShip = true;
+            this.ship.respawnShield = true;
+            this.ship.drawRespawning();
+            
+            this.updateLivesDisplay();
+            // this.ship.pos= [250, 350]
+            // this.ship.vel= [0, 0];
+            
         }
     }
+
     gameOver() {
         this.isOver = true;
     }
@@ -154,7 +181,7 @@ class Game {
         this.stars.forEach(star => {star.draw(ctx,timeDelta)})
 
         //draw the ship
-        if(this.renderShip) this.ship.draw(ctx,timeDelta);
+        if(this.renderShip) {this.ship.draw(ctx,timeDelta);}
 
         //draw player shots
         this.playerProjectiles.forEach(p => p.draw(ctx,timeDelta));

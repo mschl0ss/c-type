@@ -30,7 +30,11 @@ class Ship extends MovingObject {
         this.reloadTime = BasicShot.reloadTime;
         this.ammoCount = BasicShot.ammoCount;
         
-        
+        this.respawnShield = true;
+        this.respawnTicks = 0;
+        this.respawnInterval = 30;
+        this.respawnTotalInterval = 90;
+
         //ratio is 0.625
         this.width = 64;
         this.height = 40;
@@ -118,7 +122,7 @@ class Ship extends MovingObject {
     }
 
     draw(ctx,timeDelta) {
-
+        // debugger;
         if(this.ammoCount !== -100) {
             ctx.globalAlpha = 1;
             ctx.font = "18px Helvetica";
@@ -127,7 +131,36 @@ class Ship extends MovingObject {
             ctx.fillText(`x ${this.ammoCount}`, this.pos[0]+this.width/8, this.pos[1]-10);
         }
 
-        MovingObject.prototype.draw.call(this, ctx,timeDelta)
+        if(this.respawnShield){
+            let pos = this.pos.concat([]);
+
+            ctx.drawImage(this.currentSpriteImages[this.frameIndex],
+                pos[0]-this.width,
+                pos[1],
+                this.width*2,
+                this.height,
+            )
+            //this too
+            // MovingObject.prototype.drawGlow.call(this,ctx,"#94e5f7")
+            ctx.strokeStyle = "#94e5f7";
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            ctx.arc(
+                this.pos[0] + this.width / 2, this.pos[1] + this.height / 2, this.width * 0.8, 0, 2 * Math.PI, true
+            );
+            ctx.stroke();
+            this.animateSprite(timeDelta);
+        }
+        else {
+            if(this.frameIndex > this.currentSpriteImages.length ) this.frameIndex = 0;
+            MovingObject.prototype.draw.call(this, ctx,timeDelta)
+        }
+    }
+
+    drawRespawning(){
+        this.currentSpriteImages = ShipSprites.twinkles;
+        console.log('twinkles')
+        
     }
     //necessary because ship has many different sprites, and it needs to
     //reset to default after for example shooting animation is done;
@@ -140,7 +173,7 @@ class Ship extends MovingObject {
             if (this.frameIndex >= this.currentSpriteImages.length - 1) {
 
                 this.frameIndex = 0;
-                this.currentSpriteImages = ShipSprites.default;
+                if(this.respawnShield === false) this.currentSpriteImages = ShipSprites.default;
             }
             else { this.frameIndex += 1; }
         }
@@ -156,7 +189,16 @@ class Ship extends MovingObject {
         // isOutOfBounds returns a 2 item array
         // [0] === true/false
         // [1] === bad pos aka "top", "right", etc;
-        if (this.game.isShipOutOfBounds(this.pos)[0]===true) {
+        if(this.game.renderShip === true && this.respawnShield === true){
+            
+            if(this.pos[0] >= 200) {
+                // this.pos[0] = 250;
+                this.vel = [0,0]
+                this.respawnShield = false;
+                this.currentSpriteImages = ShipSprites.default;
+            }
+        }
+        else if (this.game.isShipOutOfBounds(this.pos)[0]===true ) {
                 this.vel = [0,0];
                 switch (this.game.isShipOutOfBounds(this.pos)[1]) {
                     case "right":
