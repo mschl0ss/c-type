@@ -11,7 +11,7 @@ class VoidPuff extends Enemy {
         options.vel = [-1, 0];
         options.shape = "rectangle";
         options.ticksPerFrame = 6;
-        options.healthPoints = 15;
+        options.healthPoints = 45;
         options.currentSpriteImages = EnemySprites.voidPuff;
         options.isShooter = true;
         super(options);
@@ -86,7 +86,7 @@ class VoidPuff extends Enemy {
             else { this.frameIndex += 1; }
         }
     }
-    deductHealth() {
+    deductHealth(dmg) {
         
         this.currentSpriteImages = EnemySprites.voidPuffHit;
         this.ticksPerFrame = 2;

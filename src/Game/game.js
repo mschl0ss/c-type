@@ -107,8 +107,6 @@ class Game {
             obj.vel = this.pausedObjects[obj.id].vel;
         })
         this.isPaused = false;
-        console.log(this.ship.pos)
-        console.log(this.pausedObjects[this.ship.id])
     }
     allObjects() {
         return [this.ship].concat(this.playerProjectiles,this.enemyProjectiles,this.enemies, this.powerUps);
@@ -210,6 +208,7 @@ class Game {
     remove(obj) {
         //remove things from game
         //if they should explode, explode them
+
         if (obj instanceof Ship && this.renderShip === true) {
             this.renderShip = false;
             this.player.lives -= 1;
@@ -219,12 +218,11 @@ class Game {
                 new Explode({ pos: obj.pos, w: obj.width, h: obj.height, game: this })
             )
         }
+        else if(obj instanceof Projectile) {
+            this.playerProjectiles.splice(this.playerProjectiles.indexOf(obj), 1);
+        }
         else if (obj instanceof Star) {
             this.stars.splice(this.stars.indexOf(obj),1);
-        }
-        else if (obj instanceof Projectile) {
-            // debugger;
-            this.playerProjectiles.splice(this.playerProjectiles.indexOf(obj),1);
         }
         else if (obj instanceof Enemy) {
             this.enemies.splice(this.enemies.indexOf(obj),1);
@@ -233,13 +231,17 @@ class Game {
             )
             if(obj.rewardsPowerUp) {
                 this.powerUps.push(
-                    new PowerUp ({ pos: obj.pos, radius: (obj.width+obj.height)/2, game: this})
+                    new PowerUp ({ pos: obj.pos, radius: (obj.width+obj.height)/2, payload: obj.powerUpPayload, game: this})
                 )
             }
         }
         else if(obj instanceof Explode) {
             this.explosions.splice(this.explosions.indexOf(obj),1)
         }
+        else if(obj instanceof PowerUp) {
+            this.powerUps.splice(this.powerUps.indexOf(obj), 1)
+        }
+
 
     }
     step(timeDelta, time) {

@@ -1,19 +1,31 @@
 const MovingObject = require('../moving_object');
+const Ship = require('../Ship/ship')
 
 class PowerUp extends MovingObject {
     constructor(options) {
         options.vel = [-1,0]
+        options.color = PowerUp.shotTypes[options.payload]
         super(options)
         this.radius = options.radius || 20;
-        this.payload = options.payload || "BasicShot"
+        
+        this.payload = options.payload;
         this.originalY = this.pos[1];
         this.ascending = true;
         this.yVariance = 20;
+
+        if(this.payload === undefined) {debugger;}
+    }
+
+    collideWith(otherObj) {
+        // debugger;
+        if(otherObj.type === "playerShip"){
+            this.game.ship.loadProjectile(this.payload);
+            this.game.remove(this)
+        }
     }
 
     draw(ctx) {
-
-        ctx.strokeStyle = "green"
+        ctx.strokeStyle = PowerUp.shotTypes[this.payload];
         ctx.lineWidth = 2;
         
         let alpha = 1;
@@ -48,5 +60,8 @@ class PowerUp extends MovingObject {
         MovingObject.prototype.move.call(this,timeDelta)
     }
 }
+
+// PowerUp.shotTypes = { "SpreadShot": "orange", "SpreadShot": "orange" }
+PowerUp.shotTypes = { "RapidFire": "green", "SpreadShot": "#6a7af2" }
 
 module.exports = PowerUp;

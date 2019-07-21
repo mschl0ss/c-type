@@ -8,7 +8,7 @@ class Voidlette extends Enemy {
     constructor(options) {
         options.shape="circle";
         options.ticksPerFrame = 2;
-        options.healthPoints = 2;
+        options.healthPoints = 3;
         options.currentSpriteImages = EnemySprites.voidPuff;
         super(options);
 

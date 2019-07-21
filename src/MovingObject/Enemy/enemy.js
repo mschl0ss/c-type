@@ -15,10 +15,9 @@ class Enemy extends MovingObject {
 
     collideWith(otherObject) {
         if (otherObject instanceof Projectile) {
-            if (otherObject instanceof BasicShot) {
                 this.game.remove(otherObject);
-                this.deductHealth();
-            }
+                this.deductHealth(otherObject.dmg);
+            // }
         }
         else if (otherObject instanceof Ship) {
             otherObject.deductHealth();
@@ -26,9 +25,11 @@ class Enemy extends MovingObject {
         }
     }
 
-    deductHealth() {
-        this.healthPoints -= 1;
+    deductHealth(dmg) {
+        
+        this.healthPoints -= dmg;
         if (this.healthPoints <= 0) { 
+            // debugger;
             this.game.player.addToScore(this)
             this.game.remove(this) 
         }

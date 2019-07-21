@@ -21,6 +21,8 @@ class MovingObject {
         this.glowTickCount = 0;
         this.glowTicksPerFrame = 50;
         this.glowTicksAscending = true;
+        this.powerUpPayload = options.powerUpPayload || "BasicShot";
+        this.powerUpColor = options.powerUpColor || 'black'
 
     }
 
@@ -45,7 +47,7 @@ class MovingObject {
             this.height,
         )
 
-        if(this.rewardsPowerUp) {this.drawGlow(ctx);}
+        if(this.powerUpPayload !== 'BasicShot') {this.drawGlow(ctx);}
 
         //this too
         this.animateSprite(timeDelta);
@@ -57,8 +59,8 @@ class MovingObject {
     }
 
     drawGlow(ctx) {
-
-        ctx.strokeStyle = "green"
+        // debugger;
+        ctx.strokeStyle = this.powerUpColor;
         ctx.lineWidth = 2;
 
         const alphas = [0.40, 0.35, 0.50, 0.25, 0.20]
@@ -269,8 +271,8 @@ class MovingObject {
 
         }
     }
-    deductHealth() {
-        this.healthPoints -= 1;
+    deductHealth(dmg) {
+        this.healthPoints -= dmg || 1;
         if (this.healthPoints <= 0) { this.game.remove(this) }
     }
 }

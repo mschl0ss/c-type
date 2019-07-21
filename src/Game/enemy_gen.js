@@ -1,6 +1,9 @@
 const Bug = require('../MovingObject/Enemy/bug');
 const VoidPuff = require('../MovingObject/Enemy/void_puff')
 const Voidlette = require('../MovingObject/Enemy/voidlette')
+const PowerUp = require('../MovingObject/PowerUp/power_up');
+
+
 
 const DIM_X = 1400;
 const DIM_Y = 700;
@@ -10,7 +13,7 @@ const enemyTypes = {
         groupTicks: 0,
         groupInterval: 200,
         groupIntervalRatio: 1,
-        groupsSpawned: 1,
+        groupsSpawned: 0,
         groupSize: Math.floor(Math.random() *1) + 3,
         group: [],
         interval: 25,
@@ -62,8 +65,13 @@ class EnemyGen {
                             case 'bug':
                                 const vel = eT.spawnY > DIM_Y/2 ? [-4,-0.5] : [-4,0.5]
                                 const b = new Bug({ game: this.game, pos: [eT.spawnX, eT.spawnY], vel: vel });
-                                b.rewardsPowerUp = true;
-                                // if(i === eT.groupSize-1 && eT.groupsSpawned % 4 === 0) b.rewardsPowerUp = true;
+                                // b.rewardsPowerUp = true;
+                                if(i === eT.groupSize-1 && eT.groupsSpawned % 5  === 0) {
+                                    b.rewardsPowerUp = true;
+                                    b.powerUpPayload = Object.keys(PowerUp.shotTypes)[Math.floor(Math.random() * (Object.keys(PowerUp.shotTypes).length))]
+                                    b.powerUpColor = PowerUp.shotTypes[b.powerUpPayload]
+                                    
+                                }
                                 eT.group.push(b)
                                 eT.groupsSpawned +=1;
                                 break;
@@ -72,7 +80,7 @@ class EnemyGen {
                             
                                 break;
                             default:
-                                console.log(`enemy_gen.js: didnt recognize ${eT.type}`)
+                                console.log(`default case reached in EnemyGen.prototype.populateGroups. didnt recognize ${eT.type}`)
                         }
                     }
                     

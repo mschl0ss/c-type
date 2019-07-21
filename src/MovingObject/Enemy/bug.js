@@ -12,7 +12,7 @@ class Bug extends Enemy {
         options.vel = options.vel
         options.shape = "circle";
         options.ticksPerFrame = 1;
-        options.healthPoints = 3;
+        options.healthPoints = 9;
         options.currentSpriteImages = EnemySprites.blackBug;
         super(options);
 

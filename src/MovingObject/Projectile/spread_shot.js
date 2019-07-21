@@ -1,10 +1,12 @@
 const Projectile = require('./projectile')
-const ProjectileSprites = require('../../Game/Sprites/projectile_sprites')
+const ProjectileSprites = require('../../Game/Sprites/projectile_sprites');
+const BasicShot = require('./basic_shot');
+const PowerUp = require('../PowerUp/power_up')
 
-class BasicShot extends Projectile {
+class SpreadShot extends Projectile {
     constructor(options) {
-        options.dmg = 3;
-        options.color = "#00CCFF";
+        options.dmg = 2;
+        options.color = PowerUp.shotTypes['SpreadShot']
         options.shape = "rectangle";
         options.frameIndex = 0;
         options.tickCount = 0;
@@ -21,8 +23,8 @@ class BasicShot extends Projectile {
 
 }
 
-BasicShot.reloadTime = 170;
-BasicShot.speed = 16
-BasicShot.ammoCount = -100;
+SpreadShot.reloadTime = 220;
+SpreadShot.speed = BasicShot.speed;
+SpreadShot.ammoCount = 200;
 
-module.exports = BasicShot;
+module.exports = SpreadShot;

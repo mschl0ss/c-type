@@ -1,11 +1,13 @@
 const MovingObject = require('../moving_object');
 const BasicShot = require('../Projectile/basic_shot');
+const RapidFire = require('../Projectile/rapid_fire');
+const SpreadShot = require('../Projectile/spread_shot');
 const Util = require('../../Util/util');
 
 const ShipSprites = require('../../Game/Sprites/ship_sprites')
 
 
-const basicShotSpeeds = [15,16]
+
 class Ship extends MovingObject {
     constructor(options) {
         options.color = "#545454";
@@ -26,7 +28,10 @@ class Ship extends MovingObject {
         this.lastShotTime = 0;
         this.lastPowerTime = 0;
         this.reloadTime = BasicShot.reloadTime;
-        //ration is 0.625
+        this.ammoCount = BasicShot.ammoCount;
+        
+        
+        //ratio is 0.625
         this.width = 64;
         this.height = 40;
         this.currentSpriteImages = ShipSprites.default;
@@ -34,6 +39,83 @@ class Ship extends MovingObject {
 
     }
     
+    power(impulse) {this.vel = impulse;}
+
+    loadProjectile(projectileString) {
+        switch(projectileString) {
+            case "BasicShot":
+                this.projectileType = "BasicShot"
+                this.reloadTime = BasicShot.reloadTime;
+                this.ammoCount = BasicShot.ammoCount;
+                break;
+            case "RapidFire":
+                this.projectileType = "RapidFire";
+                this.reloadTime = RapidFire.reloadTime;
+                this.ammoCount = RapidFire.ammoCount;
+                break;
+            case "SpreadShot":
+                this.projectileType = "SpreadShot";
+                this.reloadTime = SpreadShot.reloadTime;
+                this.ammoCount = SpreadShot.ammoCount;
+                break;
+            default:
+                console.log("default case reached in Ship.prototype.loadProjectile")
+        }
+    }
+    fireProjectile(time) {
+        console.log(this.ammoCount)
+        this.currentSpriteImages = ShipSprites.shooting
+        const timeDelta = time - this.lastShotTime;
+        if(this.game.renderShip === false) {return console.log('cant fire youre dead bruh')}
+
+        else if(timeDelta > this.reloadTime ) {
+            switch(this.projectileType) {
+                case 'BasicShot':
+                    const projectile = new BasicShot ({
+                        pos: [this.pos[0] + (this.width*0.75), this.pos[1] + (this.height*0.6)],
+                        vel: [BasicShot.speed,0],
+                        game: this.game,
+                        owner: "playerShip"
+                    })
+
+                    this.game.add(projectile);
+                   
+                    break;
+                case 'RapidFire':
+                    if (this.ammoCount < 0) this.loadProjectile('BasicShot');
+                    else {
+                        const projectile = new RapidFire({
+                            pos: [this.pos[0] + (this.width * 0.75), this.pos[1] + (this.height * 0.6)],
+                            vel: [RapidFire.speed, 0],
+                            game: this.game,
+                            owner: "playerShip"
+                        })
+                        this.game.add(projectile);
+                        this.ammoCount -= 1;
+                    }  
+                    break;
+                case 'SpreadShot':
+                    if (this.ammoCount < 0) this.loadProjectile('BasicShot');
+                    else {
+                        for(let i = -5; i < 6; i+=2) {
+                            const projectile = new SpreadShot({
+                                pos: [this.pos[0] + (this.width * 0.75), this.pos[1] + (this.height * 0.6)],
+                                vel: [SpreadShot.speed, i],
+                                game: this.game,
+                                owner: "playerShip"
+                            })
+                            this.game.add(projectile);
+                        }
+                        this.ammoCount -= 5;
+                    }  
+                    break;
+                default:
+                    debugger;
+                    console.log('default case reached in Ship.prototype.fireProjectile')
+            }
+            this.lastShotTime = time;
+            }
+    }
 
     //necessary because ship has many different sprites, and it needs to
     //reset to default after for example shooting animation is done;
@@ -51,26 +133,6 @@ class Ship extends MovingObject {
             else { this.frameIndex += 1; }
         }
     }
-   
-    power(impulse) {this.vel = impulse;}
-
-    fireProjectile(time) {
-        this.currentSpriteImages = ShipSprites.shooting
-        const timeDelta = time - this.lastShotTime;
-        if(this.game.renderShip === false) {return console.log('cant fire youre dead bruh')}
-        else if(timeDelta > this.reloadTime ) {
-            const projectile = new BasicShot ({
-                pos: [this.pos[0] + (this.width*0.75), this.pos[1] + (this.height*0.6)],
-                vel: [basicShotSpeeds[Math.floor(Math.random() *2)],0],
-                game: this.game,
-                owner: "playerShip"
-            })
-
-            this.game.add(projectile);
-            this.lastShotTime = time;
-            }
-    }
-
     move(timeDelta) {
         // debugger;
         const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA;
