@@ -29,6 +29,8 @@ class GameView {
     }
 
     processEvents(time) {
+
+        if(!this.game.ship.respawnShield){
         let newX = this.game.ship.vel[0];
         let newY = this.game.ship.vel[1];
 
@@ -48,7 +50,7 @@ class GameView {
         
         newX *= friction;
         newY *= friction;
-        this.game.ship.power([newX,newY], time)
+        this.game.ship.power([newX,newY], time)}
     
     }
 

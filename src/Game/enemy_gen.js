@@ -59,7 +59,7 @@ class EnemyGen {
            
             if( eT.groupTicks >= eT.groupInterval) {
                 eT.groupTicks = 0;
-                if (this.game.renderShip === true) {
+                if (this.game.renderShip === true && this.game.ship.respawnShield === false) {
                     eT.spawnY = this.randomEnemY();
                     for(let i=0;i < eT.groupSize; i++) {
                         switch(eT.type) {
