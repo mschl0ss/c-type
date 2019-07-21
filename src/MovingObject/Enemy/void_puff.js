@@ -87,10 +87,13 @@ class VoidPuff extends Enemy {
         }
     }
     deductHealth() {
+        
         this.currentSpriteImages = EnemySprites.voidPuffHit;
         this.ticksPerFrame = 2;
         this.healthPoints -= 1;
-        if (this.healthPoints <= 0) { this.game.remove(this) }
+        if (this.healthPoints <= 0) { 
+            this.game.player.addToScore(this);
+            this.game.remove(this) }
     }
 }
 

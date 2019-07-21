@@ -24,6 +24,14 @@ class Enemy extends MovingObject {
 
         }
     }
+
+    deductHealth() {
+        this.healthPoints -= 1;
+        if (this.healthPoints <= 0) { 
+            this.game.player.addToScore(this)
+            this.game.remove(this) 
+        }
+    }
     
 
 

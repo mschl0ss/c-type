@@ -2,6 +2,7 @@ const Util = require('../Util/util');
 
 class MovingObject {
     constructor(options) {
+        this.id = this.createId();
         this.pos = options.pos;
         this.vel = options.vel;
         this.game = options.game;
@@ -17,6 +18,10 @@ class MovingObject {
         this.healthPoints = options.healthPoints || 1;
     }
 
+    createId () {
+        MovingObject.lastId += 1;
+        return MovingObject.lastId;
+    }
     draw(ctx) {
         // debugger;
         let pos = this.pos.concat([]);
@@ -35,11 +40,8 @@ class MovingObject {
         ctx.strokeStyle = "white";
         
         // this.drawRenderBox(ctx)
-        // this.drawHitBox(ctx,0.6)
-        
-       
+        // this.drawHitBox(ctx,0.6)  
     }
-
     drawRenderBox(ctx) {
         ctx.strokeStyle = "white";
         if (this.shape === "rectangle") {
@@ -68,7 +70,6 @@ class MovingObject {
             ctx.stroke();
         }
     }
-
     animateSprite() {
         this.tickCount += 1;
 
@@ -119,13 +120,9 @@ class MovingObject {
             else {this.game.remove(this)}
         }
     }
-
-  
-
     collideWith(otherObject) {
         // debugger;
     }
-
     squareHitBox(obj,ratio) {
         //original width vs new width;
         // ratio is .
@@ -145,7 +142,6 @@ class MovingObject {
         return hitbox;
 
     }
-
     isCollidedWith(otherObject) {
         //ratios the hitbox
         const ratio = 0.6
@@ -227,6 +223,7 @@ class MovingObject {
     }
 }
 
+MovingObject.lastId = 0;
 // const NORMAL_FRAME_TIME_DELTA = 15;
 const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
 const DIM_X = 1400;

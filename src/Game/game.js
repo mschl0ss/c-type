@@ -1,23 +1,29 @@
 const Util = require('../Util/util');
-const EnemyGen = require('./enemy_gen')
+const EnemyGen = require('./enemy_gen');
+const Player = require('./player');
 const Ship = require('../MovingObject/Ship/ship');
 const Projectile = require('../MovingObject/Projectile/projectile');
 const Star = require('../MovingObject/Background/star');
 const Enemy = require('../MovingObject/Enemy/enemy');
-const Explode = require('../MovingObject/Background/explode')
+const Explode = require('../MovingObject/Background/explode');
 
 
 class Game {
     constructor() {
-        this.enemyGen = new EnemyGen(this)
+        this.enemyGen = new EnemyGen(this);
+        this.pausedObjects = {};
         this.stars = [];
         this.playerProjectiles = [];
         this.enemyProjectiles = [];
         this.enemies = [];
         this.explosions = [];
         this.addStars();
+
+        this.player = new Player(this)
         this.ship = new Ship({ game: this, pos: [250, 350], vel: [0, 0] })
-        this.spawnShip();   
+        this.spawnShip();
+        this.isPaused = false;
+        this.isOver = true;
 
         this.lastTime = 0;
         this.backgroundInterval = 50;
@@ -47,6 +53,33 @@ class Game {
         }
     }
 
+    pause() {
+        this.allObjects().forEach(obj => {
+            this.pausedObjects[obj.id] = {pos:[obj.pos[0],obj.pos[1]], vel:obj.vel};
+            obj.vel = [0,0]
+        })
+        this.stars.forEach(star => {
+            this.pausedObjects[star.id] = { pos: [star.pos[0], star.pos[1]], vel: star.vel };
+            star.vel = [0, 0]
+        })
+        this.isPaused = true; 
+        console.log(this.ship.pos)
+        console.log(this.pausedObjects[this.ship.id])
+    }
+
+    unPause() {
+        this.allObjects().forEach(obj => {
+            obj.pos = this.pausedObjects[obj.id].pos;
+            obj.vel = this.pausedObjects[obj.id].vel;
+        })
+        this.stars.forEach(obj => {
+            obj.pos = this.pausedObjects[obj.id].pos;
+            obj.vel = this.pausedObjects[obj.id].vel;
+        })
+        this.isPaused = false;
+        console.log(this.ship.pos)
+        console.log(this.pausedObjects[this.ship.id])
+    }
     allObjects() {
         return [this.ship].concat(this.playerProjectiles,this.enemyProjectiles,this.enemies);
     }
@@ -144,6 +177,8 @@ class Game {
         //if they should explode, explode them
         if (obj instanceof Ship && this.renderShip === true) {
             this.renderShip = false;
+            this.player.lives += 1;
+            if (this.player.lives <= 0) this.isOver = true;
             this.explosions.push(
                 new Explode({ pos: obj.pos, w: obj.width, h: obj.height, game: this })
             )

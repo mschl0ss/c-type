@@ -11,7 +11,10 @@ class GameView {
     bindKeyEventHandlers() {
 
 
-        key("p", e=>{const g = this.game;debugger})
+        key("o", e=>{const g = this.game;debugger})
+        key("p", e=>{
+            this.game.isPaused ? this.game.unPause() : this.game.pause();
+        })
 
         document.body.onkeydown = document.body.onkeyup = e=>{
             
@@ -56,18 +59,18 @@ class GameView {
     }
 
     animate(time) {
+        if(!this.game.isPaused) {
+            const timeDelta = time - this.lastTime;
 
-        const timeDelta = time - this.lastTime;
+            this.processEvents(time);
 
-        this.processEvents(time);
+            this.game.step(timeDelta, time);
 
-        this.game.step(timeDelta, time);
+            this.game.draw(this.ctx, time);
 
-        this.game.draw(this.ctx, time);
-
-        this.lastTime = time;
-
-        requestAnimationFrame(this.animate.bind(this));
+        }
+            this.lastTime = time;
+            requestAnimationFrame(this.animate.bind(this));
     }
 }
 
