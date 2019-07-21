@@ -16,13 +16,14 @@ class MovingObject {
         this.isWrappable = options.isWrappable || false;
         this.isBounded = options.isBounded || false;
         this.healthPoints = options.healthPoints || 1;
+
     }
 
     createId () {
         MovingObject.lastId += 1;
         return MovingObject.lastId;
     }
-    draw(ctx) {
+    draw(ctx,timeDelta) {
         // debugger;
         let pos = this.pos.concat([]);
         if(this.shape==="circle") {
@@ -35,7 +36,7 @@ class MovingObject {
             this.width,
             this.height,
         )
-        this.animateSprite();
+        this.animateSprite(timeDelta);
 
         ctx.strokeStyle = "white";
         

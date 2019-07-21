@@ -23,7 +23,7 @@ class Player {
             default:
                 console.log('default case of Player.prototype.addToScore')
         }
-        console.log(`Score: ${this.score}`)
+        this.game.updateScoreDisplay();
     }
 }
 

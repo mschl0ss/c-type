@@ -13,7 +13,8 @@ class GameView {
 
         key("o", e=>{const g = this.game;debugger})
         key("p", e=>{
-            this.game.isPaused ? this.game.unPause() : this.game.pause();
+            if (this.game.isPaused) this.game.unPause();
+            else this.game.pause(this.ctx);
         })
 
         document.body.onkeydown = document.body.onkeyup = e=>{
@@ -66,7 +67,7 @@ class GameView {
 
             this.game.step(timeDelta, time);
 
-            this.game.draw(this.ctx, time);
+            this.game.draw(this.ctx, timeDelta);
 
         }
             this.lastTime = time;

@@ -1,6 +1,7 @@
 const Util = require('../Util/util');
 const EnemyGen = require('./enemy_gen');
 const Player = require('./player');
+const ShipSprites = require('./Sprites/ship_sprites');
 const Ship = require('../MovingObject/Ship/ship');
 const Projectile = require('../MovingObject/Projectile/projectile');
 const Star = require('../MovingObject/Background/star');
@@ -23,7 +24,7 @@ class Game {
         this.ship = new Ship({ game: this, pos: [250, 350], vel: [0, 0] })
         this.spawnShip();
         this.isPaused = false;
-        this.isOver = true;
+        this.isOver = false;
 
         this.lastTime = 0;
         this.backgroundInterval = 50;
@@ -33,8 +34,34 @@ class Game {
     }
 
     spawnShip() {
-        this.ship = new Ship({ game: this, pos: [250, 350], vel: [0, 0] })
-        this.renderShip = true;
+        if (this.player.lives >= 0) {
+            this.updateLivesDisplay();
+            this.ship.pos= [250, 350]
+            this.ship.vel= [0, 0] 
+            this.renderShip = true;
+        }
+    }
+    gameOver() {
+        this.isOver = true;
+    }
+
+    updateLivesDisplay() {
+        const livesUl = document.getElementById('lives');
+        livesUl.innerHTML =""
+        
+        for(let i=0; i< this.player.lives;i++) {
+            const image = new Image();
+            image.src = ShipSprites.default[0].src;
+            const li = document.createElement('LI');
+            li.appendChild(image);
+            livesUl.appendChild(li)
+        }
+    }
+
+    updateScoreDisplay() {
+        const scoreSpan = document.getElementById('score');
+
+        scoreSpan.innerHTML = `${this.player.score}`;
     }
 
     add(obj) {
@@ -53,7 +80,9 @@ class Game {
         }
     }
 
-    pause() {
+    pause(ctx) {
+
+        
         this.allObjects().forEach(obj => {
             this.pausedObjects[obj.id] = {pos:[obj.pos[0],obj.pos[1]], vel:obj.vel};
             obj.vel = [0,0]
@@ -63,8 +92,7 @@ class Game {
             star.vel = [0, 0]
         })
         this.isPaused = true; 
-        console.log(this.ship.pos)
-        console.log(this.pausedObjects[this.ship.id])
+        this.drawMask(ctx)
     }
 
     unPause() {
@@ -102,17 +130,15 @@ class Game {
         }
     }
 
-    draw(ctx, time) {
+    drawMask(ctx){
+        ctx.globalAlpha = 0.5
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y)
+        ctx.globalAlpha = 1
+    }
+    draw(ctx, timeDelta) {
         ctx.clearRect(0, 0, Game.DIM_X * 1.5, Game.DIM_Y * 1.5);
-        //draw shifting bg
-        // const timeDelta = time - this.lastTime;
-        // if(timeDelta > this.backgroundInterval) {
-        //     this.backgroundY = this.backgroundY + (2*this.backgroundDirection)
-        //     this.lastTime = time;
-        // }
 
-        // this.backgroundDirection = this.backgroundY < 600 ? 1 :
-        //     this.backgroundY > 675 ? -1 : this.backgroundDirection;
 
         const gradient = ctx.createLinearGradient(0,
             this.backgroundY - 600, 0, this.backgroundY);
@@ -125,19 +151,22 @@ class Game {
         ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y)
 
         //draw stars
-        this.stars.forEach(star => {star.draw(ctx)})
+        this.stars.forEach(star => {star.draw(ctx,timeDelta)})
 
         //draw the ship
-        if(this.renderShip) this.ship.draw(ctx);
+        if(this.renderShip) this.ship.draw(ctx,timeDelta);
 
         //draw player shots
-        this.playerProjectiles.forEach(p => p.draw(ctx));
+        this.playerProjectiles.forEach(p => p.draw(ctx,timeDelta));
 
         //draw enemies
-        this.enemies.forEach(enemy => {enemy.draw(ctx)})
+        this.enemies.forEach(enemy => {enemy.draw(ctx,timeDelta)})
 
         //draw splosions
-        this.explosions.forEach(splode => splode.draw(ctx))
+        this.explosions.forEach(splode => splode.draw(ctx,timeDelta))
+        if(this.isOver){
+            this.drawMask(ctx)
+        }    
     }
     isOutOfBounds(pos) {
         //if the pos coords are off the map return [true, "side of the map they're off"]
@@ -161,6 +190,7 @@ class Game {
         else return [false, "inbounds"]
     }
     moveObjects(timeDelta) {
+        if(this.isOver || this.renderShip === false) timeDelta /= 5;
         this.stars.forEach(star => star.move(timeDelta));
         this.ship.move(timeDelta);
         this.playerProjectiles.forEach(p => p.move(timeDelta));
@@ -177,8 +207,9 @@ class Game {
         //if they should explode, explode them
         if (obj instanceof Ship && this.renderShip === true) {
             this.renderShip = false;
-            this.player.lives += 1;
-            if (this.player.lives <= 0) this.isOver = true;
+            this.player.lives -= 1;
+            this.updateLivesDisplay();
+            if (this.player.lives < 0) this.gameOver();
             this.explosions.push(
                 new Explode({ pos: obj.pos, w: obj.width, h: obj.height, game: this })
             )

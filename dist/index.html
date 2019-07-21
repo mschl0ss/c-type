@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../src/assets/styles/reset.css">
     <link rel="stylesheet" type="text/css" href="../src/assets/styles/styles.css">
     <script type="application/javascript" src="../vendor/keymaster.js"></script>
     <script type="application/javascript" src="./main.js"></script>
@@ -15,16 +16,34 @@
         
     </header>
     
-    <section class="canvas-wrapper">
+    <main>
 
         <canvas id="game-canvas" width="1400" height="700"></canvas>
 
-    </section>
+    
 
     <section class="player">
-        <div class="lives"></div>
-        <div class="score"></div>
+        <div id="lives-div">
+           <ul id="lives">
+
+           </ul>
+        </div>
+        <div id="controls">
+            <ul>
+                <li>&#8592;</li><!--left -->
+                <li>&#8594;</li><!--right -->
+                <li>&#8593;</li><!--up -->
+                <li>&#8595;</li><!--down -->
+                <li>pause</li><!--p -->
+                <li>fire</li><!--space -->
+            </ul>
+        </div>
+        <div id="score-div">
+            <span>current score:</span>
+            <span id="score">0</span>
+        </div>
     </section>
+    </main>
     
     
 </body>
