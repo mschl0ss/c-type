@@ -11,7 +11,7 @@ class Ship extends MovingObject {
         options.color = "#545454";
         options.pos = options.pos
         options.vel = options.vel
-        options.isBounded = true;
+        // options.isBounded = true;
         options.type = "playerShip";
         options.frameIndex = 0;
         options.tickCount = 0;
@@ -69,8 +69,45 @@ class Ship extends MovingObject {
             }
     }
 
+    move(timeDelta) {
+        // debugger;
+        const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA;
+ 
+        const x = this.pos[0] + (this.vel[0] * velocityScale);
+        const y = this.pos[1] + (this.vel[1] * velocityScale);
+        this.pos = [x, y];
+
+        // isOutOfBounds returns a 2 item array
+        // [0] === true/false
+        // [1] === bad pos aka "top", "right", etc;
+        if (this.game.isShipOutOfBounds(this.pos)[0]===true) {
+                this.vel = [0,0];
+                switch (this.game.isShipOutOfBounds(this.pos)[1]) {
+                    case "right":
+                        this.pos = [DIM_X-this.width, this.pos[1]];
+                        break;
+                    case "left":
+                        this.pos = [10, this.pos[1]];
+                        break;
+                    case "top":
+                        this.pos = [this.pos[0], 10];
+                        break;
+                    case "bottom":
+                        this.pos = [this.pos[0], DIM_Y - 20];
+                        break;
+                    default:
+                        console.log('Reached default case in MovingObject.prototype.move')
+                }
+            }
+           
+        
+    }
+
 
 }
+const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
+const DIM_X = 1400;
+const DIM_Y = 700;
 
 
 module.exports = Ship;

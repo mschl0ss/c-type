@@ -19,9 +19,9 @@ class VoidPuff extends Enemy {
         //ration should be: h is .6666 of w
         this.width = 300;
         this.height = 200;
-        this.fireInterval = 35,
+        this.fireInterval = 25,
         this.fireTick = 0;
-        this.fireMax = 6;
+        this.fireMax = 10;
     }
 
     shouldDodge () {
@@ -56,18 +56,18 @@ class VoidPuff extends Enemy {
     fireProjectile() {
         if(this.game.enemies.filter(e=> e instanceof Voidlette).length < this.fireMax ){
             const vel = this.fireTrajectory();
+            // const voidlette = new Voidlette ({
+            //     game: this.game,
+            //     pos: [this.pos[0]+10, this.pos[1] + this.height*Math.random()],
+            //     vel: [-4,0]
+            // })
             const voidlette = new Voidlette ({
                 game: this.game,
                 pos: [this.pos[0]+10, this.pos[1] + this.height*0.6],
-                vel: [-4,0]
+                vel: [
+                    -4,
+                    this.shouldFireUp() ? 0.5 : -0.5],
             })
-            // const voidlette = new Voidlette ({
-            //     game: this.game,
-            //     pos: [this.pos[0]+10, this.pos[1] + this.height*0.6],
-            //     vel: [
-            //         -4,
-            //         this.shouldFireUp() ? 0.75 : -0.75],
-            // })
             this.game.add(voidlette);
         }
     }

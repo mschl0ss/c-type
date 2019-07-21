@@ -9,10 +9,10 @@ const RADII = [30,33,35]
 class Bug extends Enemy {
     constructor(options) {
         options.color = COLOR;
-        options.vel = [-4,0];
+        options.vel = options.vel
         options.shape = "circle";
         options.ticksPerFrame = 1;
-        options.healthPoints = 1;
+        options.healthPoints = 3;
         options.currentSpriteImages = EnemySprites.blackBug;
         super(options);
 

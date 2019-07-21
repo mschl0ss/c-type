@@ -72,21 +72,22 @@ class Game {
     draw(ctx, time) {
         ctx.clearRect(0, 0, Game.DIM_X * 1.5, Game.DIM_Y * 1.5);
         //draw shifting bg
-        const timeDelta = time - this.lastTime;
-        if(timeDelta > this.backgroundInterval) {
-            this.backgroundY = this.backgroundY + (2*this.backgroundDirection)
-            this.lastTime = time;
-        }
+        // const timeDelta = time - this.lastTime;
+        // if(timeDelta > this.backgroundInterval) {
+        //     this.backgroundY = this.backgroundY + (2*this.backgroundDirection)
+        //     this.lastTime = time;
+        // }
 
-        this.backgroundDirection = this.backgroundY < 625 ? 1 :
-            this.backgroundY > 750 ? -1 : this.backgroundDirection;
+        // this.backgroundDirection = this.backgroundY < 600 ? 1 :
+        //     this.backgroundY > 675 ? -1 : this.backgroundDirection;
 
         const gradient = ctx.createLinearGradient(0,
             this.backgroundY - 600, 0, this.backgroundY);
-        gradient.addColorStop(0, "#030919")
-        gradient.addColorStop(.45, "#08244D")
-        gradient.addColorStop(.75, "#08244D")
-        gradient.addColorStop(1, "#030919")
+        gradient.addColorStop(0, "black")
+        // gradient.addColorStop(0, "#030919")
+        gradient.addColorStop(.4, "#030919")
+        gradient.addColorStop(.8, "#030919")
+        gradient.addColorStop(1, "black")
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y)
 
@@ -108,12 +109,22 @@ class Game {
     isOutOfBounds(pos) {
         //if the pos coords are off the map return [true, "side of the map they're off"]
         //*mitigated by the offset, which smooths out interactions with the border
-        const offsetY = 9;
-        const offsetX = 0;
+        const offsetY = -20;
+        const offsetX = -400;
         if (pos[0] > Game.DIM_X-offsetX) return [true, "right"]
         else if (pos[0] < offsetX) return [true, "left"]
         else if (pos[1] < offsetY) return [true, "top"]
         else if (pos[1] > Game.DIM_Y-offsetY-9) return [true, "bottom"]
+        else return [false, "inbounds"]
+    }
+
+    isShipOutOfBounds(pos) {
+        const offsetY = 9;
+        const offsetX = 0;
+        if (pos[0] > Game.DIM_X - offsetX) return [true, "right"]
+        else if (pos[0] < offsetX) return [true, "left"]
+        else if (pos[1] < offsetY) return [true, "top"]
+        else if (pos[1] > Game.DIM_Y - offsetY - 9) return [true, "bottom"]
         else return [false, "inbounds"]
     }
     moveObjects(timeDelta) {
@@ -144,9 +155,6 @@ class Game {
         else if (obj instanceof Projectile) {
             // debugger;
             this.playerProjectiles.splice(this.playerProjectiles.indexOf(obj),1);
-            this.explosions.push(
-                new Explode({ pos: obj.pos, w: obj.width, h: obj.height, game: this })
-            )
         }
         else if (obj instanceof Enemy) {
             this.enemies.splice(this.enemies.indexOf(obj),1);

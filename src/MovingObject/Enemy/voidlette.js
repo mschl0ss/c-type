@@ -2,14 +2,14 @@ const Enemy = require('./enemy');
 
 const EnemySprites = require('../../Game/Sprites/enemy_sprites')
 
-const RADII = [20,25];
+const RADII = [30,25];
 
 class Voidlette extends Enemy {
     constructor(options) {
         options.shape="circle";
         options.ticksPerFrame = 2;
-        options.healthPoints = 1;
-        options.currentSpriteImages = EnemySprites.voidlette;
+        options.healthPoints = 2;
+        options.currentSpriteImages = EnemySprites.voidPuff;
         super(options);
 
         this.radius = RADII[Math.floor(Math.random() * RADII.length)];

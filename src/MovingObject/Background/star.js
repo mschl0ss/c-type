@@ -4,8 +4,8 @@ const Util = require('../../Util/util');
 
 const DEFAULTS = {
     COLORS: ["#5746b5", "#5746b5", "#5746b5","#d3d3d3"],
-    RADII: [1,2],
-    SPEEDS: [4,5,6,8]
+    RADII: [1,1],
+    SPEEDS: [0.5,0.5,1,1]
 }
 const generateVel = () => {
     const result = Util.randomVec(DEFAULTS.SPEEDS[Math.floor(Math.random() * 4)]);

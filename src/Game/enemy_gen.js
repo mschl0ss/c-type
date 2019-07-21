@@ -10,8 +10,8 @@ const enemyTypes = {
         groupTicks: 0,
         groupInterval: 200,
         groupIntervalRatio: 1,
-        groupSize: 0,
-        // groupSize: Math.floor(Math.random() *1) + 3,
+        // groupSize: 0,
+        groupSize: Math.floor(Math.random() *1) + 3,
         group: [],
         interval: 25,
         intervalTicks: 0,
@@ -22,14 +22,14 @@ const enemyTypes = {
     voidPuff : {
         type: 'voidPuff',
         groupTicks: 0,
-        groupInterval: 400,
+        groupInterval: 1500,
         groupIntervalRatio: 1,
-        groupSize: 1,
+        groupSize: 2,
         group: [],
         interval: 0,
         intervalTicks: 0,
         spawnY : 0,
-        fixedY: [275],
+        fixedY: [0,475],
         spawnX : DIM_X-11,
         limitY: 50,
     },
@@ -54,21 +54,25 @@ class EnemyGen {
             eT.groupTicks += 1;
            
             if( eT.groupTicks >= eT.groupInterval) {
-                    eT.spawnY = this.randomEnemY();
-                for(let i=0;i < eT.groupSize; i++) {
-                    switch(eT.type) {
-                        case 'bug':
-                            eT.group.push(new Bug({ game: this.game, pos: [eT.spawnX, eT.spawnY] }))
-                            break;
-                        case 'voidPuff':
-                            eT.group.push(new VoidPuff({ game: this.game, pos: [eT.spawnX, eT.fixedY[i]]}))
-                           
-                            break;
-                        default:
-                            console.log(`enemy_gen.js: didnt recognize ${eT.type}`)
-                    }
-                }
                 eT.groupTicks = 0;
+                if (this.game.renderShip === true) {
+                    eT.spawnY = this.randomEnemY();
+                    for(let i=0;i < eT.groupSize; i++) {
+                        switch(eT.type) {
+                            case 'bug':
+                                const vel = eT.spawnY > DIM_Y/2 ? [-4,-1] : [-4,1]
+                                eT.group.push(new Bug({ game: this.game, pos: [eT.spawnX, eT.spawnY], vel: vel }))
+                                break;
+                            case 'voidPuff':
+                                eT.group.push(new VoidPuff({ game: this.game, pos: [eT.spawnX, eT.fixedY[i]]}))
+                            
+                                break;
+                            default:
+                                console.log(`enemy_gen.js: didnt recognize ${eT.type}`)
+                        }
+                    }
+                    
+                }
                 // eT.groupInterval = (eT.groupInterval-50 + Math.floor(Math.random() * 50)) * eT.groupIntervalRatio;
                 
             }
@@ -78,7 +82,7 @@ class EnemyGen {
     }
 
     add() {
-
+        
         Object.values(this.enemyTypes).forEach(eT => {
             if(eT.group.length > 0){
                 // debugger;
