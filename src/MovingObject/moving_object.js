@@ -242,7 +242,7 @@ class MovingObject {
                 pos: circle.pos,
                 x: circle.pos[0],
                 y: circle.pos[1],
-                radius: circle.radius,
+                radius: circle.radius*ratio,
             }
             const r = {
                 pos: rect.pos,
