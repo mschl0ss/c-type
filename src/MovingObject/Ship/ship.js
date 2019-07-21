@@ -117,6 +117,18 @@ class Ship extends MovingObject {
             }
     }
 
+    draw(ctx,timeDelta) {
+
+        if(this.ammoCount !== -100) {
+            ctx.globalAlpha = 1;
+            ctx.font = "18px Helvetica";
+            ctx.strokeStyle = "white;"
+            ctx.fillStyle = "white"
+            ctx.fillText(`x ${this.ammoCount}`, this.pos[0]+this.width/8, this.pos[1]-10);
+        }
+
+        MovingObject.prototype.draw.call(this, ctx,timeDelta)
+    }
     //necessary because ship has many different sprites, and it needs to
     //reset to default after for example shooting animation is done;
     animateSprite() {
