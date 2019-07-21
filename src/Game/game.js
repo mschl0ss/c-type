@@ -51,9 +51,9 @@ class Game {
         const livesUl = document.getElementById('lives');
         livesUl.innerHTML =""
         
-        for(let i=0; i< this.player.lives;i++) {
+        for(let i=0; i < 3;i++) {
             const image = new Image();
-            image.src = ShipSprites.default[0].src;
+            image.src = i< this.player.lives ? ShipSprites.default[0].src : ShipSprites.dead[0].src;
             const li = document.createElement('LI');
             li.appendChild(image);
             livesUl.appendChild(li)
