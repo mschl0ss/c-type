@@ -10,7 +10,7 @@ class VoidPuff extends Enemy {
     constructor(options) {
         options.vel = [-1, 0];
         options.shape = "rectangle";
-        options.ticksPerFrame = 2;
+        options.ticksPerFrame = 6;
         options.healthPoints = 15;
         options.currentSpriteImages = EnemySprites.voidPuff;
         options.isShooter = true;
@@ -43,12 +43,15 @@ class VoidPuff extends Enemy {
     }
 
     fireTrajectory() {
-        const deltaY = this.game.ship.pos[1] - this.pos[1] + this.height * 0.6;
-        const deltaX = this.game.ship.pos[0] - this.pos[0] + 10;
+        let deltaY;
 
-        return  deltaY/deltaX;
+        if ((this.game.ship.pos[1] - this.pos[1] + this.height * 0.6) < 10) {
+            deltaY = 0
+        } else {
+            deltaY = this.game.ship.pos[1] - this.pos[1] + this.height * 0.6;
+        }
+        return [-4, deltaY/120]
   
-        debugger;
     }
     fireProjectile() {
         if(this.game.enemies.filter(e=> e instanceof Voidlette).length < this.fireMax ){
@@ -56,17 +59,21 @@ class VoidPuff extends Enemy {
             const voidlette = new Voidlette ({
                 game: this.game,
                 pos: [this.pos[0]+10, this.pos[1] + this.height*0.6],
-                vel: [
-                    -4,
-                    this.shouldFireUp() ? 0.75 : -0.75],
+                vel: [-4,0]
             })
+            // const voidlette = new Voidlette ({
+            //     game: this.game,
+            //     pos: [this.pos[0]+10, this.pos[1] + this.height*0.6],
+            //     vel: [
+            //         -4,
+            //         this.shouldFireUp() ? 0.75 : -0.75],
+            // })
             this.game.add(voidlette);
         }
     }
 
     animateSprite() {
         this.tickCount += 1;
-
         if (this.tickCount > this.ticksPerFrame) {
             this.tickCount = 0;
 
@@ -74,12 +81,14 @@ class VoidPuff extends Enemy {
 
                 this.frameIndex = 0;
                 this.currentSpriteImages = EnemySprites.voidPuff;
+                this.ticksPerFrame = 6;
             }
             else { this.frameIndex += 1; }
         }
     }
     deductHealth() {
         this.currentSpriteImages = EnemySprites.voidPuffHit;
+        this.ticksPerFrame = 2;
         this.healthPoints -= 1;
         if (this.healthPoints <= 0) { this.game.remove(this) }
     }

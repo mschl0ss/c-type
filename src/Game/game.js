@@ -129,29 +129,35 @@ class Game {
         return Math.floor(Math.random() * Game.DIM_X);
     }
     remove(obj) {
-        if (obj instanceof Ship) {
+        //remove things from game
+        //if they should explode, explode them
+        if (obj instanceof Ship && this.renderShip === true) {
             this.renderShip = false;
+            this.explosions.push(
+                new Explode({ pos: obj.pos, w: obj.width, h: obj.height, game: this })
+            )
            
         }
-        if (obj instanceof Star) {
+        else if (obj instanceof Star) {
             this.stars.splice(this.stars.indexOf(obj),1);
         }
-        if (obj instanceof Projectile) {
+        else if (obj instanceof Projectile) {
             // debugger;
             this.playerProjectiles.splice(this.playerProjectiles.indexOf(obj),1);
+            this.explosions.push(
+                new Explode({ pos: obj.pos, w: obj.width, h: obj.height, game: this })
+            )
         }
-        if (obj instanceof Enemy) {
+        else if (obj instanceof Enemy) {
             this.enemies.splice(this.enemies.indexOf(obj),1);
+            this.explosions.push(
+                new Explode({ pos: obj.pos, w: obj.width, h: obj.height, game: this })
+            )
         }
-        if(obj instanceof Explode) {
+        else if(obj instanceof Explode) {
             this.explosions.splice(this.explosions.indexOf(obj),1)
         }
-        else {
-            // debugger;
-            this.explosions.push(
-            
-            new Explode({ pos: obj.pos, w: obj.width, h: obj.height, game: this })
-            )}
+
     }
     step(timeDelta, time) {
         this.moveObjects(timeDelta);

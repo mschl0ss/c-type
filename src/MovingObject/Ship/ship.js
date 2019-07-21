@@ -58,7 +58,7 @@ class Ship extends MovingObject {
         if(this.game.renderShip === false) {return console.log('cant fire youre dead bruh')}
         else if(timeDelta > this.reloadTime ) {
             const projectile = new BasicShot ({
-                pos: [this.pos[0] + (this.width*0.75), this.pos[1] + (this.height*0.4)],
+                pos: [this.pos[0] + (this.width*0.75), this.pos[1] + (this.height*0.6)],
                 vel: [basicShotSpeeds[Math.floor(Math.random() *2)],0],
                 game: this.game,
                 owner: "playerShip"
