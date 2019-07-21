@@ -11,12 +11,16 @@ class MovingObject {
         this.type = options.type || " ";
         this.frameIndex = 0;
         this.tickCount = 0;
-        this.ticksPerFrame = options.ticksPerFrame
+        this.ticksPerFrame = options.ticksPerFrame;
         this.currentSpriteImages = options.currentSpriteImages;
         this.isWrappable = options.isWrappable || false;
         this.isBounded = options.isBounded || false;
         this.healthPoints = options.healthPoints || 1;
+
         this.rewardsPowerUp = options.rewardsPowerUp || false;
+        this.glowTickCount = 0;
+        this.glowTicksPerFrame = 50;
+        this.glowTicksAscending = true;
 
     }
 
@@ -60,9 +64,29 @@ class MovingObject {
         const alphas = [0.40, 0.35, 0.50, 0.25, 0.20]
         const radii =  [1.20, 1.15, 1.10, 1.05, 1.00]
         // ctx.globalAlpha = 0.7
+        
+        let alpha = 0.2;
+
+        if (this.glowTickCount > this.glowTicksPerFrame) {
+            // debugger;
+            alpha = 0.9;
+            this.glowTicksAscending = false;
+        }
+        else if (this.glowTickCount === 0) {
+            alpha = 0.2;
+            this.glowTicksAscending = true;
+        }
+        else {
+            for(let i = 2; i < 10; i++) {
+                if(this.glowTickCount > this.glowTicksPerFrame * (i*0.1)) {
+                    alpha = (i*0.1)
+                }
+            }
+        }
+        this.glowTickCount += this.glowTicksAscending ? 1 : -1;
+
         let radiusRatio = 1.15;
-        let alpha = 0.5;
-        for(let i=0; i< 8; i++) {
+        for(let i=0; i< 20; i++) {
             ctx.globalAlpha = alpha
             // ctx.globalAlpha = alphas[i];
             ctx.beginPath();
@@ -70,7 +94,7 @@ class MovingObject {
                 this.pos[0], this.pos[1], this.radius * radiusRatio, 0, 2 * Math.PI, true
             );
             ctx.stroke();
-            alpha -= 0.05;
+            alpha -= alpha <= 0.2 ? 0 : 0.05;
             radiusRatio -= 0.05;
         }
         ctx.globalAlpha = 1;
