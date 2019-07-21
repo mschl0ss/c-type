@@ -14,7 +14,8 @@ const enemyTypes = {
         groupInterval: 200,
         groupIntervalRatio: 1,
         groupsSpawned: 0,
-        groupSize: Math.floor(Math.random() *1) + 3,
+        groupSize: 3,
+        // groupSize: Math.floor(Math.random() *1) + 3,
         group: [],
         interval: 25,
         intervalTicks: 0,
@@ -25,8 +26,8 @@ const enemyTypes = {
     voidPuff : {
         type: 'voidPuff',
         groupTicks: 0,
-        groupInterval: 1500,
-        groupIntervalRatio: 1,
+        groupInterval: 1000,
+        groupIntervalRatio: 10,
         groupSize: 2,
         group: [],
         interval: 0,
@@ -85,7 +86,7 @@ class EnemyGen {
                     }
                     
                 }
-                // eT.groupInterval = (eT.groupInterval-50 + Math.floor(Math.random() * 50)) * eT.groupIntervalRatio;
+                eT.groupInterval = eT.groupInterval * eT.groupIntervalRatio;
                 
             }
         })

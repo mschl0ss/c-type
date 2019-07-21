@@ -43,31 +43,39 @@ class VoidPuff extends Enemy {
     }
 
     fireTrajectory() {
-        let deltaY;
+        // let deltaY;
 
-        if ((this.game.ship.pos[1] - this.pos[1] + this.height * 0.6) < 10) {
-            deltaY = 0
-        } else {
-            deltaY = this.game.ship.pos[1] - this.pos[1] + this.height * 0.6;
-        }
-        return [-4, deltaY/120]
+        let deltaY = this.game.ship.pos[1] - this.pos[1];
+        let deltaX = this.game.ship.pos[0] - this.pos[0];
+
+        deltaX = deltaX > -30 ? -30 : deltaX;
+        const m = deltaY/deltaX
+       
+        return m
+        
   
     }
     fireProjectile() {
         if(this.game.enemies.filter(e=> e instanceof Voidlette).length < this.fireMax ){
-            const vel = this.fireTrajectory();
-            // const voidlette = new Voidlette ({
-            //     game: this.game,
-            //     pos: [this.pos[0]+10, this.pos[1] + this.height*Math.random()],
-            //     vel: [-4,0]
-            // })
+            let fT = this.fireTrajectory() * -2;
+            if (fT < 0) { fT -= 0.7;}
+            if(fT > 4) {fT = 4;}
+            else if(fT < -7) fT = -7;
+
+        
+            const vel = [-4, fT];
+
             const voidlette = new Voidlette ({
                 game: this.game,
-                pos: [this.pos[0]+10, this.pos[1] + this.height*0.6],
-                vel: [
-                    -4,
-                    this.shouldFireUp() ? 0.5 : -0.5],
+                pos: [this.pos[0]+10, this.pos[1] + this.height * 0.6],
+                vel: vel
             })
+
+            // const voidlette = new Voidlette ({
+            //     game: this.game,
+            //     pos: [this.pos[0]+10, this.pos[1] + this.height*0.6],
+            //     vel: [-4, this.shouldFireUp() ? 0.5 : -0.5],
+            // })
             this.game.add(voidlette);
         }
     }

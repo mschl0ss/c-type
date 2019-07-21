@@ -63,7 +63,6 @@ class Ship extends MovingObject {
         }
     }
     fireProjectile(time) {
-        console.log(this.ammoCount)
         this.currentSpriteImages = ShipSprites.shooting
         const timeDelta = time - this.lastShotTime;
         if(this.game.renderShip === false) {return console.log('cant fire youre dead bruh')}
