@@ -19,7 +19,7 @@ class Enemy extends MovingObject {
                 this.deductHealth(3);
             }
             else {
-                otherObject.deductHealth(1)
+                // otherObject.deductHealth(1)
                 this.deductHealth(otherObject.dmg);
             }
         }
