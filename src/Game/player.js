@@ -22,7 +22,7 @@ class Player {
                 this.score += 100;
                 break;
             case BigBug:
-                this.score += 30;
+                this.score += 50;
             default:
                 console.log('default case of Player.prototype.addToScore')
         }

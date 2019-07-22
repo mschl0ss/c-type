@@ -73,10 +73,10 @@ class Ship extends MovingObject {
         }
     }
     fireProjectile(time) {
-        this.currentSpriteImages = ShipSprites.shooting
+        
         const timeDelta = time - this.lastShotTime;
+        this.currentSpriteImages = ShipSprites.shooting
         if(this.game.renderShip === false) {return console.log('cant fire youre dead bruh')}
-
         else if(timeDelta > this.reloadTime ) {
             switch(this.projectileType) {
                 case 'BasicShot':
@@ -86,12 +86,10 @@ class Ship extends MovingObject {
                         game: this.game,
                         owner: "playerShip"
                     })
-
                     this.game.add(projectile);
-                   
                     break;
                 case 'RapidFire':
-                    if (this.ammoCount < 0) this.loadProjectile('BasicShot');
+                    if (this.ammoCount <= 0) this.loadProjectile('BasicShot');
                     else {
                         const projectile = new RapidFire({
                             pos: [this.pos[0] + (this.width * 0.75), this.pos[1] + (this.height * 0.6)],
@@ -104,7 +102,7 @@ class Ship extends MovingObject {
                     }  
                     break;
                 case 'SpreadShot':
-                    if (this.ammoCount < 0) this.loadProjectile('BasicShot');
+                    if (this.ammoCount <= 0) this.loadProjectile('BasicShot');
                     else {
                         for(let i = -4; i < 4; i+=2) {
                             const projectile = new SpreadShot({
@@ -119,7 +117,7 @@ class Ship extends MovingObject {
                     }  
                     break;
                 case 'LaserShot':
-                    if (this.ammoCount < 0) this.loadProjectile('BasicShot');
+                    if (this.ammoCount <= 0) this.loadProjectile('BasicShot');
                     else {
                         const projectile = new LaserShot({
                             pos: [this.pos[0] + (this.width * 0.75), this.pos[1] + (this.height * 0.6)],
