@@ -17,7 +17,7 @@ class LaserShot extends Projectile {
         // this.radius = 35;
         this.speed = 1;
 
-        this.startingWidth = 100;
+        this.startingWidth = 10;
         this.width = this.startingWidth;
         this.maxWidth = 300;
         this.height = 6;
