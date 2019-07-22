@@ -20,7 +20,9 @@ body {
 .hidden {
     display: none;
 }
-
+.clear {
+    opacity: 0;
+}
 header {
     display: flex;
     justify-content: center;
@@ -29,7 +31,6 @@ header {
     height: 100px;
     font-family: 'Bungee Outline', cursive;
 }
-
 header h1 {
     padding: 17px 0;
     font-size: 70px;
@@ -46,7 +47,6 @@ header h1 {
     justify-content: flex-end;
     font-size: 20px;  
 }
-
 #gameover .final-score span{
     width: 50%;
     text-align: center;
@@ -123,7 +123,7 @@ section.modal {
 #tutorial-wrapper .controls ul {
     position: relative;
     top: 0;
-    z-index: 3;
+    z-index: 10;
     /* color: green;  */
     /* background: black; */
 }
@@ -144,13 +144,6 @@ section#tutorial-wrapper.starting div.controls ul{
     transition: none;
     opacity: 0;
 }
-
-.clear {
-    opacity: 0;
-}
-
-
-
 .tutorial-wrapper > div .powerups div:last-child {
     margin: 1% 0 0 ;
 }
@@ -173,15 +166,15 @@ section#tutorial-wrapper.starting div.controls ul{
 }
 
 button {
-    background: white;
-    color: black;
+    background: black;
+    color: white;
     border-radius: 2px;
     padding: 3% 10%;
     outline: none;
     font-size: 16px;
     letter-spacing: 5px;
-    text-shadow: 0 0 12px #b2b2b2;
-    box-shadow: inset 0 0 18px 7px #b2b2b2;
+    box-shadow: 0 0 6px 3px #b2b2b2;
+    z-index: 1;
 }
 
 button:hover {
