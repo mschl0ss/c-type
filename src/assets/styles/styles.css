@@ -30,11 +30,31 @@ header {
     margin: 0 auto; 
     height: 100px;
     font-family: 'Bungee Outline', cursive;
+    position: relative;
 }
 header h1 {
     padding: 17px 0;
     font-size: 70px;
     letter-spacing: 10px;
+}
+
+header .logos {
+    position: absolute;
+    right: 110px;
+    top: 75px;
+    display: flex;
+
+}
+
+header .logos div {
+    
+    display: flex;
+    justify-content: center;
+    border-radius: 3px;
+}
+header .logos img {
+    width:20px;
+    background: #888888;
 }
 
 #pause, #dead, #gameover {
