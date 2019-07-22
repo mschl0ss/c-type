@@ -390,7 +390,7 @@ eval("module.exports = __webpack_require__.p + \"3f5f4db785fc43fa472cb1965da1205
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"72ed40bba9d224d675535271083f581d.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/cat/cat_flying/frame-1.png?");
+eval("module.exports = __webpack_require__.p + \"c62d879327f287495123f3e093e2e24c.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/cat/cat_flying/frame-1.png?");
 
 /***/ }),
 
@@ -401,7 +401,7 @@ eval("module.exports = __webpack_require__.p + \"72ed40bba9d224d675535271083f581
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"c62d879327f287495123f3e093e2e24c.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/cat/cat_flying/frame-2.png?");
+eval("module.exports = __webpack_require__.p + \"72ed40bba9d224d675535271083f581d.png\";\n\n//# sourceURL=webpack:///./src/assets/sprites/cat/cat_flying/frame-2.png?");
 
 /***/ }),
 
