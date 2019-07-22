@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./src/assets/styles/reset.css">
+    <link rel="stylesheet" type="text/css" href="./src/assets/styles/styles.css">
+    <script type="application/javascript" src="./vendor/keymaster.js"></script>
+    <script type="application/javascript" src="./dist/main.js"></script>
+    <title>C-Type</title>
+
+</head>
+<body>
+
+    <header>
+        <h1>C-TYPE</h1>
+    </header>
+    
+    <main>
+        <section id="pause" class="modal">
+            <h3>paused</h3>
+            <div>
+                <p>sure, theyll just flap theyre little wings and wait.</p>
+            </div>
+            <div class="btn">
+                <button id="pause-btn">
+                    <span>unpause</span>
+                    <div>
+                        <span>&ldsh;</span>
+                        <span>return</span>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        <section id="dead" class="modal">
+            <h3 id="dead-title">Ouch.</h3>
+            <div>
+                <p id="dead-text">only 2 left.  make 'em count</p>
+            </div>
+            <div class="btn">
+                <button id="dead-btn">
+                    <span>respawn</span>
+                    <div>
+                        <span>&ldsh;</span>
+                        <span>return</span>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        <section id="gameover" class="modal">
+            <h3 id="gameover-title">gameover</h3>
+            <div>
+                <p>a valiant effort.  your death means...um was there a plot?  it means something, im sure</p>
+            </div>
+            <div class="final-score">
+                <span>final score:</span>
+                <span id="final-score-display">0</span>
+            </div>
+            <div class="btn">
+                <button id="gameover-btn">
+                    <span>restart</span>
+                    <div>
+                        <span>&ldsh;</span>
+                        <span>return</span>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        
+
+        <section id="tutorial-wrapper" class="tutorial-wrapper modal">
+            <div class="intro">
+                <h3>
+                    welcome to C-TYPE. 
+                </h3>
+                <p>kill bad guys. don't die. rack up that high score. you know the drill.</p>
+            </div>
+            <div class="powerups">
+                <h3>powerups</h3>
+                <div class="words">
+                    <p>kill glowing enemies to spawn powerups.
+                        pick 'em up, proceed to wreck it.</p>
+                </div>
+                <div class="images">
+                    <div>
+                        <img class="ship"  src="./src/assets/images/ship_shooting.png" />
+                        <img class="enemy" src="./src/assets/images/enemy_with_reward.png" />
+                    </div>
+                    <span class="arrow">&#8594;</span>
+                    <img class="explode"  src="./src/assets/images/explode.png" />
+                    <span class="arrow">&#8594;</span>
+                    <img class="powerup"  src="./src/assets/images/powerup.png" />
+                </div>
+            </div>
+            <div class="controls">
+                <h3 id="tutorial-controls-header">controls</h3>
+                <ul>
+                    <!--up -->
+                    <li class="up">&#8593;</li>
+                    <!--left -->
+                    <li class="left">&#8592;</li>
+                    <!--down -->
+                    <li class="down">&#8595;</li>
+                    <!--right -->
+                    <li class="right">&#8594;</li>
+                    <!--p -->
+                    <li>pause</li>
+                    <!--space -->
+                    <li class="fire">fire</li>
+                </ul>
+                <ul>
+                    <li>w</li>
+                    <li>a</li>
+                    <li>s</li>
+                    <li class="d">d</li>
+                    <li>p</li>
+                    <li class="space">space</li>
+                </ul>
+            </div>
+            <div class="btn">
+                <button id="ready-btn">
+                    <span>ready!</span>
+                    <div>
+                        <span>&ldsh;</span>
+                        <span>return</span>
+                    </div>
+                </button>
+            </div>
+        </section>
+        <canvas id="game-canvas" width="1400" height="700"></canvas>
+
+    
+
+    <section class="player clear" id="player">
+        <div id="lives-div">
+           <ul id="lives">
+
+           </ul>
+        </div>
+        
+        <div id="player-controls" class="controls clear">
+            <ul>
+                <!--up -->
+                <li class="up">&#8593;</li>
+                <!--left -->
+                <li class="left">&#8592;</li>
+                <!--down -->
+                <li class="down">&#8595;</li>
+                <!--right -->
+                <li class="right">&#8594;</li>
+                <!--p -->
+                <li>pause</li>
+                <!--space -->
+                <li class="fire">fire</li>
+            </ul>
+            <ul>
+                <li>w</li>
+                <li>a</li>
+                <li>s</li>
+                <li class="d">d</li>
+                <li>p</li>
+                <li class="space">space</li>
+            </ul>
+        </div>
+        <div id="score-div">
+            <span>current score:</span>
+            <span id="score">0</span>
+        </div>
+       
+    </section>
+    </main>
+    
+    
+</body>
+</html>
