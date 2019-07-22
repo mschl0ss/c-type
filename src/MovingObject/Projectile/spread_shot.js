@@ -5,7 +5,7 @@ const PowerUp = require('../PowerUp/power_up')
 
 class SpreadShot extends Projectile {
     constructor(options) {
-        options.dmg = 2;
+        options.dmg = 3;
         options.color = PowerUp.shotTypes['SpreadShot']
         options.shape = "rectangle";
         options.frameIndex = 0;

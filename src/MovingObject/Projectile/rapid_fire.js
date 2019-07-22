@@ -5,7 +5,7 @@ const PowerUp = require('../PowerUp/power_up')
 
 class RapidFire extends Projectile {
     constructor(options) {
-        options.dmg = 2;
+        options.dmg = 3;
         options.color = PowerUp.shotTypes['RapidFire']
         options.shape = "rectangle";
         options.frameIndex = 0;

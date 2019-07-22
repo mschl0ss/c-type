@@ -179,12 +179,13 @@ class Game {
         else if (obj instanceof Enemy) {
             this.enemies.push(obj)
         }
+        else if(obj instanceof Explode) {
+            this.explosions.push(obj)
+        }
         else {
-            
             console.log(`Game.prototype.add : can't handle ${obj}`)
         }
     }
-
     
     allObjects() {
         return [this.ship].concat(this.playerProjectiles,this.enemyProjectiles,this.enemies, this.powerUps);

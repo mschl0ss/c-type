@@ -7,7 +7,7 @@ class Explode {
         this.width = options.w;
         this.height = options.h;
         this.game = options.game;
-        this.currentSpriteImages = ExplodeSprites;
+        this.currentSpriteImages = options.currentSpriteImages || ExplodeSprites;
         this.frameIndex = 0;
         this.tickCount = 0;
         this.ticksPerFrame = 1;
