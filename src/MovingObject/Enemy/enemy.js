@@ -16,9 +16,18 @@ class Enemy extends MovingObject {
 
     collideWith(otherObject) {
         if (otherObject instanceof Projectile) {
-                this.game.remove(otherObject);
+            if(otherObject.type === "LaserShot") {
+                // debugger;
+                this.deductHealth(3);
+                // otherObject.deductHealth(1)
+            }
+            else {
                 this.deductHealth(otherObject.dmg);
-            // }
+            }
+
+                // this.game.remove(otherObject);
+                
+ 
         }
         else if (otherObject instanceof Ship) {
             otherObject.respawnShield ? this.deductHealth(100) : otherObject.deductHealth(1)

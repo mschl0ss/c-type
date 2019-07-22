@@ -67,7 +67,7 @@ class EnemyGen {
                                 const vel = eT.spawnY > DIM_Y/2 ? [-4,-0.5] : [-4,0.5]
                                 const b = new Bug({ game: this.game, pos: [eT.spawnX, eT.spawnY], vel: vel });
                                 // b.rewardsPowerUp = true;
-                                if(i === eT.groupSize-1 && eT.groupsSpawned % 5  === 0) {
+                                if(i === eT.groupSize-1 && eT.groupsSpawned % 1  === 0) {
                                     b.rewardsPowerUp = true;
                                     b.powerUpPayload = Object.keys(PowerUp.shotTypes)[Math.floor(Math.random() * (Object.keys(PowerUp.shotTypes).length))]
                                     b.powerUpColor = PowerUp.shotTypes[b.powerUpPayload]

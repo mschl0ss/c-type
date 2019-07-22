@@ -61,7 +61,8 @@ class PowerUp extends MovingObject {
     }
 }
 
-// PowerUp.shotTypes = { "SpreadShot": "orange", "SpreadShot": "orange" }
-PowerUp.shotTypes = { "RapidFire": "green", "SpreadShot": "#6a7af2" }
+
+PowerUp.shotTypes = { "LaserShot": "#00ccff", "LaserShot": "#00ccff", "LaserShot":"#00ccff" }
+// PowerUp.shotTypes = { "RapidFire": "green", "SpreadShot": "#6a7af2", "LaserShot":"#00ccff" }
 
 module.exports = PowerUp;

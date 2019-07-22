@@ -6,6 +6,7 @@ class Projectile extends MovingObject {
         super(options)
         this.owner = options.owner || "playerShip";
         this.dmg = options.dmg;
+        this.type = options.type || "Projectile"
 
     }
 

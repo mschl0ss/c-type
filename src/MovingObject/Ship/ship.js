@@ -2,6 +2,7 @@ const MovingObject = require('../moving_object');
 const BasicShot = require('../Projectile/basic_shot');
 const RapidFire = require('../Projectile/rapid_fire');
 const SpreadShot = require('../Projectile/spread_shot');
+const LaserShot = require('../Projectile/laser_shot');
 const Util = require('../../Util/util');
 
 const ShipSprites = require('../../Game/Sprites/ship_sprites')
@@ -46,6 +47,7 @@ class Ship extends MovingObject {
     power(impulse) {this.vel = impulse;}
 
     loadProjectile(projectileString) {
+        debugger;
         switch(projectileString) {
             case "BasicShot":
                 this.projectileType = "BasicShot"
@@ -61,6 +63,11 @@ class Ship extends MovingObject {
                 this.projectileType = "SpreadShot";
                 this.reloadTime = SpreadShot.reloadTime;
                 this.ammoCount = SpreadShot.ammoCount;
+                break;
+            case "LaserShot":
+                this.projectileType = "LaserShot";
+                this.reloadTime = LaserShot.reloadTime;
+                this.ammoCount = LaserShot.ammoCount;
                 break;
             default:
                 console.log("default case reached in Ship.prototype.loadProjectile")
@@ -112,6 +119,19 @@ class Ship extends MovingObject {
                         this.ammoCount -= 5;
                     }  
                     break;
+                case 'LaserShot':
+                    if (this.ammoCount < 0) this.loadProjectile('BasicShot');
+                    else {
+                        const projectile = new LaserShot({
+                            pos: [this.pos[0] + (this.width * 0.75), this.pos[1] + (this.height * 0.6)],
+                            vel: [LaserShot.speed, 0],
+                            game: this.game,
+                            owner: "playerShip"
+                        })
+                        this.game.add(projectile);
+                        this.ammoCount -= 1;
+                    }
+                    break;
                 default:
                     debugger;
                     console.log('default case reached in Ship.prototype.fireProjectile')
@@ -139,8 +159,6 @@ class Ship extends MovingObject {
                 this.width*2,
                 this.height,
             )
-            //this too
-            // MovingObject.prototype.drawGlow.call(this,ctx,"#94e5f7")
             ctx.strokeStyle = "#94e5f7";
             ctx.lineWidth = 5;
             ctx.beginPath();
