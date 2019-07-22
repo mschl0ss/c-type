@@ -12,7 +12,8 @@ const enemyTypes = {
         type: 'bug',
         groupTicks: 0,
         groupInterval: 200,
-        groupIntervalRatio: 1,
+        groupOriginalInterval: 200,
+        groupIntervalRatio: 0.9,
         groupsSpawned: 0,
         groupSize: 3,
         // groupSize: Math.floor(Math.random() *1) + 3,
@@ -27,7 +28,8 @@ const enemyTypes = {
         type: 'voidPuff',
         groupTicks: 0,
         groupInterval: 1000,
-        groupIntervalRatio: 10,
+        groupOriginalInterval: 4000,
+        groupIntervalRatio: 0.9,
         groupSize: 2,
         group: [],
         interval: 0,
@@ -59,6 +61,7 @@ class EnemyGen {
            
             if( eT.groupTicks >= eT.groupInterval) {
                 eT.groupTicks = 0;
+                eT.groupInterval = eT.groupOriginalInterval * eT.groupIntervalRatio;
                 if (this.game.renderShip === true && this.game.ship.respawnShield === false) {
                     eT.spawnY = this.randomEnemY();
                     for(let i=0;i < eT.groupSize; i++) {
@@ -66,15 +69,14 @@ class EnemyGen {
                             case 'bug':
                                 const vel = eT.spawnY > DIM_Y/2 ? [-4,-0.5] : [-4,0.5]
                                 const b = new Bug({ game: this.game, pos: [eT.spawnX, eT.spawnY], vel: vel });
-                                // b.rewardsPowerUp = true;
-                                if(i === eT.groupSize-1 && eT.groupsSpawned % 1  === 0) {
+                                if(i === eT.groupSize-1 && eT.groupsSpawned % 4  === 0) {
                                     b.rewardsPowerUp = true;
                                     b.powerUpPayload = Object.keys(PowerUp.shotTypes)[Math.floor(Math.random() * (Object.keys(PowerUp.shotTypes).length))]
                                     b.powerUpColor = PowerUp.shotTypes[b.powerUpPayload]
                                     
                                 }
                                 eT.group.push(b)
-                                eT.groupsSpawned +=1;
+                                
                                 break;
                             case 'voidPuff':
                                 eT.group.push(new VoidPuff({ game: this.game, pos: [eT.spawnX, eT.fixedY[i]]}))
@@ -84,9 +86,9 @@ class EnemyGen {
                                 console.log(`default case reached in EnemyGen.prototype.populateGroups. didnt recognize ${eT.type}`)
                         }
                     }
+                    eT.groupsSpawned += 1;
                     
                 }
-                eT.groupInterval = eT.groupInterval * eT.groupIntervalRatio;
                 
             }
         })

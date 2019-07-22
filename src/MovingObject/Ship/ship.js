@@ -47,7 +47,6 @@ class Ship extends MovingObject {
     power(impulse) {this.vel = impulse;}
 
     loadProjectile(projectileString) {
-        debugger;
         switch(projectileString) {
             case "BasicShot":
                 this.projectileType = "BasicShot"

@@ -44,10 +44,12 @@ class Game {
     startGame(time) {
         if(this.isStarting) {
             const tutorial = document.getElementById('tutorial-wrapper')
-            tutorial.className = "tutorial-wrapper modal starting";
             if(this.beginStartingAt === 0 ) {
                 this.beginStartingAt = time;
                 this.updateLivesDisplay();
+                document.getElementById('ready-btn')
+                    .className = "hidden";
+                tutorial.className = "tutorial-wrapper modal starting";
             }
             else if (time - this.beginStartingAt >= 3500) {
                 this.isStarted = true;

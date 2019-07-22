@@ -163,18 +163,46 @@ section#tutorial-wrapper.starting div.controls ul{
 
 .tutorial-wrapper .btn {
     padding: 3% 0 0;
+    height: 55px;
 }
 
 button {
     background: black;
     color: white;
     border-radius: 2px;
-    padding: 3% 10%;
+    /* padding: 3% 10%; */
+    width: 215px;
     outline: none;
     font-size: 16px;
     letter-spacing: 5px;
     box-shadow: 0 0 6px 3px #b2b2b2;
     z-index: 1;
+        display: flex;
+    justify-content: space-between;
+}
+
+button > * {
+    height: 50px;
+}
+
+button > span {
+    display: flex;
+    justify-content: flex-end;
+    width: 70%;
+    align-items: center;
+}
+button > div {
+    letter-spacing: normal;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 12px;
+    align-items: flex-end;
+    color: #b2b2b2;
+}
+
+button > div span:first-child {
+    font-size: 30px;
 }
 
 button:hover {
