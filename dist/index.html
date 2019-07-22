@@ -17,7 +17,56 @@
     </header>
     
     <main>
-
+        <section id="tutorial-wrapper" class="tutorial-wrapper">
+            <div class="intro">
+                <h3>
+                    welcome to C-TYPE. 
+                </h3>
+                <p>kill bad guys. don't die. rack up that high score. you know the drill.</p>
+            </div>
+            <div class="powerups">
+                <h3>powerups</h3>
+                <div class="words">
+                    <p>kill glowing enemies to spawn powerups.  kick 'em up, proceed to wreck it.</p>
+                </div>
+                <div class="images">
+                    <img class="ship"  src="../src/assets/images/ship_shooting.png" />
+                    <img class="enemy" src="../src/assets/images/enemy_with_reward.png" />
+                    <span class="arrow">&#8594;</span>
+                    <img class="explode"  src="../src/assets/images/explode.png" />
+                    <span class="arrow">&#8594;</span>
+                    <img class="powerup"  src="../src/assets/images/powerup.png" />
+                </div>
+            </div>
+            <div class="controls">
+                <h3 id="tutorial-controls-header">controls</h3>
+                <ul>
+                    <!--up -->
+                    <li class="up">&#8593;</li>
+                    <!--left -->
+                    <li class="left">&#8592;</li>
+                    <!--down -->
+                    <li class="down">&#8595;</li>
+                    <!--right -->
+                    <li class="right">&#8594;</li>
+                    <!--p -->
+                    <li>pause</li>
+                    <!--space -->
+                    <li class="fire">fire</li>
+                </ul>
+                <ul>
+                    <li>w</li>
+                    <li>a</li>
+                    <li>s</li>
+                    <li class="d">d</li>
+                    <li>p</li>
+                    <li class="space">space</li>
+                </ul>
+            </div>
+            <div class="ready-btn">
+                <button id="ready-btn">ready!</button>
+            </div>
+        </section>
         <canvas id="game-canvas" width="1400" height="700"></canvas>
 
     
@@ -29,7 +78,7 @@
            </ul>
         </div>
         
-        <div class="controls">
+        <div id="player-controls" class="controls clear">
             <ul>
                 <!--up -->
                 <li class="up">&#8593;</li>

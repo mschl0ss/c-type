@@ -6,6 +6,7 @@ class GameView {
         this.imgWidth = 0;
         this.scrollSpeed = 10;
         this.keysPressed = {d: false, a: false, w: false, s: false, " ": false};
+        this.gameStarting = true;
     }
 
     bindKeyEventHandlers() {
@@ -20,7 +21,12 @@ class GameView {
         document.body.onkeydown = document.body.onkeyup = e=>{
             
             this.keysPressed[e.key] = e.type == 'keydown';
+            if(e.key === " ") e.preventDefault();
         }
+
+        const readyBtn = document.getElementById('ready-btn');
+
+        readyBtn.addEventListener('click', e=> this.handleReadyClick());
 
         key("r", ()=> {
             if(this.game.renderShip === false) this.game.spawnShip();
@@ -53,16 +59,30 @@ class GameView {
         this.game.ship.power([newX,newY], time)}
     
     }
+    handleReadyClick() {
+        if(!this.game.isStarting && !this.game.isStarted) {
+            this.game.isStarting = true;
+            
+        }
+    }
+
+    animateStartTransition() {
+
+    }
 
     start() {
         this.bindKeyEventHandlers();
         this.lastTime = 0;
+        this.game.updateLivesDisplay();
         requestAnimationFrame(this.animate.bind(this));
         
     }
 
     animate(time) {
         if(!this.game.isPaused) {
+            if(this.game.isStarting) {
+                this.game.startGame(time);
+            }
             const timeDelta = time - this.lastTime;
 
             this.processEvents(time);

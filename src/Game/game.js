@@ -12,7 +12,7 @@ const PowerUp = require('../MovingObject/PowerUp/power_up');
 
 class Game {
     constructor() {
-        this.enemyGen = new EnemyGen(this);
+        
         this.pausedObjects = {};
         this.stars = [];
         this.playerProjectiles = [];
@@ -25,13 +25,15 @@ class Game {
         this.player = new Player(this)
         this.ship = new Ship({ game: this, pos: [250, 350], vel: [0, 0] })
 
-
+        this.isStarting = false;
+        this.isStarted = false;
+        this.beginStartingAt = 0;
         this.isPaused = false;
         this.isOver = false;
-        this.renderShip = true;
+        this.renderShip = false;
 
 
-        this.spawnShip();
+        
 
 
 
@@ -42,21 +44,42 @@ class Game {
  
     }
 
-    spawnShip() {
-        // first loop
-    //     1. game starts
-    //     2. ship.respawnShield = true;
-    //     3. ship.renderShip = true;
-    //     4. ship.pos = way off to the left
-    //     5. ship.vel = [20, 0]
-    //     6. ship.sprites = twinkles
+    startGame(time) {
+        if(this.isStarting) {
+            if(this.beginStartingAt === 0 ) {this.beginStartingAt = time}
 
-    //     every successive loop
-    //     1. if renderShip === true && respawnShield === true
-    //          1. if (ship.pos[0] !== 250) {//cool keep going}
-    //          2. else { ship.vel = [0, 0]; respawnShield = false; }
+            if(time - this.beginStartingAt >= 1800) document.getElementById('player-controls').className = 'controls';
+            if (time - this.beginStartingAt >= 2500){
+                this.isStarted = true;
+            }
+            this.animateStartTransition(time);
+            this.updateLivesDisplay();
+
+            
+        }
+        if(this.isStarted){
+            this.isStarting = false;
+            this.isStarted = true;
+            this.spawnShip();
+            this.enemyGen = new EnemyGen(this);
+        }
+       
+    }
+
+    animateStartTransition(time) {
+        const tutorial = document.getElementById('tutorial-wrapper')
+        tutorial.className = "tutorial-wrapper starting";
+        
+
+        // console.log(time)
+        // if(time - this.beginStartingAt>= 2500 ) {tutorial.className = "hidden"}
+    }
+    spawnShip() {
 
         if (this.player.lives >= 0) {
+            if(this.ship === undefined) {
+                
+            }
             this.ship.pos = [-50, 350];
             this.ship.vel = [2,0];
             this.renderShip = true;
@@ -273,7 +296,7 @@ class Game {
     }
     step(timeDelta, time) {
         this.moveObjects(timeDelta);
-        this.enemyGen.scheduler();
+        if(this.isStarted && this.enemyGen !== undefined) this.enemyGen.scheduler();
         this.checkCollisions();
     }
     wrap(pos) {

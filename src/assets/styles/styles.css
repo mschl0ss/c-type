@@ -6,12 +6,19 @@
 
 @import url('https://fonts.googleapis.com/css?family=Darker+Grotesque&display=swap');
 /* font-family: 'Darker Grotesque', sans-serif; */
+
+@import url('https://fonts.googleapis.com/css?family=Varela+Round&display=swap');
+/* font-family: 'Varela Round', sans-serif; */
 body { 
     background: black;
     color: white;
-    font-family: 'Darker Grotesque', sans-serif;
+    /* font-family: 'Darker Grotesque', sans-serif; */
+    font-family: 'Varela Round', sans-serif;
+    letter-spacing: 2px;
 }
-
+.hidden {
+    display: none;
+}
 header {
     display: flex;
     justify-content: center;
@@ -22,9 +29,123 @@ header {
 }
 
 header h1 {
-    padding: 35px 0 0;
+    padding: 17px 0;
     font-size: 70px;
     letter-spacing: 10px;
+}
+
+.tutorial-wrapper {
+    border: double 5px #b2b2b2;
+    border-radius: 25px;
+    background: black;
+    width: 480px;
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 150px;
+    font-size: 20px;
+    line-height: 30px;
+    box-shadow: 0px 0px 10px 3px #888888;
+}
+
+.tutorial-wrapper h3{
+    padding-bottom: 1%;
+    border-bottom: solid 1px #888888
+}
+.tutorial-wrapper p {
+    font-size: 16px;
+}
+
+.tutorial-wrapper > div {
+    border-bottom: solid 1px #b2b2b2;
+    margin: 1% auto;
+    padding: 0 0 4%;
+    width: 95%;
+    display: flex;
+    min-height: 20px;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+#tutorial-wrapper.starting {
+    border: solid 1px #b2b2b2;
+    transition-property: background-color, opacity, border;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+}
+#tutorial-wrapper.starting *, #tutorial-wrapper.starting {
+    transition-property: background-color, opacity, border;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+    transition-delay: 2s;
+    opacity: 0.0;
+    background: none;
+    
+}
+
+#tutorial-wrapper .controls ul {
+    position: relative;
+    top: 0;
+    /* background: black; */
+}
+
+#tutorial-wrapper .controls ul:first-of-type {
+    margin-top: 5%;
+}
+
+section#tutorial-wrapper.starting div.controls ul{
+    top: 238px;
+    transition: top 2s ease-in-out;
+    transition-delay: -0.1s;
+    border-width: 0px;
+    opacity: 1;
+}
+
+#tutorial-wrapper.starting .controls #tutorial-controls-header {
+    transition: none;
+    opacity: 0;
+}
+
+.clear {
+    opacity: 0;
+}
+
+.tutorial-wrapper > div:last-child {
+    border: none;
+}
+
+.tutorial-wrapper > div .powerups div:last-child {
+    margin: 1% 0 0 ;
+}
+
+.tutorial-wrapper p,.tutorial-wrapper .images {
+    margin: 2% 0;
+    height: 35%;
+    position: relative;
+}
+.tutorial-wrapper .controls ul{
+    width: 358px;
+}
+
+.tutorial-wrapper .ready-btn {
+    padding: 3% 0 0;
+}
+
+button {
+    background: white;
+    color: black;
+    border-radius: 2px;
+    padding: 3% 10%;
+    outline: none;
+}
+
+button:hover {
+    cursor: pointer;
+}
+.powerups img {
+    height: 45px;
 }
 main {
     display: flex;
@@ -36,9 +157,11 @@ main {
 }
 
 canvas {
-    margin: 20px;
-    border: solid 1px #353535;
+    /* margin: 20px; */
+    border: double 6px #b2b2b2;
     min-width: 1400px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px 3px #888888;
 }
 
 .player {
@@ -50,7 +173,7 @@ canvas {
 }
 
 .player div {
-    width: 32%;
+    width: 35%;
     display: flex;
     align-items: center;
     box-sizing: border-box;
@@ -85,6 +208,8 @@ canvas {
 }
 .controls ul:last-child li {
     border: solid 1px white;
+    box-shadow: 2px 2px 0px 0px white;
+    background: black;
     
 }
 
@@ -95,19 +220,20 @@ canvas {
     justify-content: space-around;
     width: 31.5px;
     height: 31.5px;
-    font-size: 20px;
+    font-size: 15px;
 }
 
-.left,.right {
-    padding-top: 5px;
+ul li.left, ul li.right {
+    /* padding-top: 5px; */
+    font-size: 30px;
 }
 ul li.up, ul li.down {
-    font-size: 40px;
-    padding-bottom: 5px;
+    font-size: 30px;
+    /* padding-bottom: 5px; */
 }
 
 .controls ul li.space, .controls ul li.fire {
-    width: 55px;
+    width: 19.5%;
 }
 .right,.d {
     /* border-right: solid 1px white; */
@@ -115,6 +241,7 @@ ul li.up, ul li.down {
 #score-div {
     display: flex;
     justify-content: flex-end;
+    font-size: 20px;
     /* padding-left: 40px */
 }
 
