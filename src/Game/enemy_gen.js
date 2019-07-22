@@ -1,4 +1,5 @@
 const Bug = require('../MovingObject/Enemy/bug');
+const BigBug = require('../MovingObject/Enemy/bigbug');
 const VoidPuff = require('../MovingObject/Enemy/void_puff')
 const Voidlette = require('../MovingObject/Enemy/voidlette')
 const PowerUp = require('../MovingObject/PowerUp/power_up');
@@ -13,7 +14,7 @@ const enemyTypes = {
         groupTicks: 0,
         groupInterval: 200,
         groupOriginalInterval: 200,
-        groupIntervalRatio: 0.9,
+        groupIntervalRatio: 0.99,
         groupsSpawned: 0,
         groupSize: 3,
         // groupSize: Math.floor(Math.random() *1) + 3,
@@ -24,12 +25,29 @@ const enemyTypes = {
         spawnX : DIM_X-11,
         limitY: 50,
     },
+    bigBug : {
+        type: 'bigBug',
+        groupTicks: 0,
+        groupInterval: 300,
+        groupOriginalInterval: 500,
+        groupIntervalRatio: 0.99,
+        groupsSpawned: 0,
+        groupSize: 1,
+        // groupSize: Math.floor(Math.random() *1) + 3,
+        group: [],
+        interval: 25,
+        intervalTicks: 0,
+        spawnY : 0,
+        fixedY: [350],
+        spawnX : DIM_X-11,
+        limitY: 50,
+    },
     voidPuff : {
         type: 'voidPuff',
         groupTicks: 0,
         groupInterval: 1000,
         groupOriginalInterval: 4000,
-        groupIntervalRatio: 0.9,
+        groupIntervalRatio: 0.99,
         groupSize: 2,
         group: [],
         interval: 0,
@@ -81,6 +99,15 @@ class EnemyGen {
                             case 'voidPuff':
                                 eT.group.push(new VoidPuff({ game: this.game, pos: [eT.spawnX, eT.fixedY[i]]}))
                             
+                                break;
+                            case 'bigBug':
+                                const bB = new BigBug({ game: this.game, pos: [eT.spawnX, eT.spawnY] })
+                                if(eT.groupsSpawned % 3 === 0) {
+                                   bB.rewardsPowerUp = true;
+                                   bB.powerUpPayload = Object.keys(PowerUp.shotTypes)[Math.floor(Math.random() * (Object.keys(PowerUp.shotTypes).length))]
+                                   bB.powerUpColor = PowerUp.shotTypes[bB.powerUpPayload]
+                                }
+                                eT.group.push(bB);
                                 break;
                             default:
                                 console.log(`default case reached in EnemyGen.prototype.populateGroups. didnt recognize ${eT.type}`)

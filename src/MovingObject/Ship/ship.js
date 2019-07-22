@@ -106,7 +106,7 @@ class Ship extends MovingObject {
                 case 'SpreadShot':
                     if (this.ammoCount < 0) this.loadProjectile('BasicShot');
                     else {
-                        for(let i = -5; i < 6; i+=2) {
+                        for(let i = -4; i < 4; i+=2) {
                             const projectile = new SpreadShot({
                                 pos: [this.pos[0] + (this.width * 0.75), this.pos[1] + (this.height * 0.6)],
                                 vel: [SpreadShot.speed, i],
@@ -115,7 +115,7 @@ class Ship extends MovingObject {
                             })
                             this.game.add(projectile);
                         }
-                        this.ammoCount -= 5;
+                        this.ammoCount -= 4;
                     }  
                     break;
                 case 'LaserShot':
