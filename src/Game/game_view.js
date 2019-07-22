@@ -9,6 +9,21 @@ class GameView {
         this.gameStarting = true;
     }
 
+    setInitialClasses() {
+        const pause = document.getElementById('pause');
+        pause.className = "hidden"
+        const dead = document.getElementById('dead');
+        dead.className = "hidden"
+        const gameover = document.getElementById('gameover');
+        gameover.className = "hidden"
+
+        const tutorial = document.getElementById('tutorial-wrapper')
+        // tutorial.className = "hidden";
+
+
+    }
+
+
     bindKeyEventHandlers() {
 
 
@@ -24,12 +39,29 @@ class GameView {
             if(e.key === " ") e.preventDefault();
         }
 
-        const readyBtn = document.getElementById('ready-btn');
+        document.getElementById('ready-btn')
+            .addEventListener('click', e=> this.handleReadyClick());
 
-        readyBtn.addEventListener('click', e=> this.handleReadyClick());
+        document.getElementById('pause-btn')
+            .addEventListener('click', e=> {
+                if(!this.game.isStarting) this.game.unPause(this.lastTime);
+            });
+        document.getElementById('gameover-btn')
+            .addEventListener('click', e=>window.location.reload());
+        document.getElementById('dead-btn')
+            .addEventListener('click', e=>this.game.spawnShip());
+
+        key("enter", () => {
+            if (!this.game.isStarted) {this.handleReadyClick();}
+            else if(this.game.renderShip === false && this.game.isStarted && !this.game.isOver) this.game.spawnShip();
+            else if(this.game.isPaused && !this.game.isOver) {this.game.unPause(this.lastTime)}
+            else if(!this.game.isPaused && !this.game.isOver) {this.game.pause(this.ctx)}
+            else if(this.game.isOver) { window.location.reload();}
+            
+        })
 
         key("r", ()=> {
-            if(this.game.renderShip === false) this.game.spawnShip();
+            if(this.game.renderShip === false && this.game.isStarted) this.game.spawnShip();
         })
 
     }
@@ -66,11 +98,8 @@ class GameView {
         }
     }
 
-    animateStartTransition() {
-
-    }
-
     start() {
+        this.setInitialClasses();
         this.bindKeyEventHandlers();
         this.lastTime = 0;
         this.game.updateLivesDisplay();

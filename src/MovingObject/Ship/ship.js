@@ -158,8 +158,6 @@ class Ship extends MovingObject {
 
     drawRespawning(){
         this.currentSpriteImages = ShipSprites.twinkles;
-        console.log('twinkles')
-        
     }
     //necessary because ship has many different sprites, and it needs to
     //reset to default after for example shooting animation is done;

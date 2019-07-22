@@ -17,7 +17,43 @@
     </header>
     
     <main>
-        <section id="tutorial-wrapper" class="tutorial-wrapper">
+        <section id="pause" class="modal">
+            <h3>paused</h3>
+            <div>
+                <p>pfft go do life or whatever.</p>
+            </div>
+            <div class="btn">
+                <button id="pause-btn">unpause</button>
+            </div>
+        </section>
+
+        <section id="dead" class="modal">
+            <h3 id="dead-title">Ouch.</h3>
+            <div>
+                <p id="dead-text">only 2 left.  make 'em count</p>
+            </div>
+            <div class="btn">
+                <button id="dead-btn">respawn</button>
+            </div>
+        </section>
+
+        <section id="gameover" class="modal">
+            <h3 id="gameover-title">gameover</h3>
+            <div>
+                <p>a valiant effort.  your death means...um was there a plot?  it means something, im sure</p>
+            </div>
+            <div class="final-score">
+                <span>final score:</span>
+                <span id="final-score-display">0</span>
+            </div>
+            <div class="btn">
+                <button id="gameover-btn">restart</button>
+            </div>
+        </section>
+
+        
+
+        <section id="tutorial-wrapper" class="tutorial-wrapper modal">
             <div class="intro">
                 <h3>
                     welcome to C-TYPE. 
@@ -27,11 +63,14 @@
             <div class="powerups">
                 <h3>powerups</h3>
                 <div class="words">
-                    <p>kill glowing enemies to spawn powerups.  kick 'em up, proceed to wreck it.</p>
+                    <p>kill glowing enemies to spawn powerups.
+                        pick 'em up, proceed to wreck it.</p>
                 </div>
                 <div class="images">
-                    <img class="ship"  src="../src/assets/images/ship_shooting.png" />
-                    <img class="enemy" src="../src/assets/images/enemy_with_reward.png" />
+                    <div>
+                        <img class="ship"  src="../src/assets/images/ship_shooting.png" />
+                        <img class="enemy" src="../src/assets/images/enemy_with_reward.png" />
+                    </div>
                     <span class="arrow">&#8594;</span>
                     <img class="explode"  src="../src/assets/images/explode.png" />
                     <span class="arrow">&#8594;</span>
@@ -63,7 +102,7 @@
                     <li class="space">space</li>
                 </ul>
             </div>
-            <div class="ready-btn">
+            <div class="btn">
                 <button id="ready-btn">ready!</button>
             </div>
         </section>
@@ -71,7 +110,7 @@
 
     
 
-    <section class="player">
+    <section class="player clear" id="player">
         <div id="lives-div">
            <ul id="lives">
 

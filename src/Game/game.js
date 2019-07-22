@@ -11,8 +11,8 @@ const PowerUp = require('../MovingObject/PowerUp/power_up');
 
 
 class Game {
-    constructor() {
-        
+    constructor(ctx) {
+        this.ctx = ctx
         this.pausedObjects = {};
         this.stars = [];
         this.playerProjectiles = [];
@@ -32,11 +32,8 @@ class Game {
         this.isOver = false;
         this.renderShip = false;
 
-
-        
-
-
-
+        this.modalAwake = false;
+        this.modalId = '';
         this.lastTime = 0;
         this.backgroundInterval = 50;
         this.backgroundDirection = 1;
@@ -46,14 +43,25 @@ class Game {
 
     startGame(time) {
         if(this.isStarting) {
-            if(this.beginStartingAt === 0 ) {this.beginStartingAt = time}
-
-            if(time - this.beginStartingAt >= 1800) document.getElementById('player-controls').className = 'controls';
-            if (time - this.beginStartingAt >= 2500){
-                this.isStarted = true;
+            const tutorial = document.getElementById('tutorial-wrapper')
+            tutorial.className = "tutorial-wrapper modal starting";
+            if(this.beginStartingAt === 0 ) {
+                this.beginStartingAt = time;
+                this.updateLivesDisplay();
             }
-            this.animateStartTransition(time);
-            this.updateLivesDisplay();
+            else if (time - this.beginStartingAt >= 3500) {
+                this.isStarted = true;
+                tutorial.className = "hidden"
+            }
+            else if(time - this.beginStartingAt >= 1800) {
+                document.getElementById('player-controls').className = 'controls';
+                
+            }
+            else if(time - this.beginStartingAt >= 1500) {
+                document.getElementById('player').className = 'player'
+            }
+           
+            
 
             
         }
@@ -68,14 +76,44 @@ class Game {
 
     animateStartTransition(time) {
         const tutorial = document.getElementById('tutorial-wrapper')
-        tutorial.className = "tutorial-wrapper starting";
+        tutorial.className = "tutorial-wrapper modal starting";
         
 
         // console.log(time)
-        // if(time - this.beginStartingAt>= 2500 ) {tutorial.className = "hidden"}
+        if(time - this.beginStartingAt>= 2500 ) {tutorial.className = "hidden"}
+    }
+
+    pause(ctx) {
+        this.allObjects().forEach(obj => {
+            this.pausedObjects[obj.id] = { pos: [obj.pos[0], obj.pos[1]], vel: obj.vel };
+            obj.vel = [0, 0]
+        })
+        this.stars.forEach(star => {
+            this.pausedObjects[star.id] = { pos: [star.pos[0], star.pos[1]], vel: star.vel };
+            star.vel = [0, 0]
+        })
+        this.isPaused = true;
+        this.drawMask(ctx)
+        const pause = document.getElementById('pause');
+        pause.className = "modal"
+    }
+
+    unPause(time) {
+        this.allObjects().forEach(obj => {
+            obj.pos = this.pausedObjects[obj.id].pos;
+            obj.vel = this.pausedObjects[obj.id].vel;
+        })
+        this.stars.forEach(obj => {
+            obj.pos = this.pausedObjects[obj.id].pos;
+            obj.vel = this.pausedObjects[obj.id].vel;
+        })
+        this.isPaused = false;
+        const pause = document.getElementById('pause');
+        pause.className = "hidden"
     }
     spawnShip() {
-
+        document.getElementById('dead')
+            .className = "hidden"
         if (this.player.lives >= 0) {
             if(this.ship === undefined) {
                 
@@ -94,6 +132,10 @@ class Game {
     }
 
     gameOver() {
+        document.getElementById('final-score-display')
+            .innerHTML=this.player.score;
+        document.getElementById('player')
+            .className = "player clear"
         this.isOver = true;
     }
 
@@ -108,6 +150,17 @@ class Game {
             li.appendChild(image);
             livesUl.appendChild(li)
         }
+
+        // <h3 id="dead-title">Ouch.</h3>
+        const headline = Game.deadTitles[Math.floor(Math.random() * (Game.deadTitles.length-1))]
+        const text = this.player.lives > 0 ?
+            `only ${this.player.lives} left.  make 'em count` :
+            `last one!  i believe!`
+        document.getElementById('dead-title')
+            .innerHTML = headline;
+        document.getElementById('dead-text')
+            .innerHTML = text;
+
     }
 
     updateScoreDisplay() {
@@ -132,32 +185,7 @@ class Game {
         }
     }
 
-    pause(ctx) {
-
-        
-        this.allObjects().forEach(obj => {
-            this.pausedObjects[obj.id] = {pos:[obj.pos[0],obj.pos[1]], vel:obj.vel};
-            obj.vel = [0,0]
-        })
-        this.stars.forEach(star => {
-            this.pausedObjects[star.id] = { pos: [star.pos[0], star.pos[1]], vel: star.vel };
-            star.vel = [0, 0]
-        })
-        this.isPaused = true; 
-        this.drawMask(ctx)
-    }
-
-    unPause() {
-        this.allObjects().forEach(obj => {
-            obj.pos = this.pausedObjects[obj.id].pos;
-            obj.vel = this.pausedObjects[obj.id].vel;
-        })
-        this.stars.forEach(obj => {
-            obj.pos = this.pausedObjects[obj.id].pos;
-            obj.vel = this.pausedObjects[obj.id].vel;
-        })
-        this.isPaused = false;
-    }
+    
     allObjects() {
         return [this.ship].concat(this.playerProjectiles,this.enemyProjectiles,this.enemies, this.powerUps);
     }
@@ -187,6 +215,7 @@ class Game {
         ctx.globalAlpha = 1
     }
     draw(ctx, timeDelta) {
+        
         ctx.clearRect(0, 0, Game.DIM_X * 1.5, Game.DIM_Y * 1.5);
 
 
@@ -219,6 +248,7 @@ class Game {
         }
 
         this.powerUps.forEach(p => p.draw(ctx))
+        if (this.isPaused || !this.renderShip) this.drawMask(ctx)
     }
     isOutOfBounds(pos) {
         //if the pos coords are off the map return [true, "side of the map they're off"]
@@ -255,18 +285,37 @@ class Game {
     randomX() {
         return Math.floor(Math.random() * Game.DIM_X);
     }
+
+    removeShip(obj) {
+        this.renderShip = false;
+        this.player.lives -= 1;
+        this.updateLivesDisplay();
+        
+        this.explosions.push(
+            new Explode({ pos: obj.pos, w: obj.width, h: obj.height, game: this })
+        )
+
+        let id;
+        if(this.player.lives < 0 ) {id='gameover'}
+        else id="dead";
+        document.getElementById(id)
+            .className = "modal"
+
+        if (this.player.lives < 0) this.gameOver();
+    }
     remove(obj) {
         //remove things from game
         //if they should explode, explode them
 
         if (obj instanceof Ship && this.renderShip === true) {
-            this.renderShip = false;
-            this.player.lives -= 1;
-            this.updateLivesDisplay();
-            if (this.player.lives < 0) this.gameOver();
-            this.explosions.push(
-                new Explode({ pos: obj.pos, w: obj.width, h: obj.height, game: this })
-            )
+            // this.renderShip = false;
+            // this.player.lives -= 1;
+            // this.updateLivesDisplay();
+            // if (this.player.lives < 0) this.gameOver();
+            // this.explosions.push(
+            //     new Explode({ pos: obj.pos, w: obj.width, h: obj.height, game: this })
+            // )
+            this.removeShip(obj)
         }
         else if(obj instanceof Projectile) {
             this.playerProjectiles.splice(this.playerProjectiles.indexOf(obj), 1);
@@ -304,7 +353,7 @@ class Game {
     }
 }
 
-
+Game.deadTitles = ["Ouch", "Oof", "Ughh", "Yikes"];
 Game.NUM_STARS = 500;
 Game.NUM_MOONS = 1;
 

@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', ()=> {
     window.canvas = canvas;
     window.context = context;
     
-    const game = new Game();
+    const game = new Game(context);
     const gv = new GameView(context, game);
     gv.start();
 
